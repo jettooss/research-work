@@ -1,0 +1,98 @@
+{
+  "best_epoch": 1,
+  "best_composite": 0.5,
+  "train_history": [
+    {
+      "epoch": 1,
+      "stage": "stage1",
+      "train": {
+        "loss": 0.0,
+        "loss_ret": 0.0,
+        "loss_vqa": 0.0
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.0,
+        "composite": 0.5
+      }
+    },
+    {
+      "epoch": 2,
+      "stage": "stage2",
+      "train": {
+        "loss": 0.5659343004226685,
+        "loss_ret": 0.0,
+        "loss_vqa": 1.4148357510566711
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 1.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.0,
+        "composite": 0.5
+      }
+    }
+  ],
+  "test": {
+    "split": "test",
+    "i2t": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "t2i": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mean": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "vqa_acc": 1.0,
+    "composite": 1.0
+  },
+  "config": {
+    "manifest": "C:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\manifest_hybrid.jsonl",
+    "split_json": "C:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\split_hybrid.json",
+    "graph_mode": "opencv_only",
+    "encoder": "transformer",
+    "sam_cache_dir": "runs\\sam_cache_ai2d",
+    "sam_backend": "sam_vit_b",
+    "epochs_stage1": 1,
+    "epochs_stage2": 1,
+    "batch_size": 1,
+    "eval_batch_size": 1,
+    "lambda_ret": 0.6,
+    "lambda_vqa": 0.4
+  }
+}

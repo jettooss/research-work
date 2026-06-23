@@ -1,0 +1,8 @@
+{
+  "name": "ai2d_vlm_direct",
+  "script": "scripts/evaluate_ai2d_vlm.py",
+  "description": "Direct Qwen2.5-VL-3B multiple-choice evaluation on the AI2D test split.",
+  "command": "python scripts/evaluate_ai2d_vlm.py --mode direct --split test --manifest ../ai2d/prepared_v2/manifest_hybrid.jsonl --split-json ../ai2d/prepared_v2/split_hybrid.json --model-path ../models/Qwen2.5-VL-3B-Instruct --output-dir runs/ai2d_vlm_direct_test",
+  "smoke_command": "python scripts/evaluate_ai2d_vlm.py --mode direct --split test --max-samples 20 --manifest ../ai2d/prepared_v2/manifest_hybrid.jsonl --split-json ../ai2d/prepared_v2/split_hybrid.json --model-path ../models/Qwen2.5-VL-3B-Instruct",
+  "target_accuracy": 0.4535
+}

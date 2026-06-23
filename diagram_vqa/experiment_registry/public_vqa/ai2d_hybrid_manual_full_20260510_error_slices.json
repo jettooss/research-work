@@ -1,0 +1,7 @@
+{
+  "wrong_answer": 1729,
+  "correct": 1246,
+  "arithmetic_or_numeric_miss": 95,
+  "answer_extraction_miss": 16,
+  "empty_answer": 2
+}

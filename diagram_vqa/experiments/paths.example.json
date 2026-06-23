@@ -1,0 +1,8 @@
+{
+  "data_root": "../ai2d",
+  "manifest": "../ai2d/prepared_v2/manifest_hybrid.jsonl",
+  "split_json": "../ai2d/prepared_v2/split_hybrid.json",
+  "model_path": "../models/Qwen2.5-VL-3B-Instruct",
+  "hybrid_predictions": "../runs/ai2d_hybrid_manual_full_20260510/test_vqa_predictions.jsonl",
+  "output_root": "runs"
+}

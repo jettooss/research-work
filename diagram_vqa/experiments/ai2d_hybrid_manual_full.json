@@ -1,0 +1,8 @@
+{
+  "name": "ai2d_hybrid_manual_full",
+  "script": "scripts/train_ai2d_hybrid.py",
+  "description": "GraphEncoderV2 + TextProj hybrid training with caption context.",
+  "command": "python scripts/train_ai2d_hybrid.py --manifest ../ai2d/prepared_v2/manifest_hybrid.jsonl --split-json ../ai2d/prepared_v2/split_hybrid.json --output-dir runs/ai2d_hybrid_manual_full --use-caption-context --lambda-ret 0.6 --lambda-vqa 0.4 --epochs-stage1 8 --epochs-stage2 25 --batch-size 4 --eval-batch-size 8",
+  "acceptance_metric": "test.vqa_acc",
+  "current_best": 0.4035
+}

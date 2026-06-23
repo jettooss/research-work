@@ -1,0 +1,8 @@
+{
+  "dataset_name": "ai2d",
+  "ocr_source": "tesseract",
+  "best_epoch": 41,
+  "mean_r_at_1": 0.0509677417576313,
+  "mean_r_at_5": 0.17193548381328583,
+  "mean_r_at_10": 0.2706451714038849
+}

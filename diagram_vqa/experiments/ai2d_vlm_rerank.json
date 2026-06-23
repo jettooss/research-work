@@ -1,0 +1,8 @@
+{
+  "name": "ai2d_vlm_rerank",
+  "script": "scripts/evaluate_ai2d_vlm.py",
+  "description": "Qwen2.5-VL-3B reranking with graph-hybrid prediction as weak evidence.",
+  "command": "python scripts/evaluate_ai2d_vlm.py --mode rerank --split test --manifest ../ai2d/prepared_v2/manifest_hybrid.jsonl --split-json ../ai2d/prepared_v2/split_hybrid.json --model-path ../models/Qwen2.5-VL-3B-Instruct --hybrid-predictions ../runs/ai2d_hybrid_manual_full_20260510/test_vqa_predictions.jsonl --output-dir runs/ai2d_vlm_rerank_test",
+  "smoke_command": "python scripts/evaluate_ai2d_vlm.py --mode rerank --split test --max-samples 20 --manifest ../ai2d/prepared_v2/manifest_hybrid.jsonl --split-json ../ai2d/prepared_v2/split_hybrid.json --model-path ../models/Qwen2.5-VL-3B-Instruct --hybrid-predictions ../runs/ai2d_hybrid_manual_full_20260510/test_vqa_predictions.jsonl",
+  "target_accuracy": 0.4535
+}

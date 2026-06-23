@@ -1,0 +1,34 @@
+# Репозиторий на уровне data/: коммитим ТОЛЬКО проект diagram_vqa/.
+# Тяжёлое/внешнее (данные, модели, окружение, старые прогоны) — игнорируем.
+# Файлы остаются на диске, просто не попадают в git.
+#
+# ВАЖНО: ведущий "/" якорит паттерн к корню data/, иначе, например, "ai2d/"
+# заматчил бы и diagram_vqa/notebooks/experiments/ai2d/ внутри проекта.
+
+# Окружение Python (data-level)
+/.venv/
+
+# Датасеты и модели (большие, внешние — держим рядом, но не в git)
+/ai2d/
+/docvqa/
+/infographicvqa/
+/models/
+
+# Старые внешние прогоны и трекинг (data-level)
+/runs/
+/mlruns/
+/mlflow.db
+
+# Локальная служебная конфигурация инструментов (data-level)
+/.claude/
+/.agents/
+/.ipynb_checkpoints/
+
+# Универсальный мусор (на любой глубине)
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Внутри diagram_vqa/ действует свой .gitignore (.env, тяжёлые runs/ и т.п.)

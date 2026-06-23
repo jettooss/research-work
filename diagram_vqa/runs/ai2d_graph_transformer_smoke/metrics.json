@@ -1,0 +1,98 @@
+{
+  "best_epoch": 1,
+  "best_composite": 0.75,
+  "train_history": [
+    {
+      "epoch": 1,
+      "stage": "stage1",
+      "train": {
+        "loss": 0.7186457514762878,
+        "loss_ret": 0.7186457514762878,
+        "loss_vqa": 0.0
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 0.125,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.5,
+        "composite": 0.75
+      }
+    },
+    {
+      "epoch": 2,
+      "stage": "stage2",
+      "train": {
+        "loss": 0.9584295749664307,
+        "loss_ret": 0.6665500402450562,
+        "loss_vqa": 1.39624884724617
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 0.0,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.25,
+        "composite": 0.625
+      }
+    }
+  ],
+  "test": {
+    "split": "test",
+    "i2t": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "t2i": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mean": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "vqa_acc": 0.75,
+    "composite": 0.875
+  },
+  "config": {
+    "manifest": "c:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\manifest_hybrid.jsonl",
+    "split_json": "c:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\split_hybrid.json",
+    "graph_mode": "opencv_only",
+    "encoder": "transformer",
+    "sam_cache_dir": "runs\\sam_cache_ai2d",
+    "sam_backend": "ultralytics_sam3",
+    "epochs_stage1": 1,
+    "epochs_stage2": 1,
+    "batch_size": 2,
+    "eval_batch_size": 2,
+    "lambda_ret": 0.6,
+    "lambda_vqa": 0.4
+  }
+}

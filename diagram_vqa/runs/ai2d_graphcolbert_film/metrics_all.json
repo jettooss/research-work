@@ -1,0 +1,31 @@
+{
+  "dataset": "AI2D",
+  "task": "MCQ",
+  "split": "test",
+  "metric": "accuracy",
+  "scoring": "v3: graph + plain(opt<->OCR) + film(Q-attended, per-line FiLM) -> learnable fusion",
+  "n_test": 3088,
+  "n_train_used": 11141,
+  "random_baseline": 0.25,
+  "graph_only": 0.3119,
+  "plain_colbert": 0.2895,
+  "question_film": 0.3339,
+  "fusion": 0.3387,
+  "best_val_fusion": 0.3423,
+  "fuse_weights_gpf": [
+    0.636,
+    0.074,
+    0.29
+  ],
+  "colbert_model": "answerdotai/answerai-colbert-small-v1",
+  "graph_checkpoint": "runs\\ai2d_hybrid_manual_full\\checkpoint_best.pt",
+  "config": {
+    "MAX_TRAIN": null,
+    "MAX_VAL": null,
+    "MAX_TEST": null,
+    "OCR_MIN_CONF": 35.0,
+    "MAX_LINES": 24,
+    "EPOCHS": 50,
+    "LR": 0.001
+  }
+}

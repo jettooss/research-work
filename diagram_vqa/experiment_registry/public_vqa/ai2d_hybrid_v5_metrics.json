@@ -1,0 +1,26 @@
+{
+  "dataset": "ai2d",
+  "metric": "accuracy",
+  "num_samples": 3088,
+  "accuracy": 0.39928756476683935,
+  "score": 0.39928756476683935,
+  "primary_target": 0.947,
+  "primary_target_gap": -0.5477124352331606,
+  "beats_primary_target": false,
+  "stretch_target": 0.9602,
+  "stretch_target_gap": -0.5609124352331607,
+  "beats_stretch_target": false,
+  "qwen25_vl_3b_baseline": 0.815,
+  "error_slices": {
+    "wrong_answer": 1749,
+    "correct": 1233,
+    "arithmetic_or_numeric_miss": 89,
+    "answer_extraction_miss": 16,
+    "empty_answer": 1
+  },
+  "sources": [
+    "https://evalscope.readthedocs.io/en/latest/benchmarks/ai2d.html",
+    "https://llm-stats.com/benchmarks/ai2d",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/README.md"
+  ]
+}

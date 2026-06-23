@@ -1,0 +1,12 @@
+{
+  "manifest": "ai2d\\prepared_v2\\manifest_hybrid.jsonl",
+  "split_json": "ai2d\\prepared_v2\\split_hybrid.json",
+  "task_mode": "all",
+  "max_ocr_lines": 60,
+  "counts": {
+    "train": 11145,
+    "val": 1268,
+    "test": 3088
+  },
+  "skipped_no_ocr": 0
+}

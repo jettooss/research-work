@@ -1,0 +1,79 @@
+[
+  {
+    "name": "ai2d_hybrid",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 6,
+    "best_composite": 0.17645898461341858,
+    "test_vqa_acc": 0.24643781781196594,
+    "test_mean_r10": 0.043231865391135216,
+    "test_composite": 0.14483484160155058
+  },
+  {
+    "name": "ai2d_hybrid_manual_full_20260510",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_manual_full_20260510/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_manual_full_20260510/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 21,
+    "best_composite": 0.31683753430843353,
+    "test_vqa_acc": 0.4034973978996277,
+    "test_mean_r10": 0.11544689163565636,
+    "test_composite": 0.259472144767642
+  },
+  {
+    "name": "ai2d_hybrid_manual_full_clean",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_manual_full_clean/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_manual_full_clean/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 25,
+    "best_composite": 0.3113170303404331,
+    "test_vqa_acc": 0.3911917209625244,
+    "test_mean_r10": 0.12079015374183655,
+    "test_composite": 0.2559909373521805
+  },
+  {
+    "name": "ai2d_hybrid_manual_smoke_20260510",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_manual_smoke_20260510/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_manual_smoke_20260510/metrics.json",
+    "checkpoint_size_mb": 3.16,
+    "best_epoch": 1,
+    "best_composite": 0.875,
+    "test_vqa_acc": 0.5,
+    "test_mean_r10": 1.0,
+    "test_composite": 0.75
+  },
+  {
+    "name": "ai2d_hybrid_v3",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_v3/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_v3/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 21,
+    "best_composite": 0.2517744451761246,
+    "test_vqa_acc": 0.40479275584220886,
+    "test_mean_r10": 0.04614637233316898,
+    "test_composite": 0.22546956408768892
+  },
+  {
+    "name": "ai2d_hybrid_v4_multipos",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_v4_multipos/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_v4_multipos/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 21,
+    "best_composite": 0.3255126141011715,
+    "test_vqa_acc": 0.40479275584220886,
+    "test_mean_r10": 0.10702720284461975,
+    "test_composite": 0.2559099793434143
+  },
+  {
+    "name": "ai2d_hybrid_v5_vqa06_lr1e4",
+    "checkpoint": "model_registry/checkpoints/ai2d_hybrid_v5_vqa06_lr1e4/checkpoint_best.pt",
+    "metrics": "model_registry/metrics/ai2d_hybrid_v5_vqa06_lr1e4/metrics.json",
+    "checkpoint_size_mb": 9.48,
+    "best_epoch": 16,
+    "best_composite": 0.3111198730766773,
+    "test_vqa_acc": 0.39928755164146423,
+    "test_mean_r10": 0.11026554740965366,
+    "test_composite": 0.25477654952555895
+  }
+]

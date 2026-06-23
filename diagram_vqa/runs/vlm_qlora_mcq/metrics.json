@@ -1,0 +1,11 @@
+{
+  "model": "Qwen2.5-VL-3B QLoRA MCQ",
+  "train_loss": 0.1401,
+  "val_vqa_accuracy": 0.7468,
+  "test_vqa_accuracy": 0.7319,
+  "epochs": 3,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "learning_rate": 0.0002,
+  "train_samples": 11145
+}

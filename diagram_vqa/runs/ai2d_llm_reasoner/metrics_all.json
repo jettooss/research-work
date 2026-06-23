@@ -1,0 +1,27 @@
+{
+  "dataset": "AI2D",
+  "task": "MCQ",
+  "approach": "LLM-reasoner over parsed diagram (caption + OCR + positions); non-VLM",
+  "split": "test",
+  "n_eval": 3088,
+  "random_baseline": 0.25,
+  "reference": {
+    "CoG-DQA": 0.79,
+    "Qwen-VLM": 0.73,
+    "GraphColBERT-FiLM": 0.348
+  },
+  "per_model": {
+    "openai/gpt-oss-20b": {
+      "accuracy": 0.6153,
+      "parsed_ok": 2446,
+      "n_eval": 3088,
+      "seconds": 6320.6
+    },
+    "deepseek/deepseek-v4-pro": {
+      "accuracy": 0.1852,
+      "parsed_ok": 615,
+      "n_eval": 3088,
+      "seconds": 1030.6
+    }
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "created_at": "2026-06-23T09:13:42",
+  "method": "Recomputed accuracy from *_vqa_predictions.jsonl as sum(is_correct)/N; collected standalone metrics JSON for runs without prediction rows.",
+  "prediction_recomputed": [
+    {
+      "run": "diagram_vqa\\runs\\ai2d_graph_transformer_full",
+      "prediction_file": "diagram_vqa\\runs\\ai2d_graph_transformer_full\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1224,
+      "accuracy_recomputed": 0.396373,
+      "accuracy_recomputed_4dp": 0.3964,
+      "stored_test_vqa_acc": 0.39637306332588196,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\ai2d_graph_transformer_full\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\ai2d_graph_transformer_smoke",
+      "prediction_file": "diagram_vqa\\runs\\ai2d_graph_transformer_smoke\\test_vqa_predictions.jsonl",
+      "total": 4,
+      "correct": 3,
+      "accuracy_recomputed": 0.75,
+      "accuracy_recomputed_4dp": 0.75,
+      "stored_test_vqa_acc": 0.75,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\ai2d_graph_transformer_smoke\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\ai2d_hybrid_manual_full",
+      "prediction_file": "diagram_vqa\\runs\\ai2d_hybrid_manual_full\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1208,
+      "accuracy_recomputed": 0.391192,
+      "accuracy_recomputed_4dp": 0.3912,
+      "stored_test_vqa_acc": 0.3911917209625244,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\ai2d_hybrid_manual_full\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\ai2d_hybrid_smoke",
+      "prediction_file": "diagram_vqa\\runs\\ai2d_hybrid_smoke\\test_vqa_predictions.jsonl",
+      "total": 4,
+      "correct": 2,
+      "accuracy_recomputed": 0.5,
+      "accuracy_recomputed_4dp": 0.5,
+      "stored_test_vqa_acc": 0.5,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\ai2d_hybrid_smoke\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\ai2d_sam2_graph_transformer_full",
+      "prediction_file": "diagram_vqa\\runs\\ai2d_sam2_graph_transformer_full\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 761,
+      "accuracy_recomputed": 0.246438,
+      "accuracy_recomputed_4dp": 0.2464,
+      "stored_test_vqa_acc": 0.24643781781196594,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\ai2d_sam2_graph_transformer_full\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\progress_sam_smoke",
+      "prediction_file": "diagram_vqa\\runs\\progress_sam_smoke\\test_vqa_predictions.jsonl",
+      "total": 1,
+      "correct": 1,
+      "accuracy_recomputed": 1.0,
+      "accuracy_recomputed_4dp": 1.0,
+      "stored_test_vqa_acc": 1.0,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\progress_sam_smoke\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\smoke_graph_transformer_train_cuda",
+      "prediction_file": "diagram_vqa\\runs\\smoke_graph_transformer_train_cuda\\test_vqa_predictions.jsonl",
+      "total": 1,
+      "correct": 1,
+      "accuracy_recomputed": 1.0,
+      "accuracy_recomputed_4dp": 1.0,
+      "stored_test_vqa_acc": 1.0,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\smoke_graph_transformer_train_cuda\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\smoke_late_graph_transformer_train_cuda",
+      "prediction_file": "diagram_vqa\\runs\\smoke_late_graph_transformer_train_cuda\\test_vqa_predictions.jsonl",
+      "total": 1,
+      "correct": 1,
+      "accuracy_recomputed": 1.0,
+      "accuracy_recomputed_4dp": 1.0,
+      "stored_test_vqa_acc": 1.0,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\smoke_late_graph_transformer_train_cuda\\metrics.json"
+    },
+    {
+      "run": "diagram_vqa\\runs\\smoke_sam_graph_transformer_train_cuda",
+      "prediction_file": "diagram_vqa\\runs\\smoke_sam_graph_transformer_train_cuda\\test_vqa_predictions.jsonl",
+      "total": 1,
+      "correct": 1,
+      "accuracy_recomputed": 1.0,
+      "accuracy_recomputed_4dp": 1.0,
+      "stored_test_vqa_acc": 1.0,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "diagram_vqa\\runs\\smoke_sam_graph_transformer_train_cuda\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid",
+      "prediction_file": "runs\\ai2d_hybrid\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 761,
+      "accuracy_recomputed": 0.246438,
+      "accuracy_recomputed_4dp": 0.2464,
+      "stored_test_vqa_acc": 0.24643781781196594,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid_manual_full_20260510",
+      "prediction_file": "runs\\ai2d_hybrid_manual_full_20260510\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1246,
+      "accuracy_recomputed": 0.403497,
+      "accuracy_recomputed_4dp": 0.4035,
+      "stored_test_vqa_acc": 0.4034973978996277,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid_manual_full_20260510\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid_manual_smoke_20260510",
+      "prediction_file": "runs\\ai2d_hybrid_manual_smoke_20260510\\test_vqa_predictions.jsonl",
+      "total": 4,
+      "correct": 2,
+      "accuracy_recomputed": 0.5,
+      "accuracy_recomputed_4dp": 0.5,
+      "stored_test_vqa_acc": 0.5,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid_manual_smoke_20260510\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid_v3",
+      "prediction_file": "runs\\ai2d_hybrid_v3\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1250,
+      "accuracy_recomputed": 0.404793,
+      "accuracy_recomputed_4dp": 0.4048,
+      "stored_test_vqa_acc": 0.40479275584220886,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid_v3\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid_v3_reeval_multipos",
+      "prediction_file": "runs\\ai2d_hybrid_v3_reeval_multipos\\test_q_plus_caption_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1250,
+      "accuracy_recomputed": 0.404793,
+      "accuracy_recomputed_4dp": 0.4048,
+      "stored_test_vqa_acc": null,
+      "matches_stored": null,
+      "invalid_rows": 0,
+      "metrics_file": null
+    },
+    {
+      "run": "runs\\ai2d_hybrid_v4_multipos",
+      "prediction_file": "runs\\ai2d_hybrid_v4_multipos\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1250,
+      "accuracy_recomputed": 0.404793,
+      "accuracy_recomputed_4dp": 0.4048,
+      "stored_test_vqa_acc": 0.40479275584220886,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid_v4_multipos\\metrics.json"
+    },
+    {
+      "run": "runs\\ai2d_hybrid_v5_vqa06_lr1e4",
+      "prediction_file": "runs\\ai2d_hybrid_v5_vqa06_lr1e4\\test_vqa_predictions.jsonl",
+      "total": 3088,
+      "correct": 1233,
+      "accuracy_recomputed": 0.399288,
+      "accuracy_recomputed_4dp": 0.3993,
+      "stored_test_vqa_acc": 0.39928755164146423,
+      "matches_stored": true,
+      "invalid_rows": 0,
+      "metrics_file": "runs\\ai2d_hybrid_v5_vqa06_lr1e4\\metrics.json"
+    }
+  ],
+  "standalone_metrics": [
+    {
+      "file": "diagram_vqa\\runs\\ai2d_graphcolbert_film\\metrics_all.json",
+      "n_test": 3088,
+      "split": "test",
+      "graph_only": 0.3119,
+      "plain_colbert": 0.2895
+    },
+    {
+      "file": "diagram_vqa\\runs\\ai2d_llm_reasoner\\metrics_all.json",
+      "n_eval": 3088,
+      "split": "test",
+      "per_model": {
+        "openai/gpt-oss-20b": {
+          "accuracy": 0.6153,
+          "parsed_ok": 2446,
+          "n_eval": 3088,
+          "seconds": 6320.6
+        },
+        "deepseek/deepseek-v4-pro": {
+          "accuracy": 0.1852,
+          "parsed_ok": 615,
+          "n_eval": 3088,
+          "seconds": 1030.6
+        }
+      }
+    },
+    {
+      "file": "diagram_vqa\\runs\\vlm_qlora_mcq\\metrics.json",
+      "model": "Qwen2.5-VL-3B QLoRA MCQ"
+    },
+    {
+      "file": "runs\\ai2d_baselines\\test_metrics.json",
+      "vqa_accuracy": {
+        "random": 0.2548575129533679,
+        "majority_correct_index": 0.25971502590673573,
+        "ocr_option_overlap": 0.28950777202072536
+      },
+      "split": "test"
+    },
+    {
+      "file": "runs\\ai2d_baselines_q_only\\test_metrics.json",
+      "vqa_accuracy": {
+        "random": 0.2548575129533679,
+        "majority_correct_index": 0.25971502590673573,
+        "ocr_option_overlap": 0.28950777202072536
+      },
+      "split": "test"
+    },
+    {
+      "file": "diagram_vqa\\reports\\hybrid\\ai2d_hybrid_v4_multipos_metrics.json",
+      "test": {
+        "split": "test",
+        "i2t": {
+          "1": 0.014572538435459137,
+          "5": 0.10330311208963394,
+          "10": 0.16483160853385925
+        },
+        "t2i": {
+          "1": 0.014572538435459137,
+          "5": 0.028821242973208427,
+          "10": 0.04922279715538025
+        },
+        "mean": {
+          "1": 0.014572538435459137,
+          "5": 0.06606217753142118,
+          "10": 0.10702720284461975
+        },
+        "vqa_acc": 0.40479275584220886,
+        "composite": 0.2559099793434143
+      }
+    },
+    {
+      "file": "diagram_vqa\\reports\\hybrid\\ai2d_hybrid_v5_vqa06_lr1e4_metrics.json",
+      "test": {
+        "split": "test",
+        "i2t": {
+          "1": 0.019430052489042282,
+          "5": 0.09196890890598297,
+          "10": 0.1596502661705017
+        },
+        "t2i": {
+          "1": 0.02234455943107605,
+          "5": 0.03950777277350426,
+          "10": 0.06088082864880562
+        },
+        "mean": {
+          "1": 0.020887305960059166,
+          "5": 0.06573834083974361,
+          "10": 0.11026554740965366
+        },
+        "vqa_acc": 0.39928755164146423,
+        "composite": 0.25477654952555895
+      }
+    },
+    {
+      "file": "diagram_vqa\\reports\\hybrid\\ai2d_hybrid_manual_full_20260510_metrics.json",
+      "test": {
+        "split": "test",
+        "i2t": {
+          "1": 0.025259068235754967,
+          "5": 0.09164507687091827,
+          "10": 0.17389896512031555
+        },
+        "t2i": {
+          "1": 0.018458548933267593,
+          "5": 0.03465025871992111,
+          "10": 0.05699481815099716
+        },
+        "mean": {
+          "1": 0.02185880858451128,
+          "5": 0.06314766779541969,
+          "10": 0.11544689163565636
+        },
+        "vqa_acc": 0.4034973978996277,
+        "composite": 0.259472144767642
+      }
+    }
+  ]
+}

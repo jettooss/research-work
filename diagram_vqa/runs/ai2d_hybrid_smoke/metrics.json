@@ -1,0 +1,96 @@
+{
+  "best_epoch": 2,
+  "best_composite": 0.875,
+  "train_history": [
+    {
+      "epoch": 1,
+      "stage": "stage1",
+      "train": {
+        "loss": 0.7389519959688187,
+        "loss_ret": 0.7389519959688187,
+        "loss_vqa": 0.0
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.5,
+        "composite": 0.75
+      }
+    },
+    {
+      "epoch": 2,
+      "stage": "stage2",
+      "train": {
+        "loss": 0.9961002916097641,
+        "loss_ret": 0.7201559692621231,
+        "loss_vqa": 1.410016655921936
+      },
+      "val": {
+        "split": "val",
+        "i2t": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "t2i": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "mean": {
+          "1": 0.25,
+          "5": 1.0,
+          "10": 1.0
+        },
+        "vqa_acc": 0.75,
+        "composite": 0.875
+      }
+    }
+  ],
+  "test": {
+    "split": "test",
+    "i2t": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "t2i": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mean": {
+      "1": 0.25,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "vqa_acc": 0.5,
+    "composite": 0.75
+  },
+  "config": {
+    "manifest": "..\\ai2d\\prepared_v2\\manifest_hybrid.jsonl",
+    "split_json": "..\\ai2d\\prepared_v2\\split_hybrid.json",
+    "use_caption_context": true,
+    "lambda_ret": 0.6,
+    "lambda_vqa": 0.4,
+    "epochs_stage1": 1,
+    "epochs_stage2": 1,
+    "batch_size": 2,
+    "eval_batch_size": 4,
+    "temperature": 0.07
+  }
+}

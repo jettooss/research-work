@@ -1,0 +1,11 @@
+[project]
+name = "ai2d-vqa-clean"
+version = "0.1.0"
+description = "Clean AI2D/VQA experiments with graph retrieval and VLM reranking."
+requires-python = ">=3.10"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

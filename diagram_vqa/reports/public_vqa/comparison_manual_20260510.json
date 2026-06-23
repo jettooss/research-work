@@ -1,0 +1,30 @@
+[
+  {
+    "run": "manual_full_20260510",
+    "path": "runs\\public_vqa_ai2d_hybrid_manual_full_20260510\\ai2d_hybrid_manual_full_20260510_metrics.json",
+    "dataset": "ai2d",
+    "metric": "accuracy",
+    "score": 0.40349740932642486,
+    "primary_target": 0.947,
+    "primary_target_gap": -0.5435025906735751,
+    "beats_primary_target": false,
+    "stretch_target": 0.9602,
+    "stretch_target_gap": -0.5567025906735752,
+    "beats_stretch_target": false,
+    "qwen25_vl_3b_baseline": 0.815
+  },
+  {
+    "run": "ai2d_hybrid_v5",
+    "path": "runs\\public_vqa_eval_smoke\\ai2d_hybrid_v5_metrics.json",
+    "dataset": "ai2d",
+    "metric": "accuracy",
+    "score": 0.39928756476683935,
+    "primary_target": 0.947,
+    "primary_target_gap": -0.5477124352331606,
+    "beats_primary_target": false,
+    "stretch_target": 0.9602,
+    "stretch_target_gap": -0.5609124352331607,
+    "beats_stretch_target": false,
+    "qwen25_vl_3b_baseline": 0.815
+  }
+]
