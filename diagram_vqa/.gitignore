@@ -56,6 +56,11 @@ archive/
 # Локальные настройки Ultralytics с путями и полями для ключей API
 /Ultralytics/settings.json
 
+# Сгенерированные отчёты локальных проверок и состояние очереди запусков
+/reports/experiment_matrix_execution.json
+/reports/experiment_hygiene_report.json
+/reports/experiment_hygiene_report.md
+
 # ─────────────────────────────────────────────────────────────
 # runs/ — 3.9 GB выходов: тяжёлое игнорим, оставляем только метрики
 #   (паттерн: игнор содержимого, но разрешаем спуск по папкам и metrics-json)
