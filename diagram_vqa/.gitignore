@@ -60,6 +60,7 @@ archive/
 /reports/experiment_matrix_execution.json
 /reports/experiment_hygiene_report.json
 /reports/experiment_hygiene_report.md
+/reports/experiment_matrix_metrics.csv
 
 # ─────────────────────────────────────────────────────────────
 # runs/ — 3.9 GB выходов: тяжёлое игнорим, оставляем только метрики

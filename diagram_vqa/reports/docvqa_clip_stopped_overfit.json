@@ -1,1 +1,0 @@
-{"dataset":"docvqa","architecture":"clip_vqa_baseline","status":"stopped_overfit","epochs_completed":19,"best_epoch":4,"reason":"validation_loss_worsened_while_train_loss_decreased"}
