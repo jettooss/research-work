@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import json
 import inspect
-import sys
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +12,7 @@ from transformers import (
     AutoModelForImageTextToText,
     AutoProcessor,
     BitsAndBytesConfig,
+    EarlyStoppingCallback,
     Trainer,
     TrainerCallback,
     TrainingArguments,
@@ -20,8 +20,6 @@ from transformers import (
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTERNAL_ROOT = ROOT.parent
-sys.path.insert(0, str(ROOT / "src"))
-
 from qwen_vl_utils import process_vision_info  # noqa: E402
 
 
@@ -146,7 +144,8 @@ class ProgressJsonlCallback(TrainerCallback):
     def __init__(self, path: str | Path) -> None:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text("", encoding="utf-8")
+        if not self.path.exists():
+            self.path.write_text("", encoding="utf-8")
 
     def _write(self, event: str, args, state, logs: dict[str, Any] | None = None) -> None:
         payload = {
@@ -183,7 +182,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--model-path", type=Path, default=EXTERNAL_ROOT / "models" / "Qwen2.5-VL-3B-Instruct")
     parser.add_argument("--output-dir", type=Path, default=Path("runs") / "vlm_qlora")
 
-    parser.add_argument("--num-train-epochs", type=int, default=3)
+    parser.add_argument("--num-train-epochs", type=int, default=2)
+    parser.add_argument("--early-stopping-patience", type=int, default=1)
     parser.add_argument("--learning-rate", type=float, default=2e-4)
     parser.add_argument("--weight-decay", type=float, default=0.01)
     parser.add_argument("--per-device-train-batch-size", type=int, default=1)
@@ -210,6 +210,10 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    train_qlora_config(args)
+
+
+def train_qlora_config(args: argparse.Namespace) -> dict[str, Any]:
     LoraConfig, get_peft_model, prepare_model_for_kbit_training = _require_qlora_deps()
 
     has_cuda = torch.cuda.is_available()
@@ -239,9 +243,9 @@ def main() -> None:
     }
     if quant_config is not None:
         model_kwargs["quantization_config"] = quant_config
-        model_kwargs["dtype"] = compute_dtype
+        model_kwargs["torch_dtype"] = compute_dtype
     else:
-        model_kwargs["dtype"] = compute_dtype
+        model_kwargs["torch_dtype"] = compute_dtype
 
     model = AutoModelForImageTextToText.from_pretrained(str(args.model_path), **model_kwargs)
     if args.gradient_checkpointing and hasattr(model, "config"):
@@ -301,7 +305,10 @@ def main() -> None:
 
     training_args = TrainingArguments(**train_args_kwargs)
     progress_path = args.progress_jsonl or (args.output_dir / "progress.jsonl")
-    callbacks = [ProgressJsonlCallback(progress_path)]
+    callbacks = [
+        ProgressJsonlCallback(progress_path),
+        EarlyStoppingCallback(early_stopping_patience=args.early_stopping_patience),
+    ]
     print(f"[INFO] Trainer progress will be saved to {progress_path}")
 
     trainer = Trainer(
@@ -313,7 +320,11 @@ def main() -> None:
         callbacks=callbacks,
     )
 
-    trainer.train()
+    checkpoints = sorted(
+        args.output_dir.glob("checkpoint-*"),
+        key=lambda path: int(path.name.rsplit("-", 1)[-1]),
+    )
+    trainer.train(resume_from_checkpoint=str(checkpoints[-1]) if checkpoints else None)
     trainer.save_model(str(args.output_dir / "adapter"))
     processor.save_pretrained(str(args.output_dir / "adapter"))
     metrics = trainer.evaluate(eval_dataset=val_ds)
@@ -321,6 +332,48 @@ def main() -> None:
     (args.output_dir / "train_metrics.json").write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[INFO] Adapter saved to {args.output_dir / 'adapter'}")
     print(f"[INFO] Progress log saved to {progress_path}")
+    return metrics
+
+
+def train_qlora(
+    *,
+    train_jsonl: Path,
+    val_jsonl: Path,
+    output_dir: Path,
+    epochs: int = 2,
+    early_stopping_patience: int = 1,
+    gradient_accumulation_steps: int = 16,
+    max_samples: int | None = None,
+) -> dict[str, Any]:
+    args = argparse.Namespace(
+        train_jsonl=train_jsonl,
+        val_jsonl=val_jsonl,
+        model_path=EXTERNAL_ROOT / "models" / "Qwen2.5-VL-3B-Instruct",
+        output_dir=output_dir,
+        num_train_epochs=epochs,
+        early_stopping_patience=early_stopping_patience,
+        learning_rate=2e-4,
+        weight_decay=0.01,
+        per_device_train_batch_size=1,
+        per_device_eval_batch_size=1,
+        gradient_accumulation_steps=gradient_accumulation_steps,
+        warmup_ratio=0.03,
+        logging_steps=10,
+        save_total_limit=2,
+        max_length=2048,
+        image_min_pixels=None,
+        image_max_pixels=786432,
+        max_train_samples=max_samples,
+        max_val_samples=max_samples,
+        lora_r=16,
+        lora_alpha=32,
+        lora_dropout=0.05,
+        gradient_checkpointing=True,
+        no_4bit=False,
+        disable_tqdm=False,
+        progress_jsonl=output_dir / "progress.jsonl",
+    )
+    return train_qlora_config(args)
 
 
 if __name__ == "__main__":

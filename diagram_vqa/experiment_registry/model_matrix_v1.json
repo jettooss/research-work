@@ -1,0 +1,13 @@
+{
+  "name": "model_matrix_v1",
+  "status": "smoke_complete_full_pending",
+  "matrix_shape": [11, 3],
+  "source_notebooks": 33,
+  "executed_smoke_notebooks": 33,
+  "protocol": "experiments/model_matrix_protocol.json",
+  "smoke_runs": "runs/model_matrix_smoke",
+  "full_runs": "runs/model_matrix",
+  "smoke_aggregate": "reports/model_matrix_smoke_aggregate.json",
+  "smoke_audit": "reports/model_matrix_smoke_audit.json",
+  "legacy_policy": "Preserve existing artifacts; never mix legacy metrics with model_matrix_v1 tables."
+}

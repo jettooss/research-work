@@ -1,0 +1,36 @@
+{
+  "dataset": "docvqa",
+  "mode": "random",
+  "metric_family": "retrieval",
+  "split": "val",
+  "status": "available_full",
+  "num_samples": 5349,
+  "num_documents": 1286,
+  "question_to_document": {
+    "recall_at_k": {
+      "1": 0.0005608524957936063,
+      "5": 0.0031781641428304357,
+      "10": 0.006543279117592073
+    },
+    "mrr": 0.005509256335262203
+  },
+  "document_to_question": {
+    "recall_at_k": {
+      "1": 0.0,
+      "5": 0.003110419906687403,
+      "10": 0.006220839813374806
+    },
+    "mrr": 0.004827416906103922
+  },
+  "mean_recall_at_k": {
+    "1": 0.00028042624789680314,
+    "5": 0.0031442920247589192,
+    "10": 0.006382059465483439
+  },
+  "wall_time_seconds": 9.437508200000138,
+  "latency_ms_per_question": 1.7643500093475675,
+  "throughput_questions_per_second": 566.7809644922927,
+  "peak_ram_mb": 825.14453125,
+  "peak_vram_mb": 0.0,
+  "parameter_count": 0
+}

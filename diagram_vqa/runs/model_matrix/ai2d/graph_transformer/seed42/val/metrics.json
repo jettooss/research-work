@@ -1,0 +1,60 @@
+{
+  "dataset": "ai2d",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 1268,
+  "epochs_completed": 18,
+  "best_epoch": 13,
+  "best_composite": 0.24503203255832068,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.07097791798107256,
+        "5": 0.2610410094637224,
+        "10": 0.43454258675078866
+      },
+      "mrr": 0.1790172444507413
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.11419753086419752,
+        "5": 0.31790123456790126,
+        "10": 0.4567901234567901
+      },
+      "mrr": 0.2213448856560153
+    },
+    "mean_recall_at_k": {
+      "1": 0.09258772442263505,
+      "5": 0.2894711220158118,
+      "10": 0.4456663551037894
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.39747634069400634,
+    "exact_accuracy": 0.39747634069400634
+  },
+  "resources": {
+    "wall_time_seconds": 2977.6401978000067,
+    "latency_ms_per_question": 2348.2966859621506,
+    "throughput_questions_per_second": 0.4258405703069318,
+    "peak_ram_mb": 2630.25390625,
+    "peak_vram_mb": 194.38818359375,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "ai2d",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

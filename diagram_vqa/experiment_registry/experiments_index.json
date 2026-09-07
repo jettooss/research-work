@@ -298,5 +298,15 @@
     "size_mb": 0.0,
     "metrics": null,
     "notes": ""
+  },
+  {
+    "kind": "docvqa_experiment_protocol",
+    "name": "docvqa_controlled_full",
+    "role": "official-split open-answer, retrieval, five graph ablations, and Qwen test export",
+    "path": "experiments/docvqa_defense_protocol.json",
+    "exists": true,
+    "size_mb": 0.0,
+    "metrics": "runs/docvqa_gnn/aggregate_metrics.json",
+    "notes": "ANLS and retrieval metrics are reported separately; seeds 42, 43, 44."
   }
 ]

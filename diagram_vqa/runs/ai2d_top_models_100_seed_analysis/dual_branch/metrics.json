@@ -1,0 +1,6 @@
+{
+  "model": "Dual-Branch Evidence Graph",
+  "samples": 100,
+  "accuracy": 0.33,
+  "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full\\checkpoint_best.pt"
+}

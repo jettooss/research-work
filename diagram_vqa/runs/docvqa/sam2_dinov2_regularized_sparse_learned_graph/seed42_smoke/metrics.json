@@ -1,0 +1,82 @@
+{
+  "status": "completed_full",
+  "full_training_was_run": true,
+  "dataset": "docvqa",
+  "architecture": "sam2_dinov2_regularized_sparse_learned_graph",
+  "seed": 42,
+  "epochs_requested": 1,
+  "epochs_completed": 1,
+  "best_epoch": 1,
+  "validation": {
+    "epoch": 1,
+    "train_loss": 2.5094339847564697,
+    "train_accuracy": 0.0,
+    "train_vqa_loss": 3.6888394355773926,
+    "train_multipos_loss": 1.3146358728408813,
+    "attention_entropy": 2.0754308700561523,
+    "hub_penalty": 0.35454827547073364,
+    "val_loss": 2.1715118885040283,
+    "val_accuracy": 0.0,
+    "val_macro_f1": 0.0,
+    "val_retrieval_r1": 0.25,
+    "val_retrieval_r5": 1.0,
+    "val_retrieval_mrr": 0.5416666666666666,
+    "composite": 0.125,
+    "lr": 0.0001
+  },
+  "test": {
+    "loss": 2.599635124206543,
+    "accuracy": 0.0,
+    "macro_f1": 0.0,
+    "exact_match": 0.0,
+    "retrieval_recall_at_1": 0.5,
+    "retrieval_recall_at_5": 1.0,
+    "retrieval_mrr": 0.6458333333333333,
+    "predictions": [
+      {
+        "question_id": "57344",
+        "question": "What is the dividend payout in 2012?",
+        "prediction": "30%",
+        "gold_answers": [],
+        "anls": 0.0
+      },
+      {
+        "question_id": "16384",
+        "question": "What is the name of the person in the CC field ?",
+        "prediction": "Betty Royal",
+        "gold_answers": [],
+        "anls": 0.0
+      },
+      {
+        "question_id": "57346",
+        "question": "What is the % of Employees in 2012 based on graph 'Distribution of Value-Added'?",
+        "prediction": "5%",
+        "gold_answers": [],
+        "anls": 0.0
+      },
+      {
+        "question_id": "61870",
+        "question": "What is the personnel costs in the 4th year?",
+        "prediction": "page if needed.)",
+        "gold_answers": [],
+        "anls": 0.0
+      }
+    ]
+  },
+  "overfit_gap": 0.0,
+  "overfit": false,
+  "graph": {
+    "predefined_edges": 0,
+    "learned_top_k": 8,
+    "question_conditioning": "second layer only"
+  },
+  "regularization": {
+    "dropout": 0.25,
+    "weight_decay": 0.01,
+    "label_smoothing": 0.05,
+    "ocr_node_dropout": 0.08,
+    "sam_node_dropout": 0.2,
+    "sparsity_coefficient": 0.002,
+    "hub_coefficient": 0.01
+  }
+}

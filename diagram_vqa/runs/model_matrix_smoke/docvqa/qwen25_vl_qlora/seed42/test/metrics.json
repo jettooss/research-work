@@ -1,0 +1,53 @@
+{
+  "dataset": "docvqa",
+  "model": "qwen25_vl_qlora",
+  "split": "test",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 2,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.75
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.75
+    },
+    "mean_recall_at_k": {
+      "1": 0.5,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "dataset": "docvqa",
+    "split": "test",
+    "num_samples": 2,
+    "num_documents": 2
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\qwen25_vl_qlora\\seed42\\training\\adapter",
+  "training": {
+    "eval_loss": 0.366813600063324,
+    "eval_runtime": 18.895,
+    "eval_samples_per_second": 0.106,
+    "eval_steps_per_second": 0.106,
+    "epoch": 3.0,
+    "progress_jsonl": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+  },
+  "resources": {
+    "wall_time_seconds": 56.481430100044236,
+    "peak_ram_mb": 532.19140625
+  }
+}

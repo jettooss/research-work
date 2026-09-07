@@ -1,0 +1,37 @@
+{
+  "title": "DocVQA: OCR graph retrieval and open-answer evaluation",
+  "research_question": "Does an OCR-based graph representation improve DocVQA document retrieval while remaining more efficient than a large VLM?",
+  "dataset_manifest": "../../docvqa/prepared_v1/manifest.jsonl",
+  "split_file": "../../docvqa/prepared_v1/split.json",
+  "open_answer_models": [
+    {"name": "Most frequent train answer", "metrics_file": "../runs/docvqa_baselines/open_answer/most_frequent/val/metrics.json"},
+    {"name": "Random train answer", "metrics_file": "../runs/docvqa_baselines/open_answer/random_train_answer/val/metrics.json"},
+    {"name": "Question lexical retrieval", "metrics_file": "../runs/docvqa_baselines/open_answer/question_retrieval/val/metrics.json"},
+    {"name": "Qwen2.5-VL-3B open answer", "metrics_file": "../runs/docvqa_qwen25_vl/val/metrics.json"}
+  ],
+  "retrieval_models": [
+    {"name": "Random retrieval", "metrics_file": "../runs/docvqa_baselines/retrieval/random/val/metrics.json"},
+    {"name": "OCR text retrieval", "metrics_file": "../runs/docvqa_baselines/retrieval/ocr_text/val/metrics.json"},
+    {"name": "CLIP retrieval", "metrics_file": "../runs/docvqa_clip_retrieval/val/metrics.json"},
+    {"name": "OCR graph ablations", "metrics_file": "../runs/docvqa_gnn/aggregate_metrics.json"}
+  ],
+  "test_submission": "../runs/docvqa_qwen25_vl/test/submission.json",
+  "required_resource_metrics": [
+    "wall_time_seconds",
+    "latency_ms_per_question",
+    "throughput_questions_per_second",
+    "peak_ram_mb",
+    "peak_vram_mb",
+    "parameter_count"
+  ],
+  "ablation_matrix": ["text_only", "coords_no_edges", "knn_k3", "knn_k5", "typed_spatial"],
+  "seeds": [42, 43, 44],
+  "training": {
+    "epochs": 3,
+    "batch_size": 16,
+    "eval_batch_size": 32,
+    "early_stopping_patience": 2,
+    "selection_split": "val",
+    "final_retrieval_split": "test"
+  }
+}

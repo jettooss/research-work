@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "dataset": "ai2d",
+  "model": "clip_finetuned",
+  "backbone": "CLIP ViT-B/32",
+  "fine_tuning_mode": "full",
+  "unfreeze_blocks": null,
+  "seed": 42,
+  "status": "completed_smoke",
+  "epochs_requested": 1,
+  "epochs_completed": 1,
+  "best_epoch": 1,
+  "trainable_parameters": 151277313,
+  "total_parameters": 151277313,
+  "test": {
+    "split": "test",
+    "num_samples": 64,
+    "retrieval": {
+      "question_to_document": {
+        "recall_at_k": {
+          "1": 0.265625,
+          "5": 0.609375,
+          "10": 0.78125
+        },
+        "mrr": 0.429459558776993
+      },
+      "document_to_question": {
+        "recall_at_k": {
+          "1": 0.3448275862068966,
+          "5": 0.6551724137931034,
+          "10": 0.7931034482758621
+        },
+        "mrr": 0.4994715271401928
+      },
+      "mean_recall_at_k": {
+        "1": 0.3052262931034483,
+        "5": 0.6322737068965517,
+        "10": 0.787176724137931
+      }
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.7913902550935745,
+      "mean_r1": 0.3600852272727273,
+      "retrieval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.265625,
+            "5": 0.703125,
+            "10": 0.828125
+          },
+          "mrr": 0.45480953508297256
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.45454545454545453,
+            "5": 0.7272727272727273,
+            "10": 0.7727272727272727
+          },
+          "mrr": 0.5834074334074334
+        },
+        "mean_recall_at_k": {
+          "1": 0.3600852272727273,
+          "5": 0.7151988636363636,
+          "10": 0.8004261363636364
+        }
+      }
+    }
+  ],
+  "resources": {
+    "wall_time_seconds": 6.085073900059797,
+    "peak_ram_mb": 2923.50390625,
+    "peak_vram_mb": 2925.85498046875
+  }
+}

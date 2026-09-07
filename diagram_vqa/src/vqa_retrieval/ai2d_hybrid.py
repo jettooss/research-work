@@ -178,8 +178,12 @@ def create_image_level_splits(
     requested_test = {str(x).strip() for x in test_ids if str(x).strip()}
     image_id_set = set(unique_image_ids)
 
-    missing_test_ids = sorted(requested_test - image_id_set)
-    test_image_ids = sorted(requested_test & image_id_set)
+    # AI2D explicitly contains images without question files.  Official test
+    # IDs for those images still belong to the document split and must not be
+    # reported as missing data merely because the question manifest has no row
+    # for them.
+    document_only_test_ids = sorted(requested_test - image_id_set)
+    test_image_ids = sorted(requested_test)
 
     remainder = [x for x in unique_image_ids if x not in requested_test]
     rng = random.Random(seed)
@@ -200,11 +204,13 @@ def create_image_level_splits(
     return {
         "seed": int(seed),
         "val_ratio": float(val_ratio),
-        "num_images": len(unique_image_ids),
+        "num_images": len(image_id_set | requested_test),
+        "num_question_images": len(unique_image_ids),
         "train_image_ids": train_image_ids,
         "val_image_ids": val_image_ids,
         "test_image_ids": test_image_ids,
-        "missing_test_ids": missing_test_ids,
+        "document_only_test_ids": document_only_test_ids,
+        "missing_test_ids": [],
     }
 
 

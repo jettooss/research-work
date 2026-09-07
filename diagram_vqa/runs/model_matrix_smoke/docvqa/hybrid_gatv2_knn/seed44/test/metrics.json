@@ -1,0 +1,36 @@
+{
+  "dataset": "docvqa",
+  "model": "hybrid_gatv2_knn",
+  "split": "test",
+  "seed": 44,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.09375,
+        "5": 0.4375,
+        "10": 0.84375
+      },
+      "mrr": 0.2790430056055056
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07142857142857142,
+        "5": 0.21428571428571427,
+        "10": 0.5
+      },
+      "mrr": 0.1971933820148106
+    },
+    "mean_recall_at_k": {
+      "1": 0.08258928571428571,
+      "5": 0.32589285714285715,
+      "10": 0.671875
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  }
+}

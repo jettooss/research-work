@@ -1,0 +1,5149 @@
+{
+  "datasets": [
+    "ai2d",
+    "infographicvqa",
+    "docvqa"
+  ],
+  "models": [
+    "random",
+    "clip",
+    "siglip",
+    "ocr_text",
+    "gatv2_knn",
+    "graph_transformer",
+    "sam2_graph_transformer",
+    "hybrid_gatv2_knn",
+    "graphcolbert",
+    "graphcolbert_film",
+    "qwen25_vl_qlora"
+  ],
+  "cells": [
+    {
+      "dataset": "ai2d",
+      "model": "random",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "random",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 11,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.46875,
+                "10": 0.96875
+              },
+              "mrr": 0.2558543019480519
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.2855820507994421
+            },
+            "mean_recall_at_k": {
+              "1": 0.1377840909090909,
+              "5": 0.4161931818181818,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.25,
+            "exact_accuracy": 0.25
+          },
+          "resources": {
+            "wall_time_seconds": 2.8478466999949887,
+            "latency_ms_per_question": 88.9952093748434,
+            "throughput_questions_per_second": 11.236559889286283,
+            "peak_ram_mb": 546.05859375,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\random\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.25,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.1377840909090909,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "ai2d",
+      "model": "clip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "clip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.20951704545454547,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.53125,
+                "10": 0.96875
+              },
+              "mrr": 0.2932674963924964
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.27918388429752067
+            },
+            "mean_recall_at_k": {
+              "1": 0.1377840909090909,
+              "5": 0.40198863636363635,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.28125,
+            "exact_accuracy": 0.28125
+          },
+          "resources": {
+            "wall_time_seconds": 1.0705231999745592,
+            "latency_ms_per_question": 33.45384999920498,
+            "throughput_questions_per_second": 29.891925743188445,
+            "peak_ram_mb": 2185.19921875,
+            "peak_vram_mb": 372.28955078125,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\clip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "clip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.26420454545454547,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.59375,
+                "10": 0.90625
+              },
+              "mrr": 0.3185797709235209
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.36363636363636365,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.30885970090515547
+            },
+            "mean_recall_at_k": {
+              "1": 0.1534090909090909,
+              "5": 0.4786931818181818,
+              "10": 0.6803977272727273
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.375,
+            "exact_accuracy": 0.375
+          },
+          "resources": {
+            "wall_time_seconds": 0.8150227000005543,
+            "latency_ms_per_question": 25.469459375017323,
+            "throughput_questions_per_second": 39.26271010608445,
+            "peak_ram_mb": 2185.29296875,
+            "peak_vram_mb": 372.28955078125,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\clip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "clip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.20170454545454547,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.6875,
+                "10": 0.9375
+              },
+              "mrr": 0.40988568722943725
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.5454545454545454,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.3114816160270706
+            },
+            "mean_recall_at_k": {
+              "1": 0.1846590909090909,
+              "5": 0.6164772727272727,
+              "10": 0.7414772727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.21875,
+            "exact_accuracy": 0.21875
+          },
+          "resources": {
+            "wall_time_seconds": 0.7835148999583907,
+            "latency_ms_per_question": 24.48484062369971,
+            "throughput_questions_per_second": 40.84159727109132,
+            "peak_ram_mb": 2185.4375,
+            "peak_vram_mb": 372.28955078125,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\clip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.2916666666666667,
+      "vqa_std": 0.06421264586426018,
+      "mean_r1_mean": 0.15861742424242425,
+      "mean_r1_std": 0.01948779888944761
+    },
+    {
+      "dataset": "ai2d",
+      "model": "siglip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "siglip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.31676136363636365,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.5625,
+                "10": 0.8125
+              },
+              "mrr": 0.34784902597402595
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.45454545454545453,
+                "5": 0.5454545454545454,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.5201603951603951
+            },
+            "mean_recall_at_k": {
+              "1": 0.3210227272727273,
+              "5": 0.5539772727272727,
+              "10": 0.7244318181818181
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.3125,
+            "exact_accuracy": 0.3125
+          },
+          "resources": {
+            "wall_time_seconds": 2.458387600025162,
+            "latency_ms_per_question": 76.82461250078632,
+            "throughput_questions_per_second": 13.016661815115107,
+            "peak_ram_mb": 1410.765625,
+            "peak_vram_mb": 766.14794921875,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\siglip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "siglip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.2869318181818182,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.46875,
+                "10": 1.0
+              },
+              "mrr": 0.32952628968253966
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2727272727272727,
+                "5": 0.5454545454545454,
+                "10": 0.7272727272727273
+              },
+              "mrr": 0.411525974025974
+            },
+            "mean_recall_at_k": {
+              "1": 0.23011363636363635,
+              "5": 0.5071022727272727,
+              "10": 0.8636363636363636
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.34375,
+            "exact_accuracy": 0.34375
+          },
+          "resources": {
+            "wall_time_seconds": 0.7667928999871947,
+            "latency_ms_per_question": 23.962278124599834,
+            "throughput_questions_per_second": 41.73225912829187,
+            "peak_ram_mb": 1787.265625,
+            "peak_vram_mb": 766.14794921875,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\siglip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "siglip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.23224431818181818,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.53125,
+                "10": 0.84375
+              },
+              "mrr": 0.2994848033910534
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2727272727272727,
+                "5": 0.7272727272727273,
+                "10": 0.8181818181818182
+              },
+              "mrr": 0.43802027061789367
+            },
+            "mean_recall_at_k": {
+              "1": 0.18323863636363635,
+              "5": 0.6292613636363636,
+              "10": 0.8309659090909092
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.28125,
+            "exact_accuracy": 0.28125
+          },
+          "resources": {
+            "wall_time_seconds": 0.7817811999702826,
+            "latency_ms_per_question": 24.43066249907133,
+            "throughput_questions_per_second": 40.93216874646819,
+            "peak_ram_mb": 1785.7265625,
+            "peak_vram_mb": 766.14794921875,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\siglip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.3125,
+      "vqa_std": 0.02551551815399144,
+      "mean_r1_mean": 0.24479166666666666,
+      "mean_r1_std": 0.05719963494693339
+    },
+    {
+      "dataset": "ai2d",
+      "model": "ocr_text",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "ocr_text",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 11,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.3125,
+                "5": 0.71875,
+                "10": 1.0
+              },
+              "mrr": 0.5025421626984127
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.6363636363636364,
+                "5": 0.7272727272727273,
+                "10": 0.8181818181818182
+              },
+              "mrr": 0.6900993743099005
+            },
+            "mean_recall_at_k": {
+              "1": 0.4744318181818182,
+              "5": 0.7230113636363636,
+              "10": 0.9090909090909092
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 2.877296299964655,
+            "latency_ms_per_question": 89.91550937389547,
+            "throughput_questions_per_second": 11.12155185421574,
+            "peak_ram_mb": 538.0390625,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\ocr_text\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.03125,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.4744318181818182,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "ai2d",
+      "model": "gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.13210227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.4375,
+                "10": 0.9375
+              },
+              "mrr": 0.2751510642135642
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.7272727272727273
+              },
+              "mrr": 0.2548537321264594
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4460227272727273,
+              "10": 0.8323863636363636
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 3.4106168000143953,
+            "latency_ms_per_question": 106.58177500044985,
+            "throughput_questions_per_second": 9.382467124382,
+            "peak_ram_mb": 1538.27734375,
+            "peak_vram_mb": 151.17333984375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.17116477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.53125,
+                "10": 0.90625
+              },
+              "mrr": 0.27444534632034634
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.23605947481545567
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.40198863636363635,
+              "10": 0.7258522727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.25,
+            "exact_accuracy": 0.25
+          },
+          "resources": {
+            "wall_time_seconds": 3.225075399968773,
+            "latency_ms_per_question": 100.78360624902416,
+            "throughput_questions_per_second": 9.922248639616253,
+            "peak_ram_mb": 1547.546875,
+            "peak_vram_mb": 154.06201171875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.17897727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.4375,
+                "10": 0.90625
+              },
+              "mrr": 0.2912484217171717
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.2156438190965045
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.35511363636363635,
+              "10": 0.7258522727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.25,
+            "exact_accuracy": 0.25
+          },
+          "resources": {
+            "wall_time_seconds": 2.984338900016155,
+            "latency_ms_per_question": 93.26059062550485,
+            "throughput_questions_per_second": 10.722642793627351,
+            "peak_ram_mb": 1529.8671875,
+            "peak_vram_mb": 152.6669921875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.22916666666666666,
+      "vqa_std": 0.02946278254943948,
+      "mean_r1_mean": 0.09232954545454546,
+      "mean_r1_std": 0.01275775907699572
+    },
+    {
+      "dataset": "ai2d",
+      "model": "graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.13210227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.4375,
+                "10": 0.96875
+              },
+              "mrr": 0.24358991702741703
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.2533464975570239
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4460227272727273,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 2.929461599967908,
+            "latency_ms_per_question": 91.54567499899713,
+            "throughput_questions_per_second": 10.923508947975476,
+            "peak_ram_mb": 1493.39453125,
+            "peak_vram_mb": 152.3515625,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.15553977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.375,
+                "10": 0.9375
+              },
+              "mrr": 0.25025027056277055
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.23432459353511986
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.3693181818181818,
+              "10": 0.7414772727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.21875,
+            "exact_accuracy": 0.21875
+          },
+          "resources": {
+            "wall_time_seconds": 2.956509299983736,
+            "latency_ms_per_question": 92.39091562449175,
+            "throughput_questions_per_second": 10.823574950424149,
+            "peak_ram_mb": 1494.37890625,
+            "peak_vram_mb": 156.9052734375,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.13991477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.46875,
+                "10": 0.90625
+              },
+              "mrr": 0.281253382034632
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.18181818181818182,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.20348699626774494
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.32528409090909094,
+              "10": 0.6803977272727273
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 3.051623799954541,
+            "latency_ms_per_question": 95.36324374857941,
+            "throughput_questions_per_second": 10.486220483821333,
+            "peak_ram_mb": 1491.89453125,
+            "peak_vram_mb": 152.3173828125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.19791666666666666,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.08712121212121213,
+      "mean_r1_std": 0.00736569563735987
+    },
+    {
+      "dataset": "ai2d",
+      "model": "sam2_graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.13991477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.46875,
+                "10": 0.9375
+              },
+              "mrr": 0.2566614808802309
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.23846079846079846
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.4616477272727273,
+              "10": 0.7414772727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 3.374208399967756,
+            "latency_ms_per_question": 105.44401249899238,
+            "throughput_questions_per_second": 9.483705867220825,
+            "peak_ram_mb": 1493.9765625,
+            "peak_vram_mb": 162.04443359375,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\sam2_graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.15553977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.34375,
+                "10": 0.90625
+              },
+              "mrr": 0.25196270743145743
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.2564008506113769
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.3536931818181818,
+              "10": 0.7258522727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.21875,
+            "exact_accuracy": 0.21875
+          },
+          "resources": {
+            "wall_time_seconds": 3.0401733000180684,
+            "latency_ms_per_question": 95.00541562556464,
+            "throughput_questions_per_second": 10.525715754364995,
+            "peak_ram_mb": 1492.50390625,
+            "peak_vram_mb": 167.3154296875,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\sam2_graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.12428977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.03125,
+                "5": 0.4375,
+                "10": 0.9375
+              },
+              "mrr": 0.2311902507215007
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.18181818181818182,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.1982291007192193
+            },
+            "mean_recall_at_k": {
+              "1": 0.061079545454545456,
+              "5": 0.30965909090909094,
+              "10": 0.6960227272727273
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 3.028619999997318,
+            "latency_ms_per_question": 94.64437499991618,
+            "throughput_questions_per_second": 10.565868283253872,
+            "peak_ram_mb": 1493.71875,
+            "peak_vram_mb": 163.55517578125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\sam2_graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.19791666666666666,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.08191287878787878,
+      "mean_r1_std": 0.01473139127471974
+    },
+    {
+      "dataset": "ai2d",
+      "model": "hybrid_gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.17897727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.4375,
+                "10": 0.96875
+              },
+              "mrr": 0.27387265512265513
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.7272727272727273
+              },
+              "mrr": 0.2530620053347326
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4460227272727273,
+              "10": 0.8480113636363636
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.28125,
+            "exact_accuracy": 0.28125
+          },
+          "resources": {
+            "wall_time_seconds": 3.2002581999986432,
+            "latency_ms_per_question": 100.0080687499576,
+            "throughput_questions_per_second": 9.999193190103712,
+            "peak_ram_mb": 1526.09765625,
+            "peak_vram_mb": 152.49951171875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\hybrid_gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.14772727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.59375,
+                "10": 0.90625
+              },
+              "mrr": 0.2917196518759019
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.7272727272727273
+              },
+              "mrr": 0.25266677766677764
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.4786931818181818,
+              "10": 0.8167613636363636
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 2.9800767000415362,
+            "latency_ms_per_question": 93.12739687629801,
+            "throughput_questions_per_second": 10.73797865657417,
+            "peak_ram_mb": 1526.78125,
+            "peak_vram_mb": 155.38818359375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\hybrid_gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.14772727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.40625,
+                "10": 0.90625
+              },
+              "mrr": 0.29106240981240983
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.20731818686364142
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.33948863636363635,
+              "10": 0.7258522727272727
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 3.1670366000034846,
+            "latency_ms_per_question": 98.9698937501089,
+            "throughput_questions_per_second": 10.104082788296413,
+            "peak_ram_mb": 1558.21484375,
+            "peak_vram_mb": 153.9931640625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\hybrid_gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.21875,
+      "vqa_std": 0.04419417382415922,
+      "mean_r1_mean": 0.09753787878787878,
+      "mean_r1_std": 0.01473139127471974
+    },
+    {
+      "dataset": "ai2d",
+      "model": "graphcolbert",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.15553977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.4375,
+                "10": 0.875
+              },
+              "mrr": 0.3193869498556999
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.25248362748362746
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.4460227272727273,
+              "10": 0.7556818181818181
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 4.186293400009163,
+            "latency_ms_per_question": 130.82166875028634,
+            "throughput_questions_per_second": 7.643993610177911,
+            "peak_ram_mb": 1603.5234375,
+            "peak_vram_mb": 155.29638671875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.14772727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5,
+                "10": 0.9375
+              },
+              "mrr": 0.25982368326118327
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.8181818181818182
+              },
+              "mrr": 0.26646989374262103
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4772727272727273,
+              "10": 0.8778409090909092
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.21875,
+            "exact_accuracy": 0.21875
+          },
+          "resources": {
+            "wall_time_seconds": 3.8693775000283495,
+            "latency_ms_per_question": 120.91804687588592,
+            "throughput_questions_per_second": 8.270064112319242,
+            "peak_ram_mb": 1610.046875,
+            "peak_vram_mb": 158.44873046875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.17116477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.4375,
+                "10": 0.90625
+              },
+              "mrr": 0.32127074314574317
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.7272727272727273
+              },
+              "mrr": 0.2579570211923153
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.4460227272727273,
+              "10": 0.8167613636363636
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.21875,
+            "exact_accuracy": 0.21875
+          },
+          "resources": {
+            "wall_time_seconds": 4.467451100004837,
+            "latency_ms_per_question": 139.60784687515115,
+            "throughput_questions_per_second": 7.1629211565327155,
+            "peak_ram_mb": 1619.78515625,
+            "peak_vram_mb": 156.8720703125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.20833333333333334,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.10795454545454546,
+      "mean_r1_std": 0.02209708691207961
+    },
+    {
+      "dataset": "ai2d",
+      "model": "graphcolbert_film",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.12428977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.4375,
+                "10": 0.875
+              },
+              "mrr": 0.3199449855699856
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.1991534961890693
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.35511363636363635,
+              "10": 0.6647727272727273
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.125,
+            "exact_accuracy": 0.125
+          },
+          "resources": {
+            "wall_time_seconds": 5.195012099982705,
+            "latency_ms_per_question": 162.34412812445953,
+            "throughput_questions_per_second": 6.159754661612151,
+            "peak_ram_mb": 1617.13671875,
+            "peak_vram_mb": 160.56591796875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert_film\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.21022727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.40625,
+                "10": 0.90625
+              },
+              "mrr": 0.30681141774891774
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.2349291231644173
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.3849431818181818,
+              "10": 0.7713068181818181
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.3125,
+            "exact_accuracy": 0.3125
+          },
+          "resources": {
+            "wall_time_seconds": 4.3240864999825135,
+            "latency_ms_per_question": 135.12770312445355,
+            "throughput_questions_per_second": 7.400406999288615,
+            "peak_ram_mb": 1607.18359375,
+            "peak_vram_mb": 164.05224609375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert_film\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "ai2d",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.15553977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.40625,
+                "10": 0.90625
+              },
+              "mrr": 0.3192246121933622
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.23794941494068994
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.3849431818181818,
+              "10": 0.7713068181818181
+            }
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 0.1875,
+            "exact_accuracy": 0.1875
+          },
+          "resources": {
+            "wall_time_seconds": 4.89439199998742,
+            "latency_ms_per_question": 152.94974999960687,
+            "throughput_questions_per_second": 6.538095027958989,
+            "peak_ram_mb": 1603.62109375,
+            "peak_vram_mb": 162.2998046875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "ai2d",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\graphcolbert_film\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.20833333333333334,
+      "vqa_std": 0.07795119555779044,
+      "mean_r1_mean": 0.11837121212121213,
+      "mean_r1_std": 0.00736569563735987
+    },
+    {
+      "dataset": "ai2d",
+      "model": "qwen25_vl_qlora",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "ai2d",
+          "model": "qwen25_vl_qlora",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 2,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 1.0,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 1.0
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 1.0,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 1.0
+            },
+            "mean_recall_at_k": {
+              "1": 1.0,
+              "5": 1.0,
+              "10": 1.0
+            },
+            "dataset": "ai2d",
+            "split": "val",
+            "num_samples": 2,
+            "num_documents": 1
+          },
+          "vqa": {
+            "metric": "accuracy",
+            "score": 1.0,
+            "exact_accuracy": 1.0
+          },
+          "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\qwen25_vl_qlora\\seed42\\training\\adapter",
+          "training": {
+            "eval_loss": 0.1053539514541626,
+            "eval_runtime": 6.2575,
+            "eval_samples_per_second": 0.32,
+            "eval_steps_per_second": 0.32,
+            "epoch": 3.0,
+            "progress_jsonl": "runs\\model_matrix_smoke\\ai2d\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+          },
+          "resources": {
+            "wall_time_seconds": 213.19024030002765,
+            "peak_ram_mb": 435.3046875
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\qwen25_vl_qlora\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 1.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 1.0,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "random",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "random",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 5,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.3755208333333333
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.0,
+                "5": 0.4,
+                "10": 0.8
+              },
+              "mrr": 0.2272893772893773
+            },
+            "mean_recall_at_k": {
+              "1": 0.046875,
+              "5": 0.7,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.834320999972988,
+            "latency_ms_per_question": 182.32253124915587,
+            "throughput_questions_per_second": 5.484785633177906,
+            "peak_ram_mb": 588.3671875,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\random\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.046875,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "clip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.10555555555555556,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4421875
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.8
+              },
+              "mrr": 0.3059523809523809
+            },
+            "mean_recall_at_k": {
+              "1": 0.19375,
+              "5": 0.6,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.017361111111111112,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.921426800021436,
+            "latency_ms_per_question": 122.54458750066988,
+            "throughput_questions_per_second": 8.160295125188892,
+            "peak_ram_mb": 1260.9609375,
+            "peak_vram_mb": 445.23095703125,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\clip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.178125,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.3125,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.5453125
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.4,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.6
+            },
+            "mean_recall_at_k": {
+              "1": 0.35625,
+              "5": 1.0,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.170783300010953,
+            "latency_ms_per_question": 99.08697812534228,
+            "throughput_questions_per_second": 10.092143477572074,
+            "peak_ram_mb": 1260.62109375,
+            "peak_vram_mb": 445.23193359375,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\clip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.1046875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.21875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.475
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.8
+              },
+              "mrr": 0.2841269841269841
+            },
+            "mean_recall_at_k": {
+              "1": 0.209375,
+              "5": 0.6,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.7373357000178657,
+            "latency_ms_per_question": 116.7917406255583,
+            "throughput_questions_per_second": 8.562249304992063,
+            "peak_ram_mb": 1264.5,
+            "peak_vram_mb": 445.3427734375,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\clip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.005787037037037038,
+      "vqa_std": 0.00818410626373319,
+      "mean_r1_mean": 0.253125,
+      "mean_r1_std": 0.0731988587115036
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "siglip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.146875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.43333333333333335
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.4,
+                "5": 0.4,
+                "10": 0.8
+              },
+              "mrr": 0.4576923076923077
+            },
+            "mean_recall_at_k": {
+              "1": 0.29375,
+              "5": 0.7,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 8.351302900002338,
+            "latency_ms_per_question": 260.97821562507306,
+            "throughput_questions_per_second": 3.8317374406322924,
+            "peak_ram_mb": 1812.203125,
+            "peak_vram_mb": 909.75341796875,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\siglip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1234375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.384375
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.4,
+                "5": 0.8,
+                "10": 0.8
+              },
+              "mrr": 0.5581818181818182
+            },
+            "mean_recall_at_k": {
+              "1": 0.246875,
+              "5": 0.9,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 30.79688050004188,
+            "latency_ms_per_question": 962.4025156263087,
+            "throughput_questions_per_second": 1.0390662781562074,
+            "peak_ram_mb": 1465.98046875,
+            "peak_vram_mb": 850.041015625,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\siglip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.0734375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4140625
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.6
+              },
+              "mrr": 0.2878246753246753
+            },
+            "mean_recall_at_k": {
+              "1": 0.146875,
+              "5": 0.6,
+              "10": 0.8
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.5600918999989517,
+            "latency_ms_per_question": 111.25287187496724,
+            "throughput_questions_per_second": 8.988532009527457,
+            "peak_ram_mb": 1473.203125,
+            "peak_vram_mb": 849.96142578125,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\siglip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.22916666666666669,
+      "mean_r1_std": 0.06125496011662149
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "ocr_text",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "ocr_text",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 5,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.921875
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.8,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.9
+            },
+            "mean_recall_at_k": {
+              "1": 0.8375,
+              "5": 1.0,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.222337100014556,
+            "latency_ms_per_question": 163.19803437545488,
+            "throughput_questions_per_second": 6.127524781943089,
+            "peak_ram_mb": 587.86328125,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\ocr_text\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.8375,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1125,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.25,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4479166666666667
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 0.6
+              },
+              "mrr": 0.29928571428571427
+            },
+            "mean_recall_at_k": {
+              "1": 0.225,
+              "5": 0.7,
+              "10": 0.8
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.713931100035552,
+            "latency_ms_per_question": 116.060346876111,
+            "throughput_questions_per_second": 8.616207231117906,
+            "peak_ram_mb": 1559.3828125,
+            "peak_vram_mb": 274.93994140625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.065625,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.3515625
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.8,
+                "10": 1.0
+              },
+              "mrr": 0.4352380952380952
+            },
+            "mean_recall_at_k": {
+              "1": 0.13125,
+              "5": 0.9,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.444545200036373,
+            "latency_ms_per_question": 107.64203750113666,
+            "throughput_questions_per_second": 9.290050831576282,
+            "peak_ram_mb": 1590.68359375,
+            "peak_vram_mb": 274.93994140625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.0734375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4125
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.4
+              },
+              "mrr": 0.2722910216718266
+            },
+            "mean_recall_at_k": {
+              "1": 0.146875,
+              "5": 0.6,
+              "10": 0.7
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.4187788999988697,
+            "latency_ms_per_question": 106.83684062496468,
+            "throughput_questions_per_second": 9.36006712806452,
+            "peak_ram_mb": 1560.4453125,
+            "peak_vram_mb": 274.93994140625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.16770833333333335,
+      "mean_r1_std": 0.04101045767714485
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.0734375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.40729166666666666
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 0.8
+              },
+              "mrr": 0.3883333333333333
+            },
+            "mean_recall_at_k": {
+              "1": 0.146875,
+              "5": 0.8,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.9376085000112653,
+            "latency_ms_per_question": 123.05026562535204,
+            "throughput_questions_per_second": 8.126760189568985,
+            "peak_ram_mb": 1529.86328125,
+            "peak_vram_mb": 263.73828125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.096875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.46041666666666664
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 0.6
+              },
+              "mrr": 0.31302631578947365
+            },
+            "mean_recall_at_k": {
+              "1": 0.19375,
+              "5": 0.8,
+              "10": 0.8
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.5865329999942333,
+            "latency_ms_per_question": 112.07915624981979,
+            "throughput_questions_per_second": 8.92226559745901,
+            "peak_ram_mb": 1524.578125,
+            "peak_vram_mb": 263.73828125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.0890625,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4166666666666667
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 1.0
+              },
+              "mrr": 0.33190476190476187
+            },
+            "mean_recall_at_k": {
+              "1": 0.178125,
+              "5": 0.7,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.4335532000404783,
+            "latency_ms_per_question": 107.29853750126495,
+            "throughput_questions_per_second": 9.319791520813702,
+            "peak_ram_mb": 1523.71484375,
+            "peak_vram_mb": 263.73828125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.17291666666666666,
+      "mean_r1_std": 0.01948779888944761
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "sam2_graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.065625,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.396875
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 0.8
+              },
+              "mrr": 0.3883333333333333
+            },
+            "mean_recall_at_k": {
+              "1": 0.13125,
+              "5": 0.8,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 32.86883410002338,
+            "latency_ms_per_question": 1027.1510656257306,
+            "throughput_questions_per_second": 0.9735666285764982,
+            "peak_ram_mb": 1876.22265625,
+            "peak_vram_mb": 1660.3896484375,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\sam2_graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1203125,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.28125,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.5307291666666667
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 0.6
+              },
+              "mrr": 0.31777777777777777
+            },
+            "mean_recall_at_k": {
+              "1": 0.240625,
+              "5": 0.8,
+              "10": 0.8
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.799530499964021,
+            "latency_ms_per_question": 118.73532812387566,
+            "throughput_questions_per_second": 8.422093203437377,
+            "peak_ram_mb": 1527.53125,
+            "peak_vram_mb": 283.2939453125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\sam2_graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.08125,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4244791666666667
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 1.0
+              },
+              "mrr": 0.33190476190476187
+            },
+            "mean_recall_at_k": {
+              "1": 0.1625,
+              "5": 0.7,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.4270852000336163,
+            "latency_ms_per_question": 107.09641250105051,
+            "throughput_questions_per_second": 9.337380932252898,
+            "peak_ram_mb": 1528.6328125,
+            "peak_vram_mb": 282.681640625,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\sam2_graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.178125,
+      "mean_r1_std": 0.0459987545121242
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "hybrid_gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.1046875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.21875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4505208333333333
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 0.6
+              },
+              "mrr": 0.29843137254901964
+            },
+            "mean_recall_at_k": {
+              "1": 0.209375,
+              "5": 0.7,
+              "10": 0.8
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.9501543000224046,
+            "latency_ms_per_question": 123.44232187570015,
+            "throughput_questions_per_second": 8.100949372995,
+            "peak_ram_mb": 1584.16796875,
+            "peak_vram_mb": 276.26611328125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\hybrid_gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.065625,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.3515625
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.8,
+                "10": 1.0
+              },
+              "mrr": 0.4185714285714286
+            },
+            "mean_recall_at_k": {
+              "1": 0.13125,
+              "5": 0.9,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.6950191000360064,
+            "latency_ms_per_question": 115.4693468761252,
+            "throughput_questions_per_second": 8.660307060304012,
+            "peak_ram_mb": 1558.66796875,
+            "peak_vram_mb": 276.26611328125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\hybrid_gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.0734375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4125
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.4
+              },
+              "mrr": 0.27380952380952384
+            },
+            "mean_recall_at_k": {
+              "1": 0.146875,
+              "5": 0.6,
+              "10": 0.7
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 3.907589500013273,
+            "latency_ms_per_question": 122.11217187541479,
+            "throughput_questions_per_second": 8.18919182782411,
+            "peak_ram_mb": 1575.7578125,
+            "peak_vram_mb": 276.26611328125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\hybrid_gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.1625,
+      "mean_r1_std": 0.03375385780420761
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "graphcolbert",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1046875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.21875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4640625
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 0.8
+              },
+              "mrr": 0.30722222222222223
+            },
+            "mean_recall_at_k": {
+              "1": 0.209375,
+              "5": 0.7,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.095364899956621,
+            "latency_ms_per_question": 159.2301531236444,
+            "throughput_questions_per_second": 6.280217536583578,
+            "peak_ram_mb": 1667.30078125,
+            "peak_vram_mb": 289.9404296875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.096875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4484375
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 1.0
+              },
+              "mrr": 0.42857142857142855
+            },
+            "mean_recall_at_k": {
+              "1": 0.19375,
+              "5": 0.8,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 4.408486200030893,
+            "latency_ms_per_question": 137.7651937509654,
+            "throughput_questions_per_second": 7.258727496929843,
+            "peak_ram_mb": 1671.2578125,
+            "peak_vram_mb": 289.9423828125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1359375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.34375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.5322916666666667
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.2,
+                "10": 0.2
+              },
+              "mrr": 0.25866447278211985
+            },
+            "mean_recall_at_k": {
+              "1": 0.271875,
+              "5": 0.6,
+              "10": 0.6
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 4.323529199988116,
+            "latency_ms_per_question": 135.1102874996286,
+            "throughput_questions_per_second": 7.401360906753668,
+            "peak_ram_mb": 1653.95703125,
+            "peak_vram_mb": 289.82421875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.225,
+      "mean_r1_std": 0.033753857804207595
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "graphcolbert_film",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1046875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.21875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.44114583333333335
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.4,
+                "10": 0.8
+              },
+              "mrr": 0.36468253968253966
+            },
+            "mean_recall_at_k": {
+              "1": 0.209375,
+              "5": 0.7,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.852212900004815,
+            "latency_ms_per_question": 182.88165312515048,
+            "throughput_questions_per_second": 5.468017064104703,
+            "peak_ram_mb": 1664.76171875,
+            "peak_vram_mb": 308.02294921875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert_film\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.1046875,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.21875,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4536458333333333
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 1.0
+              },
+              "mrr": 0.4138888888888889
+            },
+            "mean_recall_at_k": {
+              "1": 0.209375,
+              "5": 0.8,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.349500400014222,
+            "latency_ms_per_question": 167.17188750044443,
+            "throughput_questions_per_second": 5.981867016948897,
+            "peak_ram_mb": 1644.83203125,
+            "peak_vram_mb": 308.02490234375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert_film\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "infographicvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.0734375,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.4125
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2,
+                "5": 0.6,
+                "10": 0.8
+              },
+              "mrr": 0.3853846153846154
+            },
+            "mean_recall_at_k": {
+              "1": 0.146875,
+              "5": 0.8,
+              "10": 0.9
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 5.3285911999992095,
+            "latency_ms_per_question": 166.5184749999753,
+            "throughput_questions_per_second": 6.005339647748686,
+            "peak_ram_mb": 1661.7734375,
+            "peak_vram_mb": 307.90673828125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "infographicvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\graphcolbert_film\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.18854166666666666,
+      "mean_r1_std": 0.02946278254943948
+    },
+    {
+      "dataset": "infographicvqa",
+      "model": "qwen25_vl_qlora",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "infographicvqa",
+          "model": "qwen25_vl_qlora",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 2,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 1.0,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 1.0
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 1.0,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 1.0
+            },
+            "mean_recall_at_k": {
+              "1": 1.0,
+              "5": 1.0,
+              "10": 1.0
+            },
+            "dataset": "infographicvqa",
+            "split": "val",
+            "num_samples": 2,
+            "num_documents": 1
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 1.0,
+            "exact_accuracy": 1.0
+          },
+          "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\training\\adapter",
+          "training": {
+            "eval_loss": 0.2835994064807892,
+            "eval_runtime": 29.9276,
+            "eval_samples_per_second": 0.067,
+            "eval_steps_per_second": 0.067,
+            "epoch": 3.0,
+            "progress_jsonl": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+          },
+          "resources": {
+            "wall_time_seconds": 50.933048799983226,
+            "peak_ram_mb": 478.48828125
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 1.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 1.0,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "docvqa",
+      "model": "random",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "random",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 11,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.40625,
+                "10": 0.96875
+              },
+              "mrr": 0.281573547979798
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.22965688526033354
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.3849431818181818,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 9.736790800001472,
+            "latency_ms_per_question": 304.274712500046,
+            "throughput_questions_per_second": 3.286503803696302,
+            "peak_ram_mb": 633.5703125,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\random\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.0,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.10795454545454546,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "docvqa",
+      "model": "clip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.10150923295454545,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.275621167027417
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.2727272727272727,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.28493665242677096
+            },
+            "mean_recall_at_k": {
+              "1": 0.12215909090909091,
+              "5": 0.38636363636363635,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.080859375,
+            "exact_accuracy": 0.0625
+          },
+          "resources": {
+            "wall_time_seconds": 7.786341300001368,
+            "latency_ms_per_question": 243.32316562504275,
+            "throughput_questions_per_second": 4.10976076787109,
+            "peak_ram_mb": 1291.66796875,
+            "peak_vram_mb": 396.96875,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\clip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.06833538083538084,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.375,
+                "10": 0.96875
+              },
+              "mrr": 0.253026920995671
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.28859876559004055
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4147727272727273,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.059966216216216214,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 8.407044299994595,
+            "latency_ms_per_question": 262.7201343748311,
+            "throughput_questions_per_second": 3.8063317924969864,
+            "peak_ram_mb": 1292.1875,
+            "peak_vram_mb": 396.96875,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\clip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "clip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.09161931818181818,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.65625,
+                "10": 0.90625
+              },
+              "mrr": 0.3450058621933622
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2727272727272727,
+                "5": 0.45454545454545453,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.37612287890362756
+            },
+            "mean_recall_at_k": {
+              "1": 0.18323863636363635,
+              "5": 0.5553977272727273,
+              "10": 0.6803977272727273
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 7.922768299991731,
+            "latency_ms_per_question": 247.58650937474158,
+            "throughput_questions_per_second": 4.038992280013212,
+            "peak_ram_mb": 1291.53515625,
+            "peak_vram_mb": 396.96875,
+            "parameter_count": 652800,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\clip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.04694186373873874,
+      "vqa_std": 0.034271318907028135,
+      "mean_r1_mean": 0.12736742424242425,
+      "mean_r1_std": 0.043648010138225425
+    },
+    {
+      "dataset": "docvqa",
+      "model": "siglip",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.11505681818181818,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.3400184884559885
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2727272727272727,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.3479256854256854
+            },
+            "mean_recall_at_k": {
+              "1": 0.23011363636363635,
+              "5": 0.4318181818181818,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 13.589848999981768,
+            "latency_ms_per_question": 424.68278124943026,
+            "throughput_questions_per_second": 2.354698716670283,
+            "peak_ram_mb": 1830.1953125,
+            "peak_vram_mb": 909.4091796875,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\siglip\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.12286931818181818,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.625,
+                "10": 0.9375
+              },
+              "mrr": 0.35380929834054836
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.2727272727272727,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.35956932789016743
+            },
+            "mean_recall_at_k": {
+              "1": 0.21448863636363635,
+              "5": 0.5397727272727273,
+              "10": 0.7869318181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 35.70478519995231,
+            "latency_ms_per_question": 1115.7745374985097,
+            "throughput_questions_per_second": 0.8962384123247082,
+            "peak_ram_mb": 1495.21875,
+            "peak_vram_mb": 793.9599609375,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\siglip\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "siglip",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.07670454545454546,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.65625,
+                "10": 0.875
+              },
+              "mrr": 0.3466934974747475
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.18181818181818182,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.3069020996828483
+            },
+            "mean_recall_at_k": {
+              "1": 0.1534090909090909,
+              "5": 0.5099431818181819,
+              "10": 0.7102272727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.15841689996887,
+            "latency_ms_per_question": 317.4505281240272,
+            "throughput_questions_per_second": 3.1500971376847176,
+            "peak_ram_mb": 1497.04296875,
+            "peak_vram_mb": 793.9599609375,
+            "parameter_count": 849408,
+            "frozen_backbone": true
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\siglip\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.010416666666666666,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.19933712121212122,
+      "mean_r1_std": 0.03309655704034335
+    },
+    {
+      "dataset": "docvqa",
+      "model": "ocr_text",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "ocr_text",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "num_documents": 11,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.5,
+                "5": 0.8125,
+                "10": 1.0
+              },
+              "mrr": 0.6408730158730158
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.7272727272727273,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.8181818181818182
+            },
+            "mean_recall_at_k": {
+              "1": 0.6136363636363636,
+              "5": 0.90625,
+              "10": 1.0
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 8.934055100020487,
+            "latency_ms_per_question": 279.1892218756402,
+            "throughput_questions_per_second": 3.58180016148844,
+            "peak_ram_mb": 632.8125,
+            "peak_vram_mb": 0.0,
+            "parameter_count": 0
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\ocr_text\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.03125,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.6136363636363636,
+      "mean_r1_std": 0.0
+    },
+    {
+      "dataset": "docvqa",
+      "model": "gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.03835227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.2398944805194805
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.23019480519480517
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4318181818181818,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.43605469999602,
+            "latency_ms_per_question": 326.12670937487565,
+            "throughput_questions_per_second": 3.066292858738293,
+            "peak_ram_mb": 1614.20703125,
+            "peak_vram_mb": 200.578125,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.06960227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.3000755321067821
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.22181635209710074
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.38636363636363635,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 10.07929119997425,
+            "latency_ms_per_question": 314.9778499991953,
+            "throughput_questions_per_second": 3.174826420342112,
+            "peak_ram_mb": 1613.6796875,
+            "peak_vram_mb": 200.9228515625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.041142451298701296,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.03125,
+                "5": 0.40625,
+                "10": 0.96875
+              },
+              "mrr": 0.21367920274170274
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.26323726778272233
+            },
+            "mean_recall_at_k": {
+              "1": 0.061079545454545456,
+              "5": 0.4303977272727273,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.021205357142857144,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 9.87238499999512,
+            "latency_ms_per_question": 308.5120312498475,
+            "throughput_questions_per_second": 3.2413646753054928,
+            "peak_ram_mb": 1637.27734375,
+            "peak_vram_mb": 201.73388671875,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.017485119047619048,
+      "vqa_std": 0.013026146875008629,
+      "mean_r1_mean": 0.08191287878787878,
+      "mean_r1_std": 0.01948779888944761
+    },
+    {
+      "dataset": "docvqa",
+      "model": "graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.05397727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.4375,
+                "10": 0.90625
+              },
+              "mrr": 0.288706259018759
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.36363636363636365
+              },
+              "mrr": 0.23580174034719487
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.35511363636363635,
+              "10": 0.6349431818181819
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 11.482839000003878,
+            "latency_ms_per_question": 358.8387187501212,
+            "throughput_questions_per_second": 2.7867672794148897,
+            "peak_ram_mb": 1595.06640625,
+            "peak_vram_mb": 297.0732421875,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.03835227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5,
+                "10": 0.8125
+              },
+              "mrr": 0.2489650974025974
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.21875743602028186
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4318181818181818,
+              "10": 0.6789772727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.74351260002004,
+            "latency_ms_per_question": 335.73476875062624,
+            "throughput_questions_per_second": 2.9785416735994064,
+            "peak_ram_mb": 1578.9296875,
+            "peak_vram_mb": 200.89599609375,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.06178977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.26506809163059164
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.22097536302081755
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.38636363636363635,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 10.73025779996533,
+            "latency_ms_per_question": 335.32055624891655,
+            "throughput_questions_per_second": 2.9822209863497777,
+            "peak_ram_mb": 1583.0234375,
+            "peak_vram_mb": 201.29736328125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.020833333333333332,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.08191287878787878,
+      "mean_r1_std": 0.00736569563735987
+    },
+    {
+      "dataset": "docvqa",
+      "model": "sam2_graph_transformer",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.05397727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.46875,
+                "10": 0.9375
+              },
+              "mrr": 0.2982785443722944
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.21334776334776337
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.37073863636363635,
+              "10": 0.6960227272727273
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 69.90176959999371,
+            "latency_ms_per_question": 2184.4302999998035,
+            "throughput_questions_per_second": 0.45778526327898394,
+            "peak_ram_mb": 1962.60546875,
+            "peak_vram_mb": 1724.62939453125,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\sam2_graph_transformer\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.04616477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.53125,
+                "10": 0.8125
+              },
+              "mrr": 0.2784417839105339
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.21954711954711953
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.40198863636363635,
+              "10": 0.6789772727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.348046700004488,
+            "latency_ms_per_question": 323.37645937514026,
+            "throughput_questions_per_second": 3.0923710462174587,
+            "peak_ram_mb": 1583.1015625,
+            "peak_vram_mb": 201.7294921875,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\sam2_graph_transformer\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "sam2_graph_transformer",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.05397727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5625,
+                "10": 0.96875
+              },
+              "mrr": 0.2430690836940837
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.2206411384218871
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.41761363636363635,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 10.899342999968212,
+            "latency_ms_per_question": 340.6044687490066,
+            "throughput_questions_per_second": 2.935956781990743,
+            "peak_ram_mb": 1581.3125,
+            "peak_vram_mb": 202.568359375,
+            "parameter_count": 835009
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "sam2_graph_transformer",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\sam2_graph_transformer\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.020833333333333332,
+      "vqa_std": 0.01473139127471974,
+      "mean_r1_mean": 0.08191287878787878,
+      "mean_r1_std": 0.00736569563735987
+    },
+    {
+      "dataset": "docvqa",
+      "model": "hybrid_gatv2_knn",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.08522727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.0625,
+                "5": 0.5,
+                "10": 0.96875
+              },
+              "mrr": 0.24145698051948053
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.23422565996095407
+            },
+            "mean_recall_at_k": {
+              "1": 0.07670454545454546,
+              "5": 0.4318181818181818,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.09375,
+            "exact_accuracy": 0.09375
+          },
+          "resources": {
+            "wall_time_seconds": 11.33258200000273,
+            "latency_ms_per_question": 354.14318750008533,
+            "throughput_questions_per_second": 2.8237166075650095,
+            "peak_ram_mb": 1629.0546875,
+            "peak_vram_mb": 295.3740234375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\hybrid_gatv2_knn\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.04616477272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.09375,
+                "5": 0.53125,
+                "10": 0.96875
+              },
+              "mrr": 0.28510777417027416
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.226912481457936
+            },
+            "mean_recall_at_k": {
+              "1": 0.09232954545454546,
+              "5": 0.4474431818181818,
+              "10": 0.7571022727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.286991800006945,
+            "latency_ms_per_question": 321.468493750217,
+            "throughput_questions_per_second": 3.1107247504541022,
+            "peak_ram_mb": 1627.171875,
+            "peak_vram_mb": 202.2490234375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\hybrid_gatv2_knn\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "hybrid_gatv2_knn",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.030539772727272728,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.03125,
+                "5": 0.4375,
+                "10": 0.96875
+              },
+              "mrr": 0.2147208694083694
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.2477069647524193
+            },
+            "mean_recall_at_k": {
+              "1": 0.061079545454545456,
+              "5": 0.4005681818181818,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 10.32933709997451,
+            "latency_ms_per_question": 322.7917843742034,
+            "throughput_questions_per_second": 3.0979722793710516,
+            "peak_ram_mb": 1628.2734375,
+            "peak_vram_mb": 203.06005859375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "hybrid_gatv2_knn",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\hybrid_gatv2_knn\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.03125,
+      "vqa_std": 0.04419417382415922,
+      "mean_r1_mean": 0.07670454545454546,
+      "mean_r1_std": 0.01275775907699572
+    },
+    {
+      "dataset": "docvqa",
+      "model": "graphcolbert",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.06178977272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.53125,
+                "10": 0.96875
+              },
+              "mrr": 0.34845102813852813
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.22886742798981888
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.4474431818181818,
+              "10": 0.7116477272727273
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 12.176950099994428,
+            "latency_ms_per_question": 380.5296906248259,
+            "throughput_questions_per_second": 2.627915835839275,
+            "peak_ram_mb": 1710.35546875,
+            "peak_vram_mb": 295.3740234375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.08522727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.53125,
+                "10": 0.96875
+              },
+              "mrr": 0.36659338924963925
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.45454545454545453
+              },
+              "mrr": 0.23391172543259267
+            },
+            "mean_recall_at_k": {
+              "1": 0.13920454545454547,
+              "5": 0.4474431818181818,
+              "10": 0.7116477272727273
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.03125,
+            "exact_accuracy": 0.03125
+          },
+          "resources": {
+            "wall_time_seconds": 12.177342700015288,
+            "latency_ms_per_question": 380.54195937547775,
+            "throughput_questions_per_second": 2.627831111294899,
+            "peak_ram_mb": 1694.82421875,
+            "peak_vram_mb": 208.7900390625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.0723924512987013,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.15625,
+                "5": 0.625,
+                "10": 0.96875
+              },
+              "mrr": 0.35369656385281384
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.25876951331496784
+            },
+            "mean_recall_at_k": {
+              "1": 0.12357954545454546,
+              "5": 0.5397727272727273,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.021205357142857144,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 11.379783900047187,
+            "latency_ms_per_question": 355.6182468764746,
+            "throughput_questions_per_second": 2.812004189277031,
+            "peak_ram_mb": 1695.44140625,
+            "peak_vram_mb": 209.74072265625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.017485119047619048,
+      "vqa_std": 0.013026146875008629,
+      "mean_r1_mean": 0.12878787878787878,
+      "mean_r1_std": 0.007365695637359877
+    },
+    {
+      "dataset": "docvqa",
+      "model": "graphcolbert_film",
+      "expected_seeds": [
+        42,
+        43,
+        44
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.06960227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.59375,
+                "10": 0.90625
+              },
+              "mrr": 0.37881042568542567
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.2727272727272727,
+                "10": 0.5454545454545454
+              },
+              "mrr": 0.22569917863172995
+            },
+            "mean_recall_at_k": {
+              "1": 0.13920454545454547,
+              "5": 0.43323863636363635,
+              "10": 0.7258522727272727
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 12.710338199976832,
+            "latency_ms_per_question": 397.198068749276,
+            "throughput_questions_per_second": 2.5176356046968387,
+            "peak_ram_mb": 1728.4609375,
+            "peak_vram_mb": 295.3740234375,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 42,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert_film\\seed42\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 43,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 1,
+          "best_composite": 0.10085227272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.1875,
+                "5": 0.65625,
+                "10": 0.96875
+              },
+              "mrr": 0.36193069083694085
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.45454545454545453,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.25184352684352684
+            },
+            "mean_recall_at_k": {
+              "1": 0.13920454545454547,
+              "5": 0.5553977272727273,
+              "10": 0.8025568181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0625,
+            "exact_accuracy": 0.0625
+          },
+          "resources": {
+            "wall_time_seconds": 11.93291820003651,
+            "latency_ms_per_question": 372.90369375114096,
+            "throughput_questions_per_second": 2.681657534525133,
+            "peak_ram_mb": 1703.390625,
+            "peak_vram_mb": 218.5947265625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 43,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert_film\\seed43\\val\\metrics.json"
+        },
+        {
+          "dataset": "docvqa",
+          "model": "graphcolbert_film",
+          "split": "val",
+          "seed": 44,
+          "status": "available_smoke",
+          "num_samples": 32,
+          "epochs_completed": 2,
+          "best_epoch": 2,
+          "best_composite": 0.05397727272727273,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.125,
+                "5": 0.5625,
+                "10": 0.90625
+              },
+              "mrr": 0.3218535804473304
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.09090909090909091,
+                "5": 0.36363636363636365,
+                "10": 0.6363636363636364
+              },
+              "mrr": 0.23384214677469808
+            },
+            "mean_recall_at_k": {
+              "1": 0.10795454545454546,
+              "5": 0.4630681818181818,
+              "10": 0.7713068181818181
+            }
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.0,
+            "exact_accuracy": 0.0
+          },
+          "resources": {
+            "wall_time_seconds": 11.940257599984761,
+            "latency_ms_per_question": 373.1330499995238,
+            "throughput_questions_per_second": 2.680009181714877,
+            "peak_ram_mb": 1699.6796875,
+            "peak_vram_mb": 219.72119140625,
+            "parameter_count": 687553
+          },
+          "config": {
+            "dataset": "docvqa",
+            "model": "graphcolbert_film",
+            "split": "val",
+            "seed": 44,
+            "max_samples": 32,
+            "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+            "resume": true,
+            "epochs": 30,
+            "early_stopping_patience": 5,
+            "batch_size": 16,
+            "eval_batch_size": 32
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\graphcolbert_film\\seed44\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.020833333333333332,
+      "vqa_std": 0.02946278254943948,
+      "mean_r1_mean": 0.12878787878787878,
+      "mean_r1_std": 0.014731391274719747
+    },
+    {
+      "dataset": "docvqa",
+      "model": "qwen25_vl_qlora",
+      "expected_seeds": [
+        42
+      ],
+      "runs": [
+        {
+          "dataset": "docvqa",
+          "model": "qwen25_vl_qlora",
+          "split": "val",
+          "seed": 42,
+          "status": "available_smoke",
+          "num_samples": 2,
+          "retrieval": {
+            "question_to_document": {
+              "recall_at_k": {
+                "1": 0.5,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.75
+            },
+            "document_to_question": {
+              "recall_at_k": {
+                "1": 0.5,
+                "5": 1.0,
+                "10": 1.0
+              },
+              "mrr": 0.75
+            },
+            "mean_recall_at_k": {
+              "1": 0.5,
+              "5": 1.0,
+              "10": 1.0
+            },
+            "dataset": "docvqa",
+            "split": "val",
+            "num_samples": 2,
+            "num_documents": 2
+          },
+          "vqa": {
+            "metric": "anls",
+            "score": 0.875,
+            "exact_accuracy": 0.5
+          },
+          "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\qwen25_vl_qlora\\seed42\\training\\adapter",
+          "training": {
+            "eval_loss": 0.366813600063324,
+            "eval_runtime": 18.895,
+            "eval_samples_per_second": 0.106,
+            "eval_steps_per_second": 0.106,
+            "epoch": 3.0,
+            "progress_jsonl": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+          },
+          "resources": {
+            "wall_time_seconds": 175.37015939998673,
+            "peak_ram_mb": 528.125
+          },
+          "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\docvqa\\qwen25_vl_qlora\\seed42\\val\\metrics.json"
+        }
+      ],
+      "status": "available_smoke",
+      "vqa_mean": 0.875,
+      "vqa_std": 0.0,
+      "mean_r1_mean": 0.5,
+      "mean_r1_std": 0.0
+    }
+  ],
+  "available_full": 0,
+  "available_smoke": 33,
+  "expected": 33
+}

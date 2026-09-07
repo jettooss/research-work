@@ -1,0 +1,36 @@
+{
+  "dataset": "ai2d",
+  "model": "siglip",
+  "split": "test",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.09375,
+        "5": 0.34375,
+        "10": 0.75
+      },
+      "mrr": 0.25246732434232433
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07692307692307693,
+        "5": 0.6153846153846154,
+        "10": 0.6923076923076923
+      },
+      "mrr": 0.30204933954933955
+    },
+    "mean_recall_at_k": {
+      "1": 0.08533653846153846,
+      "5": 0.4795673076923077,
+      "10": 0.7211538461538461
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.1875,
+    "exact_accuracy": 0.1875
+  }
+}

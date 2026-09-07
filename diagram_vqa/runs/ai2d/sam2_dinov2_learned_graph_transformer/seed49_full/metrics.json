@@ -1,0 +1,29 @@
+{
+  "status": "completed_full",
+  "full_training_was_run": true,
+  "dataset": "ai2d",
+  "architecture": "sam2_dinov2_learned_graph_transformer",
+  "graph_construction": "learned dense attention; no KNN and no predefined edge_index",
+  "seed": 42,
+  "epochs": 40,
+  "best_epoch": 7,
+  "validation": {
+    "epoch": 7,
+    "train_loss": 1.1691857329180766,
+    "train_accuracy": 0.5038133692238672,
+    "val_loss": 1.2272428586279933,
+    "val_accuracy": 0.443217665615142,
+    "val_macro_f1": 0.4424864052441884,
+    "val_r1": 0.443217665615142,
+    "val_r5": 1.0,
+    "val_r10": 1.0,
+    "lr": 0.00018910065241883674
+  },
+  "test": {
+    "loss": 1.2356220440543377,
+    "accuracy": 0.44591968911917096,
+    "macro_f1": 0.445316249736357
+  },
+  "overfit_gap": -0.3468426826374942,
+  "overfit": false
+}

@@ -1,0 +1,46 @@
+{
+  "dataset": "infographicvqa",
+  "metric": "anls",
+  "num_samples": 2,
+  "anls": 0.0,
+  "score": 0.0,
+  "primary_target": 0.834,
+  "primary_target_gap": -0.834,
+  "beats_primary_target": false,
+  "stretch_target": 0.873,
+  "stretch_target_gap": -0.873,
+  "beats_stretch_target": false,
+  "qwen25_vl_3b_baseline": 0.771,
+  "error_slices": {
+    "wrong_answer": 2
+  },
+  "sources": [
+    "https://www.docvqa.org/datasets/infographicvqa",
+    "https://evalscope.readthedocs.io/en/latest/benchmarks/infovqa.html",
+    "https://llm-stats.com/benchmarks/infovqa",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/README.md"
+  ],
+  "mode": "qwen25_vl_open_answer",
+  "split": "test",
+  "status": "available_partial",
+  "accuracy": 0.0,
+  "wall_time_seconds": 17.8460197999957,
+  "latency_ms_per_question": 8923.00989999785,
+  "throughput_questions_per_second": 0.11206980729677783,
+  "parameter_count": 3754622976,
+  "loaded_parameter_count": 2071177216,
+  "peak_ram_mb": 2328.46484375,
+  "peak_vram_mb": 4592.52783203125,
+  "model_path": "C:\\Users\\Jet\\Desktop\\data\\models\\Qwen2.5-VL-3B-Instruct",
+  "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\training\\adapter",
+  "device_mode": "balanced_low_0",
+  "use_4bit": true,
+  "max_memory": {
+    "0": 5368709120,
+    "cpu": 25769803776
+  },
+  "offload_folder": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_qwen25_vl_offload",
+  "max_pixels": 786432,
+  "max_samples": 2,
+  "total_eval_rows": 3288
+}

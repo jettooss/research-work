@@ -1,0 +1,60 @@
+{
+  "dataset": "ai2d",
+  "model": "hybrid_gatv2_knn",
+  "split": "val",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.17897727272727273,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.0625,
+        "5": 0.4375,
+        "10": 0.96875
+      },
+      "mrr": 0.27387265512265513
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.09090909090909091,
+        "5": 0.45454545454545453,
+        "10": 0.7272727272727273
+      },
+      "mrr": 0.2530620053347326
+    },
+    "mean_recall_at_k": {
+      "1": 0.07670454545454546,
+      "5": 0.4460227272727273,
+      "10": 0.8480113636363636
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.28125,
+    "exact_accuracy": 0.28125
+  },
+  "resources": {
+    "wall_time_seconds": 3.2002581999986432,
+    "latency_ms_per_question": 100.0080687499576,
+    "throughput_questions_per_second": 9.999193190103712,
+    "peak_ram_mb": 1526.09765625,
+    "peak_vram_mb": 152.49951171875,
+    "parameter_count": 687553
+  },
+  "config": {
+    "dataset": "ai2d",
+    "model": "hybrid_gatv2_knn",
+    "split": "val",
+    "seed": 42,
+    "max_samples": 32,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "research_question": "Does an OCR-based graph/retrieval representation improve open-answer InfographicVQA quality and computational efficiency?",
+  "dataset": {
+    "manifest": "C:\\Users\\Jet\\Desktop\\data\\infographicvqa\\prepared_v1\\manifest.jsonl",
+    "split_file": "C:\\Users\\Jet\\Desktop\\data\\infographicvqa\\prepared_v1\\split.json",
+    "splits": {
+      "train": {
+        "questions": 23946,
+        "images": 4406,
+        "missing_images": 0
+      },
+      "val": {
+        "questions": 2801,
+        "images": 500,
+        "missing_images": 0
+      },
+      "test": {
+        "questions": 3288,
+        "images": 579,
+        "missing_images": 0
+      }
+    },
+    "image_leakage": {
+      "train-val": [],
+      "train-test": [],
+      "val-test": []
+    }
+  },
+  "models": [
+    {
+      "name": "Most frequent train answer",
+      "role": "lower bound",
+      "status": "available",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_baselines\\most_frequent\\val\\metrics.json",
+      "metrics_exists": true,
+      "wall_time_seconds": 0.0023906000424176455,
+      "peak_vram_mb": 0.0,
+      "accuracy": 0.022134951802927526,
+      "latency_ms_per_question": 0.0008534809148224368,
+      "parameter_count": 0,
+      "peak_ram_mb": 544.30859375,
+      "anls": 0.022134951802927526,
+      "throughput_questions_per_second": 1171672.3627124643,
+      "num_samples": 2801,
+      "score": 0.022134951802927526,
+      "required_metrics": [
+        "anls",
+        "accuracy",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ],
+      "missing_required_metrics": [],
+      "complete_for_defense": true
+    },
+    {
+      "name": "Question lexical retrieval",
+      "role": "text retrieval baseline",
+      "status": "available",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_baselines\\question_retrieval\\val\\metrics.json",
+      "metrics_exists": true,
+      "wall_time_seconds": 20.89660059986636,
+      "peak_vram_mb": 0.0,
+      "accuracy": 0.021420921099607283,
+      "latency_ms_per_question": 7.4604072116623925,
+      "parameter_count": 0,
+      "peak_ram_mb": 545.65234375,
+      "anls": 0.05614582272026042,
+      "throughput_questions_per_second": 134.04094061203014,
+      "num_samples": 2801,
+      "score": 0.05614582272026042,
+      "required_metrics": [
+        "anls",
+        "accuracy",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ],
+      "missing_required_metrics": [],
+      "complete_for_defense": true
+    },
+    {
+      "name": "OCR text retrieval",
+      "role": "ocr text ablation baseline",
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_baselines\\ocr_text_retrieval\\val\\metrics.json",
+      "metrics_exists": true,
+      "wall_time_seconds": 1020.0174626999997,
+      "peak_vram_mb": 0.0,
+      "accuracy": 0.005355230274901821,
+      "latency_ms_per_question": 364.16189314530516,
+      "parameter_count": 0,
+      "peak_ram_mb": 881.08984375,
+      "anls": 0.018658975995641473,
+      "throughput_questions_per_second": 2.746031418507009,
+      "num_samples": 2801,
+      "score": 0.018658975995641473,
+      "required_metrics": [
+        "anls",
+        "accuracy",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ],
+      "missing_required_metrics": [],
+      "complete_for_defense": true
+    },
+    {
+      "name": "OCR + GNN retrieval",
+      "role": "proposed local method",
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_gnn_retrieval_seed42_full_100x\\metrics.json",
+      "metrics_exists": true,
+      "wall_time_seconds": 13529.561337599996,
+      "peak_vram_mb": 846.57861328125,
+      "best_mean_r1": 0.4059999883174896,
+      "overfitting_check": {
+        "status": "no_clear_overfit",
+        "best_epoch": 98,
+        "final_epoch": 100,
+        "first_mean_r1": 0.029000000096857548,
+        "best_mean_r1": 0.4059999883174896,
+        "final_mean_r1": 0.3930000066757202,
+        "final_minus_best_mean_r1": -0.01299998164176941,
+        "final_drop_from_best_mean_r1": 0.01299998164176941,
+        "first_loss": 1.026502901735925,
+        "final_loss": 0.021617732382829918,
+        "loss_delta": -1.0048851693530951,
+        "loss_decreased": true,
+        "rule": "possible_overfit when final Mean R@1 is >0.02 below best while train loss decreased"
+      },
+      "latency_ms_per_question": 27059.122675199993,
+      "best_epoch": 98,
+      "parameter_count": 825089,
+      "peak_ram_mb": 4487.6171875,
+      "throughput_questions_per_second": 0.03695611317496675,
+      "num_samples": 23946,
+      "max_samples": null,
+      "epochs_completed": 100,
+      "metric_family": "retrieval",
+      "primary_metric": "best_mean_r1",
+      "resource_notes": "Full InfographicVQA train split, validation retrieval evaluated on 500 validation items each epoch.",
+      "score": 0.4059999883174896,
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_gnn_retrieval_seed42_full_100x\\gnn.pt",
+      "checkpoint_exists": false,
+      "required_metrics": [
+        "best_mean_r1",
+        "best_epoch",
+        "overfitting_check",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ],
+      "missing_required_metrics": [],
+      "complete_for_defense": true
+    },
+    {
+      "name": "Qwen2.5-VL-3B open answer",
+      "role": "strong VLM reference",
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_qwen25_vl_open_answer_full\\metrics.json",
+      "metrics_exists": true,
+      "wall_time_seconds": 12144.050180100003,
+      "peak_vram_mb": 6464.34228515625,
+      "accuracy": 0.6201356658336309,
+      "latency_ms_per_question": 4335.612345626563,
+      "parameter_count": 3754622976,
+      "peak_ram_mb": 1243.3671875,
+      "anls": 0.6844354160275581,
+      "throughput_questions_per_second": 0.23064792704742715,
+      "num_samples": 2801,
+      "max_samples": null,
+      "total_eval_rows": 2801,
+      "score": 0.6844354160275581,
+      "required_metrics": [
+        "anls",
+        "accuracy",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ],
+      "missing_required_metrics": [],
+      "complete_for_defense": true
+    }
+  ],
+  "required_metrics": [
+    "anls",
+    "accuracy",
+    "wall_time_seconds",
+    "latency_ms_per_question",
+    "throughput_questions_per_second",
+    "peak_ram_mb",
+    "peak_vram_mb",
+    "parameter_count"
+  ],
+  "ablation_matrix": [
+    "Question-only answer prior",
+    "Question lexical retrieval",
+    "OCR text retrieval",
+    "OCR + coordinates, no edges",
+    "OCR + kNN graph",
+    "OCR + typed spatial edges"
+  ],
+  "defense_ready": true
+}

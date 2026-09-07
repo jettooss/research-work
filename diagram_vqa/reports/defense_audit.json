@@ -1,0 +1,85 @@
+{
+  "research_question": "Does an OCR-based graph representation improve AI2D VQA quality and computational efficiency?",
+  "dataset": {
+    "manifest": "C:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\manifest_hybrid.jsonl",
+    "split_file": "C:\\Users\\Jet\\Desktop\\data\\ai2d\\prepared_v2\\split_hybrid.json",
+    "split_seed": 42,
+    "validation_ratio": 0.1,
+    "images_total": 4060,
+    "questions_total": 15501,
+    "questions_by_split": {
+      "test": 3088,
+      "train": 11145,
+      "val": 1268
+    },
+    "images_by_split": {
+      "test": 814,
+      "train": 2922,
+      "val": 324
+    },
+    "missing_official_test_ids": 168,
+    "image_leakage": {
+      "train-val": [],
+      "train-test": [],
+      "val-test": []
+    },
+    "test_question_types": {
+      "counting": 122,
+      "label/OCR": 554,
+      "reasoning": 230,
+      "recognition/knowledge": 1795,
+      "spatial": 387
+    }
+  },
+  "models": [
+    {
+      "name": "Random baseline",
+      "role": "lower bound",
+      "status": "available",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\runs\\ai2d_baselines\\test_metrics.json",
+      "metrics_exists": true,
+      "accuracy": 0.2548575129533679,
+      "complete_for_defense": false
+    },
+    {
+      "name": "CLIP",
+      "role": "visual baseline",
+      "status": "rerun_required",
+      "complete_for_defense": false
+    },
+    {
+      "name": "OCR + GNN",
+      "role": "proposed method",
+      "status": "rerun_required",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d_gnn_ocr_knn\\gnn_ocr_knn_best.pt",
+      "checkpoint_exists": true,
+      "complete_for_defense": false
+    },
+    {
+      "name": "Qwen2.5-VL-3B QLoRA",
+      "role": "strong VLM reference",
+      "status": "metric_only",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\vlm_qlora_mcq\\metrics.json",
+      "metrics_exists": true,
+      "accuracy": 0.7319,
+      "complete_for_defense": false
+    }
+  ],
+  "required_metrics": [
+    "accuracy",
+    "wall_time_seconds",
+    "latency_ms_per_question",
+    "throughput_questions_per_second",
+    "peak_ram_mb",
+    "peak_vram_mb",
+    "parameter_count"
+  ],
+  "ablation_matrix": [
+    "OCR text only",
+    "OCR + coordinates, no edges",
+    "OCR + kNN graph (k=3)",
+    "OCR + kNN graph (k=5)",
+    "OCR + typed spatial edges"
+  ],
+  "defense_ready": false
+}

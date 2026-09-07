@@ -1,0 +1,54 @@
+{
+  "status": "completed_early_stopped",
+  "full_training_was_run": false,
+  "dataset": "ai2d",
+  "architecture": "graphcolbert_film_dinov2_sparse_learned_graph",
+  "seed": 42,
+  "epochs_requested": 20,
+  "epochs_completed": 15,
+  "best_epoch": 9,
+  "validation": {
+    "epoch": 9,
+    "train_loss": 1.0095267152115064,
+    "train_accuracy": 0.5061462539255271,
+    "train_vqa_loss": 1.1882317463070555,
+    "train_multipos_loss": 0.27813805654428553,
+    "attention_entropy": 1.4998773817187279,
+    "hub_penalty": 0.03139365831378054,
+    "val_loss": 1.2687284737825393,
+    "val_accuracy": 0.45347003154574134,
+    "val_macro_f1": 0.4526334418647157,
+    "val_retrieval_r1": 0.0031545741324921135,
+    "val_retrieval_r5": 0.006309148264984227,
+    "val_retrieval_mrr": 0.009822160735436385,
+    "composite": 0.22831230283911672,
+    "lr": 6.545084971874738e-05
+  },
+  "test": {
+    "loss": 1.3111906192966343,
+    "accuracy": 0.45919689119170987,
+    "macro_f1": 0.4584752747625564,
+    "retrieval_recall_at_1": 0.0025906735751295338,
+    "retrieval_recall_at_5": 0.0042098445595854924,
+    "retrieval_mrr": 0.0057819388530246435
+  },
+  "overfit_gap": 0.10379659860768509,
+  "overfit": false,
+  "graph": {
+    "predefined_edges": 0,
+    "learned_top_k": 8,
+    "question_conditioning": "FiLM + second sparse layer",
+    "late_interaction": "GraphColBERT MaxSim"
+  },
+  "regularization": {
+    "dropout": 0.25,
+    "weight_decay": 0.01,
+    "label_smoothing": 0.05,
+    "ocr_node_dropout": 0.08,
+    "sam_node_dropout": 0.2,
+    "sparsity_coefficient": 0.002,
+    "hub_coefficient": 0.01,
+    "vqa_weight": 0.8,
+    "retrieval_weight": 0.2
+  }
+}

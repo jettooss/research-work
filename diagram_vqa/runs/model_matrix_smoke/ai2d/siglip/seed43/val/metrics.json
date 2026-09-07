@@ -1,0 +1,48 @@
+{
+  "dataset": "ai2d",
+  "model": "siglip",
+  "split": "val",
+  "seed": 43,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.2869318181818182,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.1875,
+        "5": 0.46875,
+        "10": 1.0
+      },
+      "mrr": 0.32952628968253966
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.2727272727272727,
+        "5": 0.5454545454545454,
+        "10": 0.7272727272727273
+      },
+      "mrr": 0.411525974025974
+    },
+    "mean_recall_at_k": {
+      "1": 0.23011363636363635,
+      "5": 0.5071022727272727,
+      "10": 0.8636363636363636
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.34375,
+    "exact_accuracy": 0.34375
+  },
+  "resources": {
+    "wall_time_seconds": 0.7667928999871947,
+    "latency_ms_per_question": 23.962278124599834,
+    "throughput_questions_per_second": 41.73225912829187,
+    "peak_ram_mb": 1787.265625,
+    "peak_vram_mb": 766.14794921875,
+    "parameter_count": 849408,
+    "frozen_backbone": true
+  }
+}

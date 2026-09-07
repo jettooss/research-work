@@ -283,19 +283,32 @@ class QwenVlmRunner:
         adapter_path: Optional[str | Path] = None,
         use_4bit: bool = True,
         device_mode: str = "auto",
+        max_memory: Optional[dict[Any, str]] = None,
+        offload_folder: Optional[str | Path] = None,
+        low_cpu_mem_usage: bool = True,
+        max_pixels: int | None = None,
     ) -> None:
-        if device_mode not in {"auto", "cpu"}:
+        if device_mode not in {"auto", "balanced", "balanced_low_0", "sequential", "cpu"}:
             raise ValueError(f"Unsupported device_mode={device_mode}")
         self.model_path = str(Path(model_path))
         self.adapter_path = str(Path(adapter_path)) if adapter_path is not None else None
         self.use_4bit = bool(use_4bit)
         self.device_mode = device_mode
+        self.max_pixels = max_pixels
         self.processor = AutoProcessor.from_pretrained(self.model_path, trust_remote_code=True, use_fast=False)
 
         model_kwargs: dict[str, Any] = {
             "trust_remote_code": True,
-            "device_map": "auto" if device_mode == "auto" else "cpu",
+            "device_map": device_mode if device_mode != "cpu" else "cpu",
+            "low_cpu_mem_usage": bool(low_cpu_mem_usage),
         }
+        if max_memory is not None:
+            model_kwargs["max_memory"] = max_memory
+        if offload_folder is not None:
+            offload_path = Path(offload_folder)
+            offload_path.mkdir(parents=True, exist_ok=True)
+            model_kwargs["offload_folder"] = str(offload_path)
+            model_kwargs["offload_state_dict"] = True
         if use_4bit and device_mode != "cpu":
             model_kwargs["quantization_config"] = BitsAndBytesConfig(
                 load_in_4bit=True,
@@ -303,9 +316,9 @@ class QwenVlmRunner:
                 bnb_4bit_quant_type="nf4",
                 bnb_4bit_use_double_quant=True,
             )
-            model_kwargs["dtype"] = torch.float16
+            model_kwargs["torch_dtype"] = torch.float16
         else:
-            model_kwargs["dtype"] = torch.float16 if torch.cuda.is_available() and device_mode == "auto" else torch.float32
+            model_kwargs["torch_dtype"] = torch.float16 if torch.cuda.is_available() and device_mode == "auto" else torch.float32
 
         self.model = AutoModelForImageTextToText.from_pretrained(self.model_path, **model_kwargs)
         if self.adapter_path is not None:
@@ -319,7 +332,11 @@ class QwenVlmRunner:
             {
                 "role": "user",
                 "content": [
-                    {"type": "image", "image": str(Path(image_path).resolve())},
+                    {
+                        "type": "image",
+                        "image": str(Path(image_path).resolve()),
+                        **({"max_pixels": int(self.max_pixels)} if self.max_pixels is not None else {}),
+                    },
                     {"type": "text", "text": str(prompt)},
                 ],
             }
@@ -336,7 +353,13 @@ class QwenVlmRunner:
         model_device = next(self.model.parameters()).device
         inputs = {k: v.to(model_device) if hasattr(v, "to") else v for k, v in inputs.items()}
         with torch.inference_mode():
-            generated_ids = self.model.generate(**inputs, max_new_tokens=max_new_tokens)
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+                remove_invalid_values=True,
+                renormalize_logits=True,
+            )
         generated_ids_trimmed = [
             output_ids[len(input_ids) :]
             for input_ids, output_ids in zip(inputs["input_ids"], generated_ids)

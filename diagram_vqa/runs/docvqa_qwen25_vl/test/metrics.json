@@ -1,0 +1,19 @@
+{
+  "dataset": "docvqa",
+  "mode": "qwen25_vl_open_answer",
+  "metric_family": "open_answer",
+  "split": "test",
+  "status": "available_full",
+  "num_samples": 5188,
+  "total_eval_rows": 5188,
+  "wall_time_seconds": 25799.995321199996,
+  "latency_ms_per_question": 4973.0137473400155,
+  "throughput_questions_per_second": 0.20108530778441625,
+  "peak_ram_mb": 8409.83203125,
+  "peak_vram_mb": 4741.755859375,
+  "parameter_count": 3754622976,
+  "model_path": "C:\\Users\\Jet\\Desktop\\data\\models\\Qwen2.5-VL-3B-Instruct",
+  "device_mode": "balanced_low_0",
+  "use_4bit": true,
+  "max_pixels": 786432
+}

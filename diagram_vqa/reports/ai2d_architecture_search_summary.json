@@ -1,0 +1,90 @@
+[
+  {
+    "architecture": "Dual-Branch Evidence Graph",
+    "run_name": "sam2_dinov2_dual_branch_evidence_graph",
+    "family": "new",
+    "best_epoch": 15,
+    "validation_accuracy": 0.4692429022082019,
+    "test_accuracy": 0.48121761658031087,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": 1.42
+  },
+  {
+    "architecture": "Heterogeneous Balanced Graph",
+    "run_name": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+    "family": "new",
+    "best_epoch": 18,
+    "validation_accuracy": 0.4668769716088328,
+    "test_accuracy": 0.47474093264248707,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": 0.78
+  },
+  {
+    "architecture": "GraphColBERT + FiLM",
+    "run_name": "graphcolbert_film",
+    "family": "previous best",
+    "best_epoch": 35,
+    "validation_accuracy": 0.47082018927444796,
+    "test_accuracy": 0.46696891191709844,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\graphcolbert_film\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": 0.0
+  },
+  {
+    "architecture": "Hybrid V4 Multipos KNN",
+    "run_name": "hybrid_v4_multipos_training",
+    "family": "previous best",
+    "best_epoch": 31,
+    "validation_accuracy": 0.46608832807570977,
+    "test_accuracy": 0.4653497409326425,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": -0.16
+  },
+  {
+    "architecture": "Regularized Sparse Graph",
+    "run_name": "sam2_dinov2_regularized_sparse_learned_graph",
+    "family": "baseline",
+    "best_epoch": 13,
+    "validation_accuracy": 0.4589905362776025,
+    "test_accuracy": 0.46081606217616583,
+    "status": "completed_early_stopped",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_regularized_sparse_learned_graph\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": -0.62
+  },
+  {
+    "architecture": "Hybrid V4 Learned Graph",
+    "run_name": "hybrid_v4_multipos_learned_graph",
+    "family": "baseline",
+    "best_epoch": 18,
+    "validation_accuracy": 0.4550473186119874,
+    "test_accuracy": 0.454339378238342,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_learned_graph\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": -1.26
+  },
+  {
+    "architecture": "Dense Learned Graph",
+    "run_name": "sam2_dinov2_learned_graph_transformer",
+    "family": "baseline",
+    "best_epoch": 7,
+    "validation_accuracy": 0.443217665615142,
+    "test_accuracy": 0.44591968911917096,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_learned_graph_transformer\\seed49_full\\metrics.json",
+    "gain_vs_previous_best_pp": -2.1
+  },
+  {
+    "architecture": "Option-Conditioned Only",
+    "run_name": "sam2_dinov2_option_conditioned_sparse_graph",
+    "family": "ablation",
+    "best_epoch": 20,
+    "validation_accuracy": 0.444006309148265,
+    "test_accuracy": 0.4378238341968912,
+    "status": "completed_full",
+    "metrics_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_option_conditioned_sparse_graph\\seed42_full\\metrics.json",
+    "gain_vs_previous_best_pp": -2.91
+  }
+]

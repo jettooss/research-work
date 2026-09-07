@@ -1,0 +1,25 @@
+{
+  "protocol": "model_matrix_v1",
+  "datasets": ["ai2d", "infographicvqa", "docvqa"],
+  "models": [
+    "random", "clip", "siglip", "ocr_text", "gatv2_knn",
+    "graph_transformer", "sam2_graph_transformer", "hybrid_gatv2_knn",
+    "graphcolbert", "graphcolbert_film", "qwen25_vl_qlora"
+  ],
+  "tasks": {
+    "retrieval": ["multi_positive_recall_at_1", "multi_positive_recall_at_5", "multi_positive_recall_at_10", "mrr"],
+    "vqa": {"ai2d": "accuracy", "infographicvqa": ["anls", "exact_accuracy"], "docvqa": ["anls", "exact_accuracy"]}
+  },
+  "local_trainable_seeds": [42],
+  "qlora_seed": 42,
+  "seed_policy": "One reproducible seed (42) per model/dataset; previous seed43/44 artifacts are retained as legacy extras.",
+  "training": {
+    "local_max_epochs": 30,
+    "local_early_stopping_patience": 5,
+    "checkpoint_selection_only": "0.5*vqa+0.5*mean_recall_at_1",
+    "qwen": {"quantization": "4-bit NF4", "rank": 16, "alpha": 32, "epochs": 3, "microbatch": 1, "gradient_accumulation": 8}
+  },
+  "storage": {"minimum_free_gb": 20, "keep": ["best_checkpoint_or_adapter", "config", "history", "predictions", "error_slices", "resource_metrics"]},
+  "namespaces": {"smoke": "runs/model_matrix_smoke", "full": "runs/model_matrix", "legacy": "existing runs outside model_matrix_v1"},
+  "comparison_rule": "VQA and retrieval metrics are published separately; composite is never a reported quality metric."
+}

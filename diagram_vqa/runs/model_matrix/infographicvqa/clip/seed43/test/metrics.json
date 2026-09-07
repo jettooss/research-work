@@ -1,0 +1,36 @@
+{
+  "dataset": "infographicvqa",
+  "model": "clip",
+  "split": "test",
+  "seed": 43,
+  "status": "available_full",
+  "num_samples": 3288,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.09610705596107055,
+        "5": 0.23813868613138686,
+        "10": 0.3269464720194647
+      },
+      "mrr": 0.17363487857089793
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.13298791018998274,
+        "5": 0.25734024179620035,
+        "10": 0.3454231433506045
+      },
+      "mrr": 0.20174593078841682
+    },
+    "mean_recall_at_k": {
+      "1": 0.11454748307552665,
+      "5": 0.2477394639637936,
+      "10": 0.33618480768503456
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  }
+}

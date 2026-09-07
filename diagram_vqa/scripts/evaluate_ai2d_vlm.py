@@ -2,14 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTERNAL_ROOT = ROOT.parent
-sys.path.insert(0, str(ROOT / "src"))
-
 from vqa_retrieval.ai2d_hybrid import (  # noqa: E402
     load_manifest_hybrid,
     load_split_payload,
@@ -67,6 +64,10 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    run_ai2d_vlm_config(args)
+
+
+def run_ai2d_vlm_config(args: argparse.Namespace) -> dict[str, Any]:
     samples = select_samples_for_split(
         resolve_sample_file_paths(
             load_manifest_hybrid(args.manifest),
@@ -147,6 +148,7 @@ def main() -> None:
     )
     print(f"[INFO] accuracy={summary['accuracy']:.4f}")
     print(f"[INFO] artifacts saved under: {args.output_dir}")
+    return {"summary": summary, "public_vqa": public_metrics, "predictions": rows}
 
 
 if __name__ == "__main__":

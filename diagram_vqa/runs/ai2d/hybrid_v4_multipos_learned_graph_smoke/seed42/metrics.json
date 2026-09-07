@@ -1,0 +1,35 @@
+{
+  "status": "completed_full",
+  "full_training_was_run": true,
+  "dataset": "ai2d",
+  "architecture": "hybrid_v4_multipos_learned_graph",
+  "graph_construction": "learned dense attention; no KNN and no predefined edge_index",
+  "objectives": "0.5 symmetric multi-positive retrieval + 0.5 VQA",
+  "seed": 42,
+  "epochs": 1,
+  "best_epoch": 1,
+  "validation": {
+    "epoch": 1,
+    "train_loss": 1.0955493092536925,
+    "train_retrieval_loss": 0.8228890081246695,
+    "train_vqa_loss": 1.3682095766067506,
+    "val_loss": 1.2563109993934631,
+    "val_accuracy": 0.1875,
+    "val_macro_f1": 0.16233766233766234,
+    "val_mean_recall_at_1": 0.21875,
+    "composite": 0.203125,
+    "lr": 0.0002
+  },
+  "test": {
+    "loss": 1.4057661294937134,
+    "accuracy": 0.25,
+    "macro_f1": 0.24642857142857144,
+    "q2d_recall_at_1": 0.1875,
+    "d2q_recall_at_1": 0.125,
+    "mean_recall_at_1": 0.15625,
+    "q2d_mrr": 0.2895709325396825,
+    "d2q_mrr": 0.3294270833333333
+  },
+  "overfit_gap": -0.1607616901397706,
+  "overfit": false
+}

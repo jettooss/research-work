@@ -1,0 +1,36 @@
+{
+  "dataset": "ai2d",
+  "model": "hybrid_gatv2_knn",
+  "split": "test",
+  "seed": 43,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.0625,
+        "5": 0.375,
+        "10": 0.78125
+      },
+      "mrr": 0.21781916000666002
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07692307692307693,
+        "5": 0.38461538461538464,
+        "10": 0.6153846153846154
+      },
+      "mrr": 0.22109247435334392
+    },
+    "mean_recall_at_k": {
+      "1": 0.06971153846153846,
+      "5": 0.3798076923076923,
+      "10": 0.6983173076923077
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.34375,
+    "exact_accuracy": 0.34375
+  }
+}

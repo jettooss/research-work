@@ -1,0 +1,103 @@
+{
+  "dataset": "docvqa",
+  "metric_family": "retrieval",
+  "variant": "text_only",
+  "seed": 43,
+  "split": "val",
+  "status": "available_partial",
+  "epochs_completed": 1,
+  "epochs_requested": 1,
+  "early_stopping_patience": 5,
+  "best_epoch": 1,
+  "best": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.015625,
+        "5": 0.11328125,
+        "10": 0.21484375
+      },
+      "mrr": 0.08944053947925568
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.013698630034923553,
+        "5": 0.06849315017461777,
+        "10": 0.10958904027938843
+      },
+      "mrr": 0.05108774080872536
+    },
+    "mean_recall_at_k": {
+      "1": 0.014661815017461777,
+      "5": 0.09088720008730888,
+      "10": 0.1622163951396942
+    },
+    "num_samples": 256,
+    "num_documents": 73
+  },
+  "test": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.01171875,
+        "5": 0.07421875,
+        "10": 0.1328125
+      },
+      "mrr": 0.06584186851978302
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.011363636702299118,
+        "5": 0.06818182021379471,
+        "10": 0.125
+      },
+      "mrr": 0.05121403932571411
+    },
+    "mean_recall_at_k": {
+      "1": 0.011541193351149559,
+      "5": 0.07120028510689735,
+      "10": 0.12890625
+    },
+    "num_samples": 256,
+    "num_documents": 88
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 2.0378365255892277,
+      "eval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.015625,
+            "5": 0.11328125,
+            "10": 0.21484375
+          },
+          "mrr": 0.08944053947925568
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.013698630034923553,
+            "5": 0.06849315017461777,
+            "10": 0.10958904027938843
+          },
+          "mrr": 0.05108774080872536
+        },
+        "mean_recall_at_k": {
+          "1": 0.014661815017461777,
+          "5": 0.09088720008730888,
+          "10": 0.1622163951396942
+        },
+        "num_samples": 256,
+        "num_documents": 73
+      }
+    }
+  ],
+  "wall_time_seconds": 14.951684199999818,
+  "latency_ms_per_question": 58.40501640624929,
+  "throughput_questions_per_second": 17.12181695223359,
+  "peak_ram_mb": 1671.5625,
+  "peak_vram_mb": 253.70556640625,
+  "parameter_count": 761089,
+  "num_train_samples": 256,
+  "num_eval_samples": 256,
+  "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_benchmark_compact\\gnn\\text_only\\seed43\\gnn_best.pt",
+  "cache_signature": "4e844c8b6fee2fa7"
+}

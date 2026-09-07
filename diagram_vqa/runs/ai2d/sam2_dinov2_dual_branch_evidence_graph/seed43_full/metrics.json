@@ -1,0 +1,53 @@
+{
+  "status": "completed_early_stopped",
+  "full_training_was_run": false,
+  "dataset": "ai2d",
+  "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+  "seed": 43,
+  "epochs_requested": 20,
+  "epochs_completed": 19,
+  "best_epoch": 14,
+  "validation": {
+    "epoch": 14,
+    "train_loss": 0.7911033490078246,
+    "train_accuracy": 0.6611933602512338,
+    "train_vqa_loss": 0.9140494535578058,
+    "train_multipos_loss": 0.40303326246366483,
+    "attention_entropy": 2.042073832547411,
+    "hub_penalty": 0.07237918084447688,
+    "evidence_gate": 0.2118762582540512,
+    "val_loss": 1.321494996547699,
+    "val_accuracy": 0.45741324921135645,
+    "val_macro_f1": 0.45689709786894994,
+    "val_retrieval_r1": 0.10488958990536278,
+    "val_retrieval_r5": 0.16167192429022081,
+    "val_retrieval_mrr": 0.14604166478435138,
+    "composite": 0.4045347003154574,
+    "lr": 2.730047501302267e-05
+  },
+  "test": {
+    "loss": 1.3715482463642044,
+    "accuracy": 0.49158031088082904,
+    "macro_f1": 0.4910329461276072,
+    "retrieval_recall_at_1": 0.048575129533678756,
+    "retrieval_recall_at_5": 0.07901554404145078,
+    "retrieval_mrr": 0.07446496480148984
+  },
+  "overfit_gap": 0.25015440288822566,
+  "overfit": true,
+  "graph": {
+    "predefined_edges": 0,
+    "learned_top_k": 8,
+    "question_conditioning": "second layer; option evidence residual",
+    "answer_scoring": "global graph plus gated option evidence"
+  },
+  "regularization": {
+    "dropout": 0.25,
+    "weight_decay": 0.01,
+    "label_smoothing": 0.05,
+    "ocr_node_dropout": 0.08,
+    "sam_node_dropout": 0.2,
+    "sparsity_coefficient": 0.002,
+    "hub_coefficient": 0.01
+  }
+}

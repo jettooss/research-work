@@ -1,0 +1,49 @@
+{
+  "title": "AI2D VQA: graph representation versus visual baselines",
+  "research_question": "Does an OCR-based graph representation improve AI2D VQA quality and computational efficiency?",
+  "primary_model": "OCR + GNN",
+  "dataset_manifest": "../../ai2d/prepared_v2/manifest_hybrid.jsonl",
+  "split_file": "../../ai2d/prepared_v2/split_hybrid.json",
+  "models": [
+    {
+      "name": "Random baseline",
+      "role": "lower bound",
+      "metrics_file": "../../runs/ai2d_baselines/test_metrics.json",
+      "accuracy_path": ["vqa_accuracy", "random"]
+    },
+    {
+      "name": "CLIP",
+      "role": "visual baseline",
+      "status": "rerun_required"
+    },
+    {
+      "name": "OCR + GNN",
+      "role": "proposed method",
+      "checkpoint": "../runs/ai2d_gnn_ocr_knn/gnn_ocr_knn_best.pt",
+      "status": "rerun_required"
+    },
+    {
+      "name": "Qwen2.5-VL-3B QLoRA",
+      "role": "strong VLM reference",
+      "metrics_file": "../runs/vlm_qlora_mcq/metrics.json",
+      "accuracy_path": ["test_vqa_accuracy"],
+      "status": "metric_only"
+    }
+  ],
+  "required_metrics": [
+    "accuracy",
+    "wall_time_seconds",
+    "latency_ms_per_question",
+    "throughput_questions_per_second",
+    "peak_ram_mb",
+    "peak_vram_mb",
+    "parameter_count"
+  ],
+  "ablation_matrix": [
+    "OCR text only",
+    "OCR + coordinates, no edges",
+    "OCR + kNN graph (k=3)",
+    "OCR + kNN graph (k=5)",
+    "OCR + typed spatial edges"
+  ]
+}

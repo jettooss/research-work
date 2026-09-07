@@ -1,0 +1,60 @@
+{
+  "dataset": "ai2d",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 1268,
+  "epochs_completed": 41,
+  "best_epoch": 33,
+  "best_composite": 0.2548048837481014,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.083596214511041,
+        "5": 0.27129337539432175,
+        "10": 0.43690851735015773
+      },
+      "mrr": 0.18804914048279198
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.12962962962962962,
+        "5": 0.3395061728395062,
+        "10": 0.5030864197530864
+      },
+      "mrr": 0.23400030132777122
+    },
+    "mean_recall_at_k": {
+      "1": 0.10661292207033532,
+      "5": 0.305399774116914,
+      "10": 0.46999746855162206
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.4029968454258675,
+    "exact_accuracy": 0.4029968454258675
+  },
+  "resources": {
+    "wall_time_seconds": 7111.375574899954,
+    "latency_ms_per_question": 5608.340358753907,
+    "throughput_questions_per_second": 0.17830586876545876,
+    "peak_ram_mb": 2537.125,
+    "peak_vram_mb": 198.47900390625,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "ai2d",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "runs\\per_dataset_graph_vqa_50epochs",
+    "resume": true,
+    "epochs": 50,
+    "early_stopping_patience": 8,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

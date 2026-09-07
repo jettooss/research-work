@@ -1,0 +1,346 @@
+{
+  "dataset": "docvqa",
+  "generated_from": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\aggregate_metrics.json",
+  "legacy": {
+    "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\runs\\mlflow_checkpoints\\docvqa-auto\\gnn_best.pt",
+    "status": "legacy",
+    "included_in_primary_table": false
+  },
+  "qwen": {
+    "model": "C:\\Users\\Jet\\Desktop\\data\\models\\Qwen2.5-VL-3B-Instruct",
+    "metrics": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_qwen25_vl\\val\\metrics.json",
+    "status": "available_full"
+  },
+  "graph_models": [
+    {
+      "seed": 42,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed42\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed42\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03737250342965126,
+        "5": 0.12640296667814255,
+        "10": 0.1937376856803894
+      },
+      "val_q2d_mrr": 0.08726314455270767,
+      "test_mean_recall_at_k": {
+        "1": 0.036778734996914864,
+        "5": 0.1278521977365017,
+        "10": 0.19733191281557083
+      },
+      "wall_time_seconds": 1447.0416542000003,
+      "peak_ram_mb": 1977.3125,
+      "peak_vram_mb": 273.7607421875,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 43,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed43\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed43\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03732373006641865,
+        "5": 0.127520602196455,
+        "10": 0.1946832686662674
+      },
+      "val_q2d_mrr": 0.08521701395511627,
+      "test_mean_recall_at_k": {
+        "1": 0.04094388149678707,
+        "5": 0.12649095058441162,
+        "10": 0.19617539644241333
+      },
+      "wall_time_seconds": 405.9552758,
+      "peak_ram_mb": 1828.03125,
+      "peak_vram_mb": 256.69287109375,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 44,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed44\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\text_only\\seed44\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.031693545170128345,
+        "5": 0.11762848868966103,
+        "10": 0.1860659420490265
+      },
+      "val_q2d_mrr": 0.08506513386964798,
+      "test_mean_recall_at_k": {
+        "1": 0.03250822611153126,
+        "5": 0.1174650527536869,
+        "10": 0.18151775002479553
+      },
+      "wall_time_seconds": 352.34820519999994,
+      "peak_ram_mb": 1894.8671875,
+      "peak_vram_mb": 258.423828125,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 42,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed42\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed42\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.036127520725131035,
+        "5": 0.12887802720069885,
+        "10": 0.21034512668848038
+      },
+      "val_q2d_mrr": 0.09042640775442123,
+      "test_mean_recall_at_k": {
+        "1": 0.03928152285516262,
+        "5": 0.12511172518134117,
+        "10": 0.2038944810628891
+      },
+      "wall_time_seconds": 338.66056580000077,
+      "peak_ram_mb": 1826.2421875,
+      "peak_vram_mb": 253.59521484375,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 43,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed43\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed43\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03358878381550312,
+        "5": 0.12793244421482086,
+        "10": 0.19971603900194168
+      },
+      "val_q2d_mrr": 0.0872257873415947,
+      "test_mean_recall_at_k": {
+        "1": 0.04249189235270023,
+        "5": 0.13501698896288872,
+        "10": 0.20547843724489212
+      },
+      "wall_time_seconds": 338.72219210000003,
+      "peak_ram_mb": 1861.375,
+      "peak_vram_mb": 256.69287109375,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 44,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed44\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\coords_no_edges\\seed44\\gnn_best.pt",
+      "best_epoch": 2,
+      "val_mean_recall_at_k": {
+        "1": 0.03453843854367733,
+        "5": 0.10800459235906601,
+        "10": 0.17600853741168976
+      },
+      "val_q2d_mrr": 0.07865788787603378,
+      "test_mean_recall_at_k": {
+        "1": 0.03222209308296442,
+        "5": 0.11195962503552437,
+        "10": 0.1813429668545723
+      },
+      "wall_time_seconds": 327.3419023000006,
+      "peak_ram_mb": 1881.375,
+      "peak_vram_mb": 258.423828125,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 42,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed42\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed42\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.038288285955786705,
+        "5": 0.12702342495322227,
+        "10": 0.19971197098493576
+      },
+      "val_q2d_mrr": 0.08613204210996628,
+      "test_mean_recall_at_k": {
+        "1": 0.037152260541915894,
+        "5": 0.1327943466603756,
+        "10": 0.19576893001794815
+      },
+      "wall_time_seconds": 836.8072013999999,
+      "peak_ram_mb": 1891.98828125,
+      "peak_vram_mb": 731.12451171875,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 43,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed43\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed43\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03293445613235235,
+        "5": 0.12329254299402237,
+        "10": 0.19314702600240707
+      },
+      "val_q2d_mrr": 0.08342480659484863,
+      "test_mean_recall_at_k": {
+        "1": 0.044341012835502625,
+        "5": 0.12823770195245743,
+        "10": 0.19159778952598572
+      },
+      "wall_time_seconds": 575.3740245999998,
+      "peak_ram_mb": 1917.73828125,
+      "peak_vram_mb": 731.1240234375,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 44,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed44\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k3\\seed44\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03516296669840813,
+        "5": 0.12145690992474556,
+        "10": 0.1918126419186592
+      },
+      "val_q2d_mrr": 0.08793547004461288,
+      "test_mean_recall_at_k": {
+        "1": 0.0344417430460453,
+        "5": 0.13268598541617393,
+        "10": 0.2070174589753151
+      },
+      "wall_time_seconds": 437.8067153000002,
+      "peak_ram_mb": 1951.546875,
+      "peak_vram_mb": 730.8125,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 42,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed42\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed42\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.035985272377729416,
+        "5": 0.13544296845793724,
+        "10": 0.20626200735569
+      },
+      "val_q2d_mrr": 0.08708207309246063,
+      "test_mean_recall_at_k": {
+        "1": 0.04073914885520935,
+        "5": 0.1301742121577263,
+        "10": 0.19731993228197098
+      },
+      "wall_time_seconds": 510.66132260000086,
+      "peak_ram_mb": 1911.61328125,
+      "peak_vram_mb": 1062.8369140625,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 43,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed43\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed43\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03196990117430687,
+        "5": 0.12248513847589493,
+        "10": 0.1915620192885399
+      },
+      "val_q2d_mrr": 0.08331549167633057,
+      "test_mean_recall_at_k": {
+        "1": 0.04424763284623623,
+        "5": 0.12416593730449677,
+        "10": 0.19053764641284943
+      },
+      "wall_time_seconds": 513.3040275000003,
+      "peak_ram_mb": 1925.21484375,
+      "peak_vram_mb": 1061.1572265625,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 44,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed44\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\knn_k5\\seed44\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03852400928735733,
+        "5": 0.12228328734636307,
+        "10": 0.19526716321706772
+      },
+      "val_q2d_mrr": 0.09018509089946747,
+      "test_mean_recall_at_k": {
+        "1": 0.040742143988609314,
+        "5": 0.13230348005890846,
+        "10": 0.2054544761776924
+      },
+      "wall_time_seconds": 517.5473230000007,
+      "peak_ram_mb": 1980.171875,
+      "peak_vram_mb": 1061.87841796875,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 42,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed42\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed42\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.0379333570599556,
+        "5": 0.13195865228772163,
+        "10": 0.20530152320861816
+      },
+      "val_q2d_mrr": 0.09104877710342407,
+      "test_mean_recall_at_k": {
+        "1": 0.040350647643208504,
+        "5": 0.1331648752093315,
+        "10": 0.20776750892400742
+      },
+      "wall_time_seconds": 8311.445352199999,
+      "peak_ram_mb": 1968.8515625,
+      "peak_vram_mb": 893.01123046875,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 43,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed43\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed43\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03704330511391163,
+        "5": 0.12993606179952621,
+        "10": 0.20688653737306595
+      },
+      "val_q2d_mrr": 0.08814603090286255,
+      "test_mean_recall_at_k": {
+        "1": 0.0405613724142313,
+        "5": 0.12697283178567886,
+        "10": 0.19549177587032318
+      },
+      "wall_time_seconds": 8352.841877500003,
+      "peak_ram_mb": 1016.34375,
+      "peak_vram_mb": 892.263671875,
+      "parameter_count": 761089
+    },
+    {
+      "seed": 44,
+      "status": "available_full",
+      "metrics_file": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed44\\metrics.json",
+      "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa_gnn\\typed_spatial\\seed44\\gnn_best.pt",
+      "best_epoch": 3,
+      "val_mean_recall_at_k": {
+        "1": 0.03237767517566681,
+        "5": 0.11881386861205101,
+        "10": 0.19271758943796158
+      },
+      "val_q2d_mrr": 0.08728553354740143,
+      "test_mean_recall_at_k": {
+        "1": 0.042004020884633064,
+        "5": 0.12346135452389717,
+        "10": 0.19720857590436935
+      },
+      "wall_time_seconds": 9033.120716499998,
+      "peak_ram_mb": 1978.12109375,
+      "peak_vram_mb": 893.685546875,
+      "parameter_count": 761089
+    }
+  ]
+}

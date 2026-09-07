@@ -1,0 +1,6 @@
+{
+  "model": "Qwen2.5-VL-3B QLoRA MCQ",
+  "samples": 100,
+  "accuracy": 0.64,
+  "prompt_style": "training_aligned_exact_option_text"
+}

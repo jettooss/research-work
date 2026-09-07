@@ -1,0 +1,60 @@
+{
+  "dataset": "docvqa",
+  "model": "hybrid_gatv2_knn",
+  "split": "val",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.08522727272727273,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.0625,
+        "5": 0.5,
+        "10": 0.96875
+      },
+      "mrr": 0.24145698051948053
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.09090909090909091,
+        "5": 0.36363636363636365,
+        "10": 0.5454545454545454
+      },
+      "mrr": 0.23422565996095407
+    },
+    "mean_recall_at_k": {
+      "1": 0.07670454545454546,
+      "5": 0.4318181818181818,
+      "10": 0.7571022727272727
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.09375,
+    "exact_accuracy": 0.09375
+  },
+  "resources": {
+    "wall_time_seconds": 11.33258200000273,
+    "latency_ms_per_question": 354.14318750008533,
+    "throughput_questions_per_second": 2.8237166075650095,
+    "peak_ram_mb": 1629.0546875,
+    "peak_vram_mb": 295.3740234375,
+    "parameter_count": 687553
+  },
+  "config": {
+    "dataset": "docvqa",
+    "model": "hybrid_gatv2_knn",
+    "split": "val",
+    "seed": 42,
+    "max_samples": 32,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

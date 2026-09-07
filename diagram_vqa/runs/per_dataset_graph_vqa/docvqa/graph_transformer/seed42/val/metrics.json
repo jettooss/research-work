@@ -1,0 +1,60 @@
+{
+  "dataset": "docvqa",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 5349,
+  "epochs_completed": 8,
+  "best_epoch": 8,
+  "best_composite": 0.07547296171806243,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.04916806879790615,
+        "5": 0.15984296130117778,
+        "10": 0.24266217984670033
+      },
+      "mrr": 0.11332870984888019
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.059875583203732506,
+        "5": 0.1734059097978227,
+        "10": 0.2667185069984448
+      },
+      "mrr": 0.1253686734411763
+    },
+    "mean_recall_at_k": {
+      "1": 0.054521826000819326,
+      "5": 0.16662443554950024,
+      "10": 0.2546903434225726
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.09642409743530554,
+    "exact_accuracy": 0.06692839783137035
+  },
+  "resources": {
+    "wall_time_seconds": 17327.76017969998,
+    "latency_ms_per_question": 3239.439181099267,
+    "throughput_questions_per_second": 0.3086954080924159,
+    "peak_ram_mb": 3770.9921875,
+    "peak_vram_mb": 247.22509765625,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "docvqa",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "runs\\per_dataset_graph_vqa",
+    "resume": true,
+    "epochs": 8,
+    "early_stopping_patience": 3,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

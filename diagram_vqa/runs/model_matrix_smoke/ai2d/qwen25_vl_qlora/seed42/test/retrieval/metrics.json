@@ -1,0 +1,27 @@
+{
+  "question_to_document": {
+    "recall_at_k": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mrr": 1.0
+  },
+  "document_to_question": {
+    "recall_at_k": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mrr": 1.0
+  },
+  "mean_recall_at_k": {
+    "1": 1.0,
+    "5": 1.0,
+    "10": 1.0
+  },
+  "dataset": "ai2d",
+  "split": "test",
+  "num_samples": 2,
+  "num_documents": 1
+}

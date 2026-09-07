@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "dataset": "ai2d",
+  "model": "siglip2_finetuned",
+  "backbone": "google/siglip2-base-patch16-224",
+  "fine_tuning_mode": "full",
+  "unfreeze_blocks": null,
+  "seed": 42,
+  "status": "completed_smoke",
+  "epochs_requested": 1,
+  "epochs_completed": 1,
+  "best_epoch": 1,
+  "trainable_parameters": 375187970,
+  "total_parameters": 375187970,
+  "test": {
+    "split": "test",
+    "num_samples": 64,
+    "retrieval": {
+      "question_to_document": {
+        "recall_at_k": {
+          "1": 0.34375,
+          "5": 0.65625,
+          "10": 0.75
+        },
+        "mrr": 0.48593250095809365
+      },
+      "document_to_question": {
+        "recall_at_k": {
+          "1": 0.3448275862068966,
+          "5": 0.5862068965517241,
+          "10": 0.8275862068965517
+        },
+        "mrr": 0.4818136013204177
+      },
+      "mean_recall_at_k": {
+        "1": 0.3442887931034483,
+        "5": 0.6212284482758621,
+        "10": 0.7887931034482758
+      }
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.306866854429245,
+      "mean_r1": 0.3224431818181818,
+      "retrieval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.28125,
+            "5": 0.765625,
+            "10": 0.921875
+          },
+          "mrr": 0.5038882124819625
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.36363636363636365,
+            "5": 0.6818181818181818,
+            "10": 0.8181818181818182
+          },
+          "mrr": 0.5196602310732745
+        },
+        "mean_recall_at_k": {
+          "1": 0.3224431818181818,
+          "5": 0.7237215909090908,
+          "10": 0.8700284090909092
+        }
+      }
+    }
+  ],
+  "resources": {
+    "wall_time_seconds": 19.37716689996887,
+    "peak_ram_mb": 3183.921875,
+    "peak_vram_mb": 3937.65185546875
+  }
+}

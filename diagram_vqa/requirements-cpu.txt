@@ -1,0 +1,5 @@
+# CPU baseline dependencies; install CPU PyTorch separately (see Dockerfile).
+numpy>=1.26,<3
+Pillow>=10,<13
+psutil>=5.9,<8
+scikit-learn>=1.5,<2

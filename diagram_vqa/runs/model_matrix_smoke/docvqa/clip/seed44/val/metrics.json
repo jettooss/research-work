@@ -1,0 +1,48 @@
+{
+  "dataset": "docvqa",
+  "model": "clip",
+  "split": "val",
+  "seed": 44,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.09161931818181818,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.09375,
+        "5": 0.65625,
+        "10": 0.90625
+      },
+      "mrr": 0.3450058621933622
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.2727272727272727,
+        "5": 0.45454545454545453,
+        "10": 0.45454545454545453
+      },
+      "mrr": 0.37612287890362756
+    },
+    "mean_recall_at_k": {
+      "1": 0.18323863636363635,
+      "5": 0.5553977272727273,
+      "10": 0.6803977272727273
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "resources": {
+    "wall_time_seconds": 7.922768299991731,
+    "latency_ms_per_question": 247.58650937474158,
+    "throughput_questions_per_second": 4.038992280013212,
+    "peak_ram_mb": 1291.53515625,
+    "peak_vram_mb": 396.96875,
+    "parameter_count": 652800,
+    "frozen_backbone": true
+  }
+}

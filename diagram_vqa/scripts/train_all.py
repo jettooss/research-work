@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EXTERNAL_ROOT = ROOT.parent
 sys.path.insert(0, str(ROOT / "src"))
 
+import json
+import os
 import random
 import time
 from typing import Optional, Tuple
@@ -19,6 +21,11 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset, random_split
 from torch_geometric.data import Batch
 from tqdm.auto import tqdm
+
+try:
+    import psutil
+except ImportError:  # pragma: no cover - optional reporting dependency
+    psutil = None
 
 from vqa_retrieval.datasets import (
     Ai2dRetrievalDataset,
@@ -32,6 +39,50 @@ from vqa_retrieval.graph_builder import (
     contrastive_loss,
     recall_at_k,
 )
+
+
+def current_ram_mb() -> float | None:
+    if psutil is None:
+        return None
+    return psutil.Process().memory_info().rss / (1024 * 1024)
+
+
+def build_overfitting_check(history):
+    if not history:
+        return {
+            "status": "unavailable",
+            "reason": "empty history",
+        }
+
+    def mean_r1(row):
+        return float(row.get("mean", {}).get("1", 0.0))
+
+    first = history[0]
+    final = history[-1]
+    best = max(history, key=mean_r1)
+    best_mean_r1 = mean_r1(best)
+    final_mean_r1 = mean_r1(final)
+    final_drop = best_mean_r1 - final_mean_r1
+    losses = [float(row.get("loss", 0.0)) for row in history]
+    loss_delta = losses[-1] - losses[0] if losses else None
+    loss_decreased = losses[-1] < losses[0] if losses else None
+    best_epoch = int(best.get("epoch", 0))
+    final_epoch = int(final.get("epoch", 0))
+    return {
+        "status": "possible_overfit" if final_drop > 0.02 and loss_decreased else "no_clear_overfit",
+        "best_epoch": best_epoch,
+        "final_epoch": final_epoch,
+        "first_mean_r1": mean_r1(first),
+        "best_mean_r1": best_mean_r1,
+        "final_mean_r1": final_mean_r1,
+        "final_minus_best_mean_r1": final_mean_r1 - best_mean_r1,
+        "final_drop_from_best_mean_r1": final_drop,
+        "first_loss": losses[0] if losses else None,
+        "final_loss": losses[-1] if losses else None,
+        "loss_delta": loss_delta,
+        "loss_decreased": loss_decreased,
+        "rule": "possible_overfit when final Mean R@1 is >0.02 below best while train loss decreased",
+    }
 
 
 class RetrievalDatasetAdapter(Dataset):
@@ -75,9 +126,19 @@ def train_on_dataset(
     use_attn_pool: bool = True,
     use_cache: bool = True,
     eval_max_items: Optional[int] = 500,
+    max_samples: Optional[int] = None,
     val_split: float = 0.1,
+    return_metrics: bool = False,
+    seed: int = 42,
+    checkpoint_dir: Optional[Path] = None,
 ):
     device = torch.device(device)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+        torch.cuda.reset_peak_memory_stats()
+    started_at = time.perf_counter()
 
     # --- dataset ---
     if dataset_name == "ai2d":
@@ -90,10 +151,15 @@ def train_on_dataset(
         raise ValueError(f"Unknown dataset: {dataset_name}")
 
     full_ds = RetrievalDatasetAdapter(base)
+    if max_samples and max_samples > 0 and len(full_ds.samples) > max_samples:
+        rng = random.Random(seed)
+        idx = sorted(rng.sample(range(len(full_ds.samples)), max_samples))
+        full_ds.samples = [full_ds.samples[i] for i in idx]
+        print(f"[{dataset_name}] limited to {len(full_ds.samples)} samples")
     n = len(full_ds)
     n_val = max(1, int(val_split * n))
     train_ds, val_ds = random_split(full_ds, [n - n_val, n_val],
-                                    generator=torch.Generator().manual_seed(42))
+                                    generator=torch.Generator().manual_seed(seed))
 
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,
                               num_workers=0, collate_fn=retrieval_collate)
@@ -125,6 +191,8 @@ def train_on_dataset(
     ).to(device)
     optimizer = torch.optim.AdamW(
         list(gnn.parameters()) + list(text_proj.parameters()), lr=lr)
+    if checkpoint_dir is not None:
+        checkpoint_dir.mkdir(parents=True, exist_ok=True)
 
     def get_graphs(paths, ocr_paths):
         return [cache.get_graph(p, featurizer, ocr_path=op, ocr_source=ocr_source,
@@ -134,10 +202,36 @@ def train_on_dataset(
                 for p, op in zip(paths, ocr_paths)]
 
     best_r1 = 0.0
-    for epoch in range(1, epochs + 1):
+    history = []
+    start_epoch = 1
+    if checkpoint_dir is not None:
+        partial_path = checkpoint_dir / "metrics_partial.json"
+        if partial_path.exists():
+            partial = json.loads(partial_path.read_text(encoding="utf-8"))
+            completed = int(partial.get("epochs_completed") or 0)
+            if 0 < completed < epochs:
+                gnn_path = checkpoint_dir / f"gnn_epoch_{completed:03d}.pt"
+                text_proj_path = checkpoint_dir / f"text_proj_epoch_{completed:03d}.pt"
+                optimizer_path = checkpoint_dir / f"optimizer_epoch_{completed:03d}.pt"
+                if gnn_path.exists() and text_proj_path.exists():
+                    gnn.load_state_dict(torch.load(gnn_path, map_location=device))
+                    text_proj.load_state_dict(torch.load(text_proj_path, map_location=device))
+                    if optimizer_path.exists():
+                        optimizer.load_state_dict(torch.load(optimizer_path, map_location=device))
+                    history = list(partial.get("history") or [])
+                    best_r1 = float(partial.get("best_mean_r1") or 0.0)
+                    start_epoch = completed + 1
+                    print(f"[{dataset_name}] resumed from epoch {completed}/{epochs}")
+
+    for epoch in range(start_epoch, epochs + 1):
         gnn.train(); text_proj.train()
         epoch_loss, n_steps = 0.0, 0
-        pbar = tqdm(train_loader, desc=f"[{dataset_name}] Epoch {epoch}/{epochs}", leave=False)
+        pbar = tqdm(
+            train_loader,
+            desc=f"[{dataset_name}] Epoch {epoch}/{epochs}",
+            leave=False,
+            disable=os.environ.get("DISABLE_TQDM") == "1",
+        )
 
         for img_paths, texts, ocr_paths in pbar:
             graphs = get_graphs(img_paths, ocr_paths)
@@ -177,14 +271,68 @@ def train_on_dataset(
 
         if r_mean[1] > best_r1:
             best_r1 = r_mean[1]
+        epoch_metrics = {
+            "epoch": epoch,
+            "loss": epoch_loss / max(1, n_steps),
+            "i2t": {str(k): float(v) for k, v in r_i2t.items()},
+            "t2i": {str(k): float(v) for k, v in r_t2i.items()},
+            "mean": {str(k): float(v) for k, v in r_mean.items()},
+        }
+        history.append(epoch_metrics)
+        overfitting_check = build_overfitting_check(history)
+        if checkpoint_dir is not None:
+            torch.save(gnn.state_dict(), checkpoint_dir / f"gnn_epoch_{epoch:03d}.pt")
+            torch.save(text_proj.state_dict(), checkpoint_dir / f"text_proj_epoch_{epoch:03d}.pt")
+            torch.save(optimizer.state_dict(), checkpoint_dir / f"optimizer_epoch_{epoch:03d}.pt")
+            partial_metrics = {
+                "best_mean_r1": float(best_r1),
+                "best_epoch": overfitting_check.get("best_epoch"),
+                "overfitting_check": overfitting_check,
+                "history": history,
+                "final": history[-1] if history else {},
+                "num_samples": n,
+                "num_train_samples": len(train_ds),
+                "num_val_samples": len(val_ds),
+                "epochs_completed": epoch,
+                "epochs_requested": epochs,
+                "elapsed_seconds": time.perf_counter() - started_at,
+                "peak_ram_mb": current_ram_mb(),
+                "peak_vram_mb": (
+                    torch.cuda.max_memory_allocated() / (1024 * 1024)
+                    if torch.cuda.is_available()
+                    else None
+                ),
+            }
+            (checkpoint_dir / "metrics_partial.json").write_text(
+                json.dumps(partial_metrics, ensure_ascii=False, indent=2),
+                encoding="utf-8",
+            )
 
         print(
             f"[{dataset_name}|{ocr_source}] Epoch {epoch}/{epochs} "
-            f"loss={epoch_loss/max(1,n_steps):.4f} | "
+            f"loss={epoch_metrics['loss']:.4f} | "
             f"Mean R@1={r_mean[1]:.4f} R@5={r_mean[5]:.4f} R@10={r_mean[10]:.4f}"
         )
 
     print(f"\n[{dataset_name}] Best Mean R@1 = {best_r1:.4f}")
+    if return_metrics:
+        overfitting_check = build_overfitting_check(history)
+        return gnn, text_proj, featurizer, {
+            "best_mean_r1": float(best_r1),
+            "best_epoch": overfitting_check.get("best_epoch"),
+            "overfitting_check": overfitting_check,
+            "history": history,
+            "final": history[-1] if history else {},
+            "num_samples": n,
+            "num_train_samples": len(train_ds),
+            "num_val_samples": len(val_ds),
+            "peak_ram_mb": current_ram_mb(),
+            "peak_vram_mb": (
+                torch.cuda.max_memory_allocated() / (1024 * 1024)
+                if torch.cuda.is_available()
+                else None
+            ),
+        }
     return gnn, text_proj, featurizer
 
 

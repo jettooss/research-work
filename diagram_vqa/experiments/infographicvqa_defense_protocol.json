@@ -1,0 +1,72 @@
+{
+  "title": "InfographicVQA: OCR graph and retrieval baselines",
+  "research_question": "Does an OCR-based graph/retrieval representation improve open-answer InfographicVQA quality and computational efficiency?",
+  "primary_model": "OCR + GNN retrieval",
+  "dataset_manifest": "../../infographicvqa/prepared_v1/manifest.jsonl",
+  "split_file": "../../infographicvqa/prepared_v1/split.json",
+  "models": [
+    {
+      "name": "Most frequent train answer",
+      "role": "lower bound",
+      "metrics_file": "../runs/infographicvqa_baselines/most_frequent/val/metrics.json",
+      "metric_path": ["anls"]
+    },
+    {
+      "name": "Question lexical retrieval",
+      "role": "text retrieval baseline",
+      "metrics_file": "../runs/infographicvqa_baselines/question_retrieval/val/metrics.json",
+      "metric_path": ["anls"]
+    },
+    {
+      "name": "OCR text retrieval",
+      "role": "ocr text ablation baseline",
+      "metrics_file": "../runs/infographicvqa_baselines/ocr_text_retrieval/val/metrics.json",
+      "metric_path": ["anls"],
+      "status": "available_full"
+    },
+    {
+      "name": "OCR + GNN retrieval",
+      "role": "proposed local method",
+      "metrics_file": "../runs/infographicvqa_gnn_retrieval_seed42_full_100x/metrics.json",
+      "metric_path": ["best_mean_r1"],
+      "checkpoint": "../runs/infographicvqa_gnn_retrieval_seed42_full_100x/gnn.pt",
+      "status": "available_full",
+      "required_metrics": [
+        "best_mean_r1",
+        "best_epoch",
+        "overfitting_check",
+        "wall_time_seconds",
+        "latency_ms_per_question",
+        "throughput_questions_per_second",
+        "peak_ram_mb",
+        "peak_vram_mb",
+        "parameter_count"
+      ]
+    },
+    {
+      "name": "Qwen2.5-VL-3B open answer",
+      "role": "strong VLM reference",
+      "metrics_file": "../runs/infographicvqa_qwen25_vl_open_answer_full/metrics.json",
+      "metric_path": ["anls"],
+      "status": "available_full"
+    }
+  ],
+  "required_metrics": [
+    "anls",
+    "accuracy",
+    "wall_time_seconds",
+    "latency_ms_per_question",
+    "throughput_questions_per_second",
+    "peak_ram_mb",
+    "peak_vram_mb",
+    "parameter_count"
+  ],
+  "ablation_matrix": [
+    "Question-only answer prior",
+    "Question lexical retrieval",
+    "OCR text retrieval",
+    "OCR + coordinates, no edges",
+    "OCR + kNN graph",
+    "OCR + typed spatial edges"
+  ]
+}

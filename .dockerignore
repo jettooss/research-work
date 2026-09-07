@@ -1,0 +1,18 @@
+# Only send the CPU example's source files to Docker.
+**
+!Dockerfile
+!.dockerignore
+!diagram_vqa/
+!diagram_vqa/pyproject.toml
+!diagram_vqa/requirements-cpu.txt
+!diagram_vqa/src/
+!diagram_vqa/src/**
+!diagram_vqa/examples/
+!diagram_vqa/examples/**
+!diagram_vqa/scripts/
+!diagram_vqa/scripts/run_model_matrix.py
+!diagram_vqa/scripts/run_model_matrix_baseline.py
+**/__pycache__
+**/*.pyc
+**/.env
+**/.env.*

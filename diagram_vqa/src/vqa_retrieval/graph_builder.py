@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections import OrderedDict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -313,16 +314,34 @@ class GraphEncoder(nn.Module):
 # ---------------------------------------------------------------------------
 
 class FeatureCache:
-    def __init__(self, cache_dir: str | Path, signature: str, enabled: bool = True) -> None:
+    def __init__(
+        self,
+        cache_dir: str | Path,
+        signature: str,
+        enabled: bool = True,
+        max_mem_graphs: int = 2048,
+        max_mem_texts: int = 8192,
+    ) -> None:
         self.enabled = enabled
         self.signature = str(signature)
+        self.max_mem_graphs = int(max_mem_graphs)
+        self.max_mem_texts = int(max_mem_texts)
         self.root = Path(cache_dir)
         self.graph_dir = self.root / self.signature / "graphs"
         self.text_dir = self.root / self.signature / "texts"
         self.graph_dir.mkdir(parents=True, exist_ok=True)
         self.text_dir.mkdir(parents=True, exist_ok=True)
-        self._mem_graph: Dict[str, Data] = {}
-        self._mem_text: Dict[str, torch.Tensor] = {}
+        self._mem_graph: OrderedDict[str, Data] = OrderedDict()
+        self._mem_text: OrderedDict[str, torch.Tensor] = OrderedDict()
+
+    @staticmethod
+    def _remember(cache: OrderedDict, key: str, value, max_items: int) -> None:
+        if max_items <= 0:
+            return
+        cache[key] = value
+        cache.move_to_end(key)
+        while len(cache) > max_items:
+            cache.popitem(last=False)
 
     @staticmethod
     def _sha1(s: str) -> str:
@@ -390,11 +409,20 @@ class FeatureCache:
         )
 
         if key in self._mem_graph:
+            self._mem_graph.move_to_end(key)
             return self._mem_graph[key]
 
         fpath = self.graph_dir / f"{key}.pt"
         if fpath.exists():
-            g = self._load_pt(fpath)
+            try:
+                g = self._load_pt(fpath)
+            except (EOFError, OSError, RuntimeError):
+                fpath.unlink(missing_ok=True)
+                g = build_graph(image_path, featurizer, ocr_path=ocr_path,
+                                ocr_source=ocr_source, ocr_lang=ocr_lang,
+                                min_area=min_area, max_nodes=max_nodes,
+                                ocr_conf=ocr_conf, knn_k=knn_k)
+                torch.save(g, fpath)
         else:
             g = build_graph(image_path, featurizer, ocr_path=ocr_path,
                             ocr_source=ocr_source, ocr_lang=ocr_lang,
@@ -402,7 +430,7 @@ class FeatureCache:
                             ocr_conf=ocr_conf, knn_k=knn_k)
             torch.save(g, fpath)
 
-        self._mem_graph[key] = g
+        self._remember(self._mem_graph, key, g, self.max_mem_graphs)
         return g
 
     def get_text_batch(
@@ -426,10 +454,11 @@ class FeatureCache:
             key = self._sha1(f"{t}|{self.signature}")
             order_keys.append(key)
             if key in self._mem_text:
+                self._mem_text.move_to_end(key)
                 continue
             fpath = self.text_dir / f"{key}.pt"
             if fpath.exists():
-                self._mem_text[key] = self._load_pt(fpath)
+                self._remember(self._mem_text, key, self._load_pt(fpath), self.max_mem_texts)
             else:
                 missing_texts.append(t)
                 missing_keys.append(key)
@@ -441,10 +470,19 @@ class FeatureCache:
             embs = embs.detach().cpu() if isinstance(embs, torch.Tensor) else torch.tensor(embs)
             for k, e in zip(missing_keys, embs):
                 e = e.contiguous()
-                self._mem_text[k] = e
+                self._remember(self._mem_text, k, e, self.max_mem_texts)
                 torch.save(e, self.text_dir / f"{k}.pt")
 
-        return torch.stack([self._mem_text[k] for k in order_keys])
+        out = []
+        for key in order_keys:
+            if key in self._mem_text:
+                self._mem_text.move_to_end(key)
+                out.append(self._mem_text[key])
+            else:
+                value = self._load_pt(self.text_dir / f"{key}.pt")
+                self._remember(self._mem_text, key, value, self.max_mem_texts)
+                out.append(value)
+        return torch.stack(out)
 
 
 # ---------------------------------------------------------------------------

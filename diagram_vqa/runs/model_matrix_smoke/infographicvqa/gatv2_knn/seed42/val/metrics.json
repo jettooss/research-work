@@ -1,0 +1,60 @@
+{
+  "dataset": "infographicvqa",
+  "model": "gatv2_knn",
+  "split": "val",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 2,
+  "best_composite": 0.1125,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.25,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.4479166666666667
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.2,
+        "5": 0.4,
+        "10": 0.6
+      },
+      "mrr": 0.29928571428571427
+    },
+    "mean_recall_at_k": {
+      "1": 0.225,
+      "5": 0.7,
+      "10": 0.8
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "resources": {
+    "wall_time_seconds": 3.713931100035552,
+    "latency_ms_per_question": 116.060346876111,
+    "throughput_questions_per_second": 8.616207231117906,
+    "peak_ram_mb": 1559.3828125,
+    "peak_vram_mb": 274.93994140625,
+    "parameter_count": 687553
+  },
+  "config": {
+    "dataset": "infographicvqa",
+    "model": "gatv2_knn",
+    "split": "val",
+    "seed": 42,
+    "max_samples": 32,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "dataset": "docvqa",
+  "metric": "anls",
+  "num_samples": 72,
+  "anls": 0.9154916796066966,
+  "score": 0.9154916796066966,
+  "primary_target": 0.964,
+  "primary_target_gap": -0.04850832039330333,
+  "beats_primary_target": false,
+  "stretch_target": null,
+  "stretch_target_gap": null,
+  "beats_stretch_target": false,
+  "qwen25_vl_3b_baseline": 0.939,
+  "error_slices": {
+    "correct": 61,
+    "arithmetic_or_numeric_miss": 2,
+    "wrong_answer": 5,
+    "answer_extraction_miss": 4
+  },
+  "sources": [
+    "https://www.docvqa.org/challenges/challenge-2020",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/README.md"
+  ],
+  "mode": "qwen25_vl_open_answer",
+  "metric_family": "open_answer",
+  "split": "val",
+  "status": "available_partial",
+  "total_eval_rows": 5349,
+  "wall_time_seconds": 599.8260278000016,
+  "latency_ms_per_question": 8330.9170527778,
+  "throughput_questions_per_second": 0.12003480453170126,
+  "peak_ram_mb": 2375.1640625,
+  "peak_vram_mb": 4651.10498046875,
+  "parameter_count": 3754622976,
+  "model_path": "C:\\Users\\Jet\\Desktop\\data\\models\\Qwen2.5-VL-3B-Instruct",
+  "device_mode": "balanced_low_0",
+  "use_4bit": true,
+  "max_pixels": 786432,
+  "accuracy": 0.8472222222222222
+}

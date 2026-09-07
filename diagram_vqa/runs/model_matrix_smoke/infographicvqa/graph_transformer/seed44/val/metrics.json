@@ -1,0 +1,60 @@
+{
+  "dataset": "infographicvqa",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 44,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.0890625,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.15625,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 0.4166666666666667
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.2,
+        "5": 0.4,
+        "10": 1.0
+      },
+      "mrr": 0.33190476190476187
+    },
+    "mean_recall_at_k": {
+      "1": 0.178125,
+      "5": 0.7,
+      "10": 1.0
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "resources": {
+    "wall_time_seconds": 3.4335532000404783,
+    "latency_ms_per_question": 107.29853750126495,
+    "throughput_questions_per_second": 9.319791520813702,
+    "peak_ram_mb": 1523.71484375,
+    "peak_vram_mb": 263.73828125,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "infographicvqa",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 44,
+    "max_samples": 32,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

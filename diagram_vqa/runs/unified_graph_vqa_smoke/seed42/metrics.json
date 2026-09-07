@@ -1,0 +1,132 @@
+{
+  "model": "unified_graph_transformer",
+  "datasets": [
+    "ai2d",
+    "infographicvqa",
+    "docvqa"
+  ],
+  "seed": 42,
+  "status": "available_smoke",
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.1281723484848485,
+  "macro": {
+    "vqa_score": 0.10416666666666667,
+    "mean_recall_at_1": 0.15217803030303031
+  },
+  "per_dataset": {
+    "ai2d": {
+      "retrieval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.0625,
+            "5": 0.46875,
+            "10": 0.875
+          },
+          "mrr": 0.24711512445887446
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.09090909090909091,
+            "5": 0.2727272727272727,
+            "10": 0.5454545454545454
+          },
+          "mrr": 0.2272252918706008
+        },
+        "mean_recall_at_k": {
+          "1": 0.07670454545454546,
+          "5": 0.37073863636363635,
+          "10": 0.7102272727272727
+        }
+      },
+      "vqa": {
+        "metric": "accuracy",
+        "score": 0.28125,
+        "exact_accuracy": 0.28125
+      }
+    },
+    "infographicvqa": {
+      "retrieval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.3125,
+            "5": 1.0,
+            "10": 1.0
+          },
+          "mrr": 0.5223958333333333
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.2,
+            "5": 0.8,
+            "10": 0.8
+          },
+          "mrr": 0.37
+        },
+        "mean_recall_at_k": {
+          "1": 0.25625,
+          "5": 0.9,
+          "10": 0.9
+        }
+      },
+      "vqa": {
+        "metric": "anls",
+        "score": 0.0,
+        "exact_accuracy": 0.0
+      }
+    },
+    "docvqa": {
+      "retrieval": {
+        "question_to_document": {
+          "recall_at_k": {
+            "1": 0.15625,
+            "5": 0.46875,
+            "10": 0.9375
+          },
+          "mrr": 0.336882215007215
+        },
+        "document_to_question": {
+          "recall_at_k": {
+            "1": 0.09090909090909091,
+            "5": 0.36363636363636365,
+            "10": 0.5454545454545454
+          },
+          "mrr": 0.21292810750214403
+        },
+        "mean_recall_at_k": {
+          "1": 0.12357954545454546,
+          "5": 0.4161931818181818,
+          "10": 0.7414772727272727
+        }
+      },
+      "vqa": {
+        "metric": "anls",
+        "score": 0.03125,
+        "exact_accuracy": 0.03125
+      }
+    }
+  },
+  "resources": {
+    "wall_time_seconds": 50.65599070000462,
+    "peak_ram_mb": 1542.16796875,
+    "peak_vram_mb": 354.19873046875,
+    "parameter_count": 835009
+  },
+  "config": {
+    "datasets": [
+      "ai2d",
+      "infographicvqa",
+      "docvqa"
+    ],
+    "seed": 42,
+    "max_samples": 32,
+    "output_dir": "runs\\unified_graph_vqa_smoke",
+    "resume": false,
+    "epochs": 2,
+    "early_stopping_patience": 3,
+    "batch_size": 8,
+    "eval_batch_size": 16,
+    "steps_per_epoch": null,
+    "architecture": "shared_graph_transformer"
+  }
+}

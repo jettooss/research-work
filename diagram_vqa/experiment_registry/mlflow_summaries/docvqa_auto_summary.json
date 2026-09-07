@@ -1,0 +1,11 @@
+{
+  "dataset_name": "docvqa",
+  "ocr_source": "auto",
+  "best_epoch": 40,
+  "mean_r_at_1": 0.0415610745549202,
+  "mean_r_at_5": 0.13545361906290054,
+  "mean_r_at_10": 0.2084389254450798,
+  "status": "legacy",
+  "included_in_primary_table": false,
+  "source": "../runs/mlflow_checkpoints/docvqa-auto/summary.json"
+}

@@ -1,0 +1,60 @@
+{
+  "dataset": "infographicvqa",
+  "model": "gatv2_knn",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 2801,
+  "epochs_completed": 12,
+  "best_epoch": 7,
+  "best_composite": 0.1169029242802895,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.17422349161013923,
+        "5": 0.4159228846840414,
+        "10": 0.5480185647982864
+      },
+      "mrr": 0.2920469466267171
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.244,
+        "5": 0.444,
+        "10": 0.572
+      },
+      "mrr": 0.34476895879305464
+    },
+    "mean_recall_at_k": {
+      "1": 0.2091117458050696,
+      "5": 0.4299614423420207,
+      "10": 0.5600092823991432
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.024694102755509394,
+    "exact_accuracy": 0.00785433773652267
+  },
+  "resources": {
+    "wall_time_seconds": 6897.999263000034,
+    "latency_ms_per_question": 2462.6916326312153,
+    "throughput_questions_per_second": 0.40605977084169864,
+    "peak_ram_mb": 4236.91015625,
+    "peak_vram_mb": 274.93994140625,
+    "parameter_count": 687553
+  },
+  "config": {
+    "dataset": "infographicvqa",
+    "model": "gatv2_knn",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

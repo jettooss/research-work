@@ -1,0 +1,36 @@
+{
+  "dataset": "ai2d",
+  "model": "graphcolbert_film",
+  "split": "test",
+  "seed": 44,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.03125,
+        "5": 0.3125,
+        "10": 0.71875
+      },
+      "mrr": 0.19094204406704407
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07692307692307693,
+        "5": 0.38461538461538464,
+        "10": 0.6153846153846154
+      },
+      "mrr": 0.22643913778529165
+    },
+    "mean_recall_at_k": {
+      "1": 0.054086538461538464,
+      "5": 0.3485576923076923,
+      "10": 0.6670673076923077
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.28125,
+    "exact_accuracy": 0.28125
+  }
+}

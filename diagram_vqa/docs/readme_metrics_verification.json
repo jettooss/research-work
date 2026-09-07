@@ -1,0 +1,511 @@
+{
+  "date": "2026-09-06",
+  "presentation_revision": "TCRNCD2aGY1zmQ",
+  "accuracy": [
+    {
+      "model": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "percent_by_seed": [
+        48.12176165803109,
+        49.15803108808291,
+        48.34844559585492
+      ],
+      "mean": 48.54274611398964,
+      "std_ddof0": 0.44480565151201706,
+      "sources": [
+        "diagram_vqa/runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed42_full/metrics.json",
+        "diagram_vqa/runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed43_full/metrics.json",
+        "diagram_vqa/runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed44_full/metrics.json"
+      ],
+      "readme_and_slides_match": true
+    },
+    {
+      "model": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "percent_by_seed": [
+        47.47409326424871,
+        48.44559585492228,
+        47.57124352331606
+      ],
+      "mean": 47.83031088082902,
+      "std_ddof0": 0.4368762164259077,
+      "sources": [
+        "diagram_vqa/runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42_full/metrics.json",
+        "diagram_vqa/runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43_full/metrics.json",
+        "diagram_vqa/runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44_full/metrics.json"
+      ],
+      "readme_and_slides_match": true
+    },
+    {
+      "model": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "percent_by_seed": [
+        46.534974093264246,
+        46.59974093264248,
+        45.59585492227979
+      ],
+      "mean": 46.24352331606217,
+      "std_ddof0": 0.45873336271320675,
+      "sources": [
+        "diagram_vqa/runs/ai2d/hybrid_v4_multipos_training/seed42_full/metrics.json",
+        "diagram_vqa/runs/ai2d/hybrid_v4_multipos_training/seed43_full/metrics.json",
+        "diagram_vqa/runs/ai2d/hybrid_v4_multipos_training/seed44_full/metrics.json"
+      ],
+      "readme_and_slides_match": true
+    },
+    {
+      "model": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "percent_by_seed": [
+        45.693005181347154,
+        43.68523316062176,
+        44.17098445595855
+      ],
+      "mean": 44.516407599309154,
+      "std_ddof0": 0.8552874693238478,
+      "sources": [
+        "diagram_vqa/runs/model_matrix/ai2d/clip/seed42/test/metrics.json",
+        "diagram_vqa/runs/model_matrix/ai2d/clip/seed43/test/metrics.json",
+        "diagram_vqa/runs/model_matrix/ai2d/clip/seed44/test/metrics.json"
+      ],
+      "readme_and_slides_match": true
+    },
+    {
+      "model": "Random",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "percent_by_seed": [
+        24.25518134715026,
+        24.1580310880829,
+        24.643782383419687
+      ],
+      "mean": 24.352331606217614,
+      "std_ddof0": 0.20986854593289642,
+      "sources": [
+        "diagram_vqa/runs/model_matrix/ai2d/random/seed42/test/metrics.json",
+        "diagram_vqa/runs/model_matrix/ai2d/random/seed43/test/metrics.json",
+        "diagram_vqa/runs/model_matrix/ai2d/random/seed44/test/metrics.json"
+      ],
+      "readme_and_slides_match": true
+    }
+  ],
+  "retrieval": [
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 5.093970465982802,
+          "sd": 0.22138028694484602
+        },
+        "5": {
+          "mean": 14.821437093989136,
+          "sd": 0.8105559317814187
+        },
+        "10": {
+          "mean": 20.978641564609184,
+          "sd": 0.7347291932438688
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42
+      ],
+      "n": 1,
+      "percent": {
+        "1": {
+          "mean": 17.757178570594146,
+          "sd": null
+        },
+        "5": {
+          "mean": 36.773291601741875,
+          "sd": null
+        },
+        "10": {
+          "mean": 45.4698668075692,
+          "sd": null
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 7.623087027481785,
+          "sd": 0.3583418487099657
+        },
+        "5": {
+          "mean": 20.20372007843095,
+          "sd": 0.3521889032346355
+        },
+        "10": {
+          "mean": 29.521279357439727,
+          "sd": 0.4181750637656899
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 7.5362485539817845,
+          "sd": 0.43330233118977496
+        },
+        "5": {
+          "mean": 20.788684743966165,
+          "sd": 0.47857817321826335
+        },
+        "10": {
+          "mean": 29.49739372252865,
+          "sd": 0.5147388172945738
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 11.353185709062945,
+          "sd": 0.07763723776549619
+        },
+        "5": {
+          "mean": 25.76367615109531,
+          "sd": 0.7449258813884945
+        },
+        "10": {
+          "mean": 34.84826279893599,
+          "sd": 0.8729845779866742
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42
+      ],
+      "n": 1,
+      "percent": {
+        "1": {
+          "mean": 26.937726132395394,
+          "sd": null
+        },
+        "5": {
+          "mean": 47.74694918245655,
+          "sd": null
+        },
+        "10": {
+          "mean": 57.51965066878459,
+          "sd": null
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43
+      ],
+      "n": 2,
+      "percent": {
+        "1": {
+          "mean": 12.924096731086822,
+          "sd": 1.9136552450109043
+        },
+        "5": {
+          "mean": 31.274386054486087,
+          "sd": 2.3174630939324015
+        },
+        "10": {
+          "mean": 41.97797297126937,
+          "sd": 2.8524198530060687
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 14.317647466686838,
+          "sd": 2.1567354431624772
+        },
+        "5": {
+          "mean": 32.138140892301095,
+          "sd": 3.099079525559262
+        },
+        "10": {
+          "mean": 43.0348858464758,
+          "sd": 3.609480302413328
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 4.7216139832720145,
+          "sd": 0.2881707107840713
+        },
+        "5": {
+          "mean": 18.461957305869223,
+          "sd": 0.5463981952252734
+        },
+        "10": {
+          "mean": 29.198718560765194,
+          "sd": 1.1114534961563456
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.643189350443237,
+          "sd": 0.6264101763308327
+        },
+        "5": {
+          "mean": 20.77582027387727,
+          "sd": 0.4474893518853107
+        },
+        "10": {
+          "mean": 31.82347296660768,
+          "sd": 0.8087861134102947
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.298362953155699,
+          "sd": 0.42054163964228
+        },
+        "5": {
+          "mean": 20.850426792784305,
+          "sd": 0.7874377419083092
+        },
+        "10": {
+          "mean": 31.14624575116803,
+          "sd": 1.3516550964714062
+        }
+      },
+      "readme_and_slides_match": true
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.131565798016575,
+          "sd": 0.41980508045237236
+        },
+        "5": {
+          "mean": 20.277126219483733,
+          "sd": 0.5824340093360293
+        },
+        "10": {
+          "mean": 30.895148268852935,
+          "sd": 0.3937497296125072
+        }
+      },
+      "readme_and_slides_match": true
+    }
+  ],
+  "resources": [
+    {
+      "model": "qwen",
+      "mean_ms": 992.8638906253582,
+      "peak_vram_gib": 2.6951065063476562,
+      "samples": 32,
+      "repeats": 1,
+      "source": "resource-slide/qwen.json",
+      "slides_match": true
+    },
+    {
+      "model": "dual",
+      "mean_ms": 8.237921875585622,
+      "peak_vram_gib": 0.017943382263183594,
+      "samples": 32,
+      "repeats": 3,
+      "source": "resource-slide/dual.json",
+      "slides_match": true
+    },
+    {
+      "model": "attention",
+      "mean_ms": 9.629921874420688,
+      "peak_vram_gib": 0.018580913543701172,
+      "samples": 32,
+      "repeats": 3,
+      "source": "resource-slide/attention.json",
+      "slides_match": true
+    },
+    {
+      "model": "knn",
+      "mean_ms": 8.669809375154122,
+      "peak_vram_gib": 0.013538837432861328,
+      "samples": 32,
+      "repeats": 3,
+      "source": "resource-slide/knn.json",
+      "slides_match": true
+    },
+    {
+      "model": "clip",
+      "mean_ms": 2.020348958315784,
+      "peak_vram_gib": 0.011366844177246094,
+      "samples": 32,
+      "repeats": 3,
+      "source": "resource-slide/clip.json",
+      "slides_match": true
+    },
+    {
+      "model": "random",
+      "mean_ms": 0.0004945642708435116,
+      "peak_vram_gib": 0,
+      "samples": 32,
+      "repeats": 3,
+      "source": "resource-slide/random.json",
+      "slides_match": true
+    }
+  ],
+  "retrieval_audit": {
+    "timestamp": "2026-09-06T12:43:06.600432+00:00",
+    "protocol": "bidirectional_mean_unique_documents_v1",
+    "sd_ddof": 0,
+    "required_runs": 36,
+    "verified_runs": 31,
+    "completed": false,
+    "source": "diagram_vqa/reports/presentation_metrics/retrieval_matrix_audit.json"
+  },
+  "limits": [
+    "Qwen Accuracy 73.19% is an archived slide value, not reverified.",
+    "Question-type table retains displayed means; numerical SD is not in slide text.",
+    "No full training or full Qwen evaluation was run for this documentation update."
+  ],
+  "documentation_checks": {
+    "metric_example": "passed; output matches README",
+    "cli_help": "passed",
+    "cpu_smoke": {
+      "status": "available_smoke",
+      "num_samples": 16,
+      "num_documents": 8,
+      "predictions_rows": 16,
+      "source": "diagram_vqa/runs/readme_smoke/ai2d/random/seed42/test/metrics.json"
+    },
+    "local_markdown_links": "all resolve",
+    "readme_diff_check": "passed",
+    "english_revision": {
+      "title": "English translation of the presentation title",
+      "dated_status_removed": true,
+      "accuracy_and_retrieval_values": "unchanged; checked against saved evidence",
+      "local_example": "passed; output matches README",
+      "local_links_and_markdown": "passed",
+      "docker_build": "not verified: Docker Desktop failed to initialize its Inference manager before the engine became available"
+    }
+  }
+}

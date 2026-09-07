@@ -1,0 +1,36 @@
+{
+  "dataset": "ai2d",
+  "model": "graphcolbert",
+  "split": "test",
+  "seed": 44,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.03125,
+        "5": 0.375,
+        "10": 0.75
+      },
+      "mrr": 0.20246125402375403
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07692307692307693,
+        "5": 0.38461538461538464,
+        "10": 0.5384615384615384
+      },
+      "mrr": 0.2286682648673599
+    },
+    "mean_recall_at_k": {
+      "1": 0.054086538461538464,
+      "5": 0.3798076923076923,
+      "10": 0.6442307692307692
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.28125,
+    "exact_accuracy": 0.28125
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "dataset": "docvqa",
+  "metric": "anls",
+  "num_samples": 5349,
+  "anls": 0.0018012718698938225,
+  "score": 0.0018012718698938225,
+  "primary_target": 0.964,
+  "primary_target_gap": -0.9621987281301061,
+  "beats_primary_target": false,
+  "stretch_target": null,
+  "stretch_target_gap": null,
+  "beats_stretch_target": false,
+  "qwen25_vl_3b_baseline": 0.939,
+  "error_slices": {
+    "arithmetic_or_numeric_miss": 4195,
+    "wrong_answer": 1105,
+    "answer_extraction_miss": 45,
+    "correct": 3,
+    "empty_answer": 1
+  },
+  "sources": [
+    "https://www.docvqa.org/challenges/challenge-2020",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/README.md"
+  ],
+  "mode": "random_train_answer",
+  "metric_family": "open_answer",
+  "split": "val",
+  "accuracy": 0.0005608524957936063,
+  "status": "available_full",
+  "wall_time_seconds": 0.3685863000000609,
+  "latency_ms_per_question": 0.06890751542345501,
+  "throughput_questions_per_second": 14512.205147068995,
+  "peak_ram_mb": 496.578125,
+  "peak_vram_mb": 0.0,
+  "parameter_count": 0
+}

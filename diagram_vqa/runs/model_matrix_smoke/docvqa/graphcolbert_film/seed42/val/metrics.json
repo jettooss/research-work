@@ -1,0 +1,60 @@
+{
+  "dataset": "docvqa",
+  "model": "graphcolbert_film",
+  "split": "val",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "epochs_completed": 2,
+  "best_epoch": 1,
+  "best_composite": 0.06960227272727273,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.1875,
+        "5": 0.59375,
+        "10": 0.90625
+      },
+      "mrr": 0.37881042568542567
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.09090909090909091,
+        "5": 0.2727272727272727,
+        "10": 0.5454545454545454
+      },
+      "mrr": 0.22569917863172995
+    },
+    "mean_recall_at_k": {
+      "1": 0.13920454545454547,
+      "5": 0.43323863636363635,
+      "10": 0.7258522727272727
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "resources": {
+    "wall_time_seconds": 12.710338199976832,
+    "latency_ms_per_question": 397.198068749276,
+    "throughput_questions_per_second": 2.5176356046968387,
+    "peak_ram_mb": 1728.4609375,
+    "peak_vram_mb": 295.3740234375,
+    "parameter_count": 687553
+  },
+  "config": {
+    "dataset": "docvqa",
+    "model": "graphcolbert_film",
+    "split": "val",
+    "seed": 42,
+    "max_samples": 32,
+    "output_dir": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke",
+    "resume": true,
+    "epochs": 30,
+    "early_stopping_patience": 5,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

@@ -1,4 +1,4 @@
-# Репозиторий на уровне data/: коммитим ТОЛЬКО проект diagram_vqa/.
+# Репозиторий на уровне data/: проект diagram_vqa/, README, Docker и resource-slide/.
 # Тяжёлое/внешнее (данные, модели, окружение, старые прогоны) — игнорируем.
 # Файлы остаются на диске, просто не попадают в git.
 #
@@ -13,6 +13,7 @@
 /docvqa/
 /infographicvqa/
 /models/
+/model_matrix_cache/
 
 # Старые внешние прогоны и трекинг (data-level)
 /runs/
@@ -20,13 +21,64 @@
 /mlflow.db
 
 # Локальная служебная конфигурация инструментов (data-level)
-/.claude/
-/.agents/
-/.ipynb_checkpoints/
+.claude/
+.agents/
+.ipynb_checkpoints/
+/.codex_work/
+/.codex-review-*/
+/.report_tmp*/
+/.review-*/
+
+# Секреты и локальная конфигурация (на любой глубине)
+.env
+.env.*
+!.env.example
+
+# Локальные документы и презентации, не входящие в Python-проект
+/*.docx
+/*.pptx
+/article_render_final.pdf
+
+# Временные выгрузки, сборки документов и проверки слайдов
+/article_pages/
+/article_sync/
+/finalization/
+/google_docs_bridge/
+/image_to_graph_pipeline_slide/
+/presentation_pipeline_slide_build/
+/reference_renders/
+/retrieval-slide/
+/retriever_one_slide/
+/sam_ocr_graph_pipeline_slide/
+/sam_ocr_graph_pipeline_slide_clear_comparison/
+/sam_ocr_graph_pipeline_slide_native_output/
+/sam_ocr_pipeline_slide_build/
+/slide_qa_*/
+/slides_revision/
+/slides-audit/
+/finalize_article.ps1
+/inspect_reference_pptx.py
+/reference_scientific_project.json
+/*.png
+*.pptx.inspect.ndjson
+
+# В resource-slide/ публикуем скрипт замеров, README и JSON с метриками
+/resource-slide/*.png
+/resource-slide/design-catalog.md
+/resource-slide/design-system.json
+/resource-slide/output-issues.json
+/resource-slide/raw-*.json
+/resource-slide/slide-update.json
 
 # Универсальный мусор (на любой глубине)
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+*.pid
+*.tmp
 .DS_Store
 Thumbs.db
 desktop.ini

@@ -1,0 +1,12 @@
+{
+  "source_notebooks": 33,
+  "executed_notebooks": 33,
+  "available_full_cells": 0,
+  "available_smoke_cells": 33,
+  "expected_cells": 33,
+  "missing_checkpoints": [],
+  "missing_submissions": [],
+  "ai2d_ready": true,
+  "defense_ready": false,
+  "smoke_ready": true
+}

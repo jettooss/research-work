@@ -1,0 +1,57 @@
+{
+  "dataset": "infographicvqa",
+  "mode": "ocr_gnn_retrieval",
+  "seed": 42,
+  "epochs": 1,
+  "max_samples": 8,
+  "eval_max_items": 4,
+  "device": "cuda",
+  "ocr_source": "tesseract",
+  "wall_time_seconds": 5.728322900000421,
+  "checkpoint": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_gnn_retrieval_smoke\\gnn.pt",
+  "text_projection": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa_gnn_retrieval_smoke\\text_proj.pt",
+  "best_mean_r1": 1.0,
+  "final_retrieval": {
+    "epoch": 1,
+    "loss": 1.2681288719177246,
+    "i2t": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "t2i": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "mean": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    }
+  },
+  "num_samples": 8,
+  "num_train_samples": 7,
+  "num_val_samples": 1,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 1.2681288719177246,
+      "i2t": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "t2i": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mean": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      }
+    }
+  ]
+}

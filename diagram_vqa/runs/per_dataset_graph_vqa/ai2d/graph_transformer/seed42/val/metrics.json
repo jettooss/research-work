@@ -1,0 +1,60 @@
+{
+  "dataset": "ai2d",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 1268,
+  "epochs_completed": 8,
+  "best_epoch": 8,
+  "best_composite": 0.23356992639327023,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.08280757097791798,
+        "5": 0.24921135646687698,
+        "10": 0.4069400630914827
+      },
+      "mrr": 0.18034614433637558
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.08333333333333333,
+        "5": 0.29012345679012347,
+        "10": 0.42592592592592593
+      },
+      "mrr": 0.19383175243000525
+    },
+    "mean_recall_at_k": {
+      "1": 0.08307045215562565,
+      "5": 0.2696674066285002,
+      "10": 0.4164329945087043
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.3840694006309148,
+    "exact_accuracy": 0.3840694006309148
+  },
+  "resources": {
+    "wall_time_seconds": 1732.982253700029,
+    "latency_ms_per_question": 1366.7052473974993,
+    "throughput_questions_per_second": 0.7316866617028178,
+    "peak_ram_mb": 1543.60546875,
+    "peak_vram_mb": 192.72998046875,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "ai2d",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "runs\\per_dataset_graph_vqa",
+    "resume": true,
+    "epochs": 8,
+    "early_stopping_patience": 3,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

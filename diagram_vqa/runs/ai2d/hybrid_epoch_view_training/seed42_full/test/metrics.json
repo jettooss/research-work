@@ -1,0 +1,36 @@
+{
+  "dataset": "ai2d",
+  "model": "epoch_view_graph_transformer",
+  "split": "test",
+  "seed": 42,
+  "status": "completed_full",
+  "num_samples": 3088,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.03724093264248705,
+        "5": 0.1635362694300518,
+        "10": 0.26327720207253885
+      },
+      "mrr": 0.11280936439255572
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.06511056511056511,
+        "5": 0.20270270270270271,
+        "10": 0.3022113022113022
+      },
+      "mrr": 0.14245197316867528
+    },
+    "mean_recall_at_k": {
+      "1": 0.05117574887652608,
+      "5": 0.18311948606637726,
+      "10": 0.28274425214192056
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.41936528497409326,
+    "exact_accuracy": 0.41936528497409326
+  }
+}

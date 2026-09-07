@@ -1,0 +1,53 @@
+{
+  "dataset": "infographicvqa",
+  "model": "qwen25_vl_qlora",
+  "split": "test",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 2,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0
+    },
+    "mean_recall_at_k": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "dataset": "infographicvqa",
+    "split": "test",
+    "num_samples": 2,
+    "num_documents": 1
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  },
+  "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\training\\adapter",
+  "training": {
+    "eval_loss": 0.2835994064807892,
+    "eval_runtime": 29.9276,
+    "eval_samples_per_second": 0.067,
+    "eval_steps_per_second": 0.067,
+    "epoch": 3.0,
+    "progress_jsonl": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\infographicvqa\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+  },
+  "resources": {
+    "wall_time_seconds": 47.598612700006925,
+    "peak_ram_mb": 478.4921875
+  }
+}

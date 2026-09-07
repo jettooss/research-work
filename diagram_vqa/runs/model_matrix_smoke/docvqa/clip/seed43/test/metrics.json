@@ -1,0 +1,36 @@
+{
+  "dataset": "docvqa",
+  "model": "clip",
+  "split": "test",
+  "seed": 43,
+  "status": "available_smoke",
+  "num_samples": 32,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.28125,
+        "5": 0.4375,
+        "10": 0.71875
+      },
+      "mrr": 0.3805787962037962
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.0,
+        "5": 0.21428571428571427,
+        "10": 0.42857142857142855
+      },
+      "mrr": 0.13252269929288563
+    },
+    "mean_recall_at_k": {
+      "1": 0.140625,
+      "5": 0.32589285714285715,
+      "10": 0.5736607142857143
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.0,
+    "exact_accuracy": 0.0
+  }
+}

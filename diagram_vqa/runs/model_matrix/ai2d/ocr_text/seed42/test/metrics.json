@@ -1,0 +1,45 @@
+{
+  "dataset": "ai2d",
+  "model": "ocr_text",
+  "split": "test",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 3088,
+  "num_documents": 814,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.086139896373057,
+        "5": 0.17778497409326424,
+        "10": 0.21988341968911918
+      },
+      "mrr": 0.1356993321475987
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.2592137592137592,
+        "5": 0.4201474201474201,
+        "10": 0.5036855036855037
+      },
+      "mrr": 0.33826173822567623
+    },
+    "mean_recall_at_k": {
+      "1": 0.1726768277934081,
+      "5": 0.29896619712034217,
+      "10": 0.36178446168731143
+    }
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.014572538860103627,
+    "exact_accuracy": 0.014572538860103627
+  },
+  "resources": {
+    "wall_time_seconds": 15.884315599978436,
+    "latency_ms_per_question": 5.143884585485245,
+    "throughput_questions_per_second": 194.40560599313403,
+    "peak_ram_mb": 561.90625,
+    "peak_vram_mb": 0.0,
+    "parameter_count": 0
+  }
+}

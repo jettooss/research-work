@@ -1,0 +1,48 @@
+{
+  "dataset": "infographicvqa",
+  "model": "clip",
+  "split": "val",
+  "seed": 44,
+  "status": "available_full",
+  "num_samples": 2801,
+  "epochs_completed": 7,
+  "best_epoch": 3,
+  "best_composite": 0.09241677696336746,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.11245983577293824,
+        "5": 0.2948946804712603,
+        "10": 0.4012852552659764
+      },
+      "mrr": 0.20721116167663645
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.14,
+        "5": 0.286,
+        "10": 0.398
+      },
+      "mrr": 0.22279490180110126
+    },
+    "mean_recall_at_k": {
+      "1": 0.12622991788646912,
+      "5": 0.2904473402356301,
+      "10": 0.3996426276329882
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.05860363604026581,
+    "exact_accuracy": 0.021063905747947163
+  },
+  "resources": {
+    "wall_time_seconds": 5300.2355602000025,
+    "latency_ms_per_question": 1892.265462406284,
+    "throughput_questions_per_second": 0.528467078148939,
+    "peak_ram_mb": 2137.6484375,
+    "peak_vram_mb": 488.568359375,
+    "parameter_count": 652800,
+    "frozen_backbone": true
+  }
+}

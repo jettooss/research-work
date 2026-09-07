@@ -1,0 +1,33 @@
+{
+  "dataset": "infographicvqa",
+  "metric": "anls",
+  "num_samples": 2801,
+  "anls": 0.022134951802927526,
+  "score": 0.022134951802927526,
+  "primary_target": 0.834,
+  "primary_target_gap": -0.8118650481970724,
+  "beats_primary_target": false,
+  "stretch_target": 0.873,
+  "stretch_target_gap": -0.8508650481970724,
+  "beats_stretch_target": false,
+  "qwen25_vl_3b_baseline": 0.771,
+  "error_slices": {
+    "arithmetic_or_numeric_miss": 2739,
+    "correct": 62
+  },
+  "sources": [
+    "https://www.docvqa.org/datasets/infographicvqa",
+    "https://evalscope.readthedocs.io/en/latest/benchmarks/infovqa.html",
+    "https://llm-stats.com/benchmarks/infovqa",
+    "https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/README.md"
+  ],
+  "mode": "most_frequent",
+  "split": "val",
+  "accuracy": 0.022134951802927526,
+  "wall_time_seconds": 0.0023906000424176455,
+  "latency_ms_per_question": 0.0008534809148224368,
+  "throughput_questions_per_second": 1171672.3627124643,
+  "parameter_count": 0,
+  "peak_ram_mb": 544.30859375,
+  "peak_vram_mb": 0.0
+}

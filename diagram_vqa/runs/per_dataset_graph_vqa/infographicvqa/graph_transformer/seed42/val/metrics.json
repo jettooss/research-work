@@ -1,0 +1,60 @@
+{
+  "dataset": "infographicvqa",
+  "model": "graph_transformer",
+  "split": "val",
+  "seed": 42,
+  "status": "available_full",
+  "num_samples": 2801,
+  "epochs_completed": 8,
+  "best_epoch": 7,
+  "best_composite": 0.0970708705987178,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.14316315601570867,
+        "5": 0.37165298107818634,
+        "10": 0.4991074616208497
+      },
+      "mrr": 0.25729124308861834
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.194,
+        "5": 0.354,
+        "10": 0.494
+      },
+      "mrr": 0.28084649485955687
+    },
+    "mean_recall_at_k": {
+      "1": 0.16858157800785434,
+      "5": 0.36282649053909316,
+      "10": 0.49655373081042486
+    }
+  },
+  "vqa": {
+    "metric": "anls",
+    "score": 0.025560163189581254,
+    "exact_accuracy": 0.00785433773652267
+  },
+  "resources": {
+    "wall_time_seconds": 4657.551619400037,
+    "latency_ms_per_question": 1662.8174292752722,
+    "throughput_questions_per_second": 0.6013889332612079,
+    "peak_ram_mb": 2790.60546875,
+    "peak_vram_mb": 264.42724609375,
+    "parameter_count": 835009
+  },
+  "config": {
+    "dataset": "infographicvqa",
+    "model": "graph_transformer",
+    "split": "val",
+    "seed": 42,
+    "max_samples": null,
+    "output_dir": "runs\\per_dataset_graph_vqa",
+    "resume": true,
+    "epochs": 8,
+    "early_stopping_patience": 3,
+    "batch_size": 16,
+    "eval_batch_size": 32
+  }
+}

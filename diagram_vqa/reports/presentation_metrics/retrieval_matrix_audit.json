@@ -1,0 +1,924 @@
+{
+  "timestamp": "2026-09-06T18:41:31.813261+00:00",
+  "protocol": "bidirectional_mean_unique_documents_v1",
+  "sd_ddof": 0,
+  "required_runs": 36,
+  "verified_runs": 36,
+  "completed": true,
+  "groups": [
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 5.093970465982802,
+          "sd": 0.22138028694484602
+        },
+        "5": {
+          "mean": 14.821437093989136,
+          "sd": 0.8105559317814187
+        },
+        "10": {
+          "mean": 20.978641564609184,
+          "sd": 0.7347291932438688
+        }
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 18.514721878253106,
+          "sd": 0.561746943970426
+        },
+        "5": {
+          "mean": 36.72781678757006,
+          "sd": 0.30160040153100337
+        },
+        "10": {
+          "mean": 45.79762844026529,
+          "sd": 0.26252748799245607
+        }
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 7.623087027481785,
+          "sd": 0.3583418487099657
+        },
+        "5": {
+          "mean": 20.20372007843095,
+          "sd": 0.3521889032346355
+        },
+        "10": {
+          "mean": 29.521279357439727,
+          "sd": 0.4181750637656899
+        }
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 7.5362485539817845,
+          "sd": 0.43330233118977496
+        },
+        "5": {
+          "mean": 20.788684743966165,
+          "sd": 0.47857817321826335
+        },
+        "10": {
+          "mean": 29.49739372252865,
+          "sd": 0.5147388172945738
+        }
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 11.353185709062945,
+          "sd": 0.07763723776549619
+        },
+        "5": {
+          "mean": 25.76367615109531,
+          "sd": 0.7449258813884945
+        },
+        "10": {
+          "mean": 34.84826279893599,
+          "sd": 0.8729845779866742
+        }
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 24.576625526854336,
+          "sd": 1.7302026504475063
+        },
+        "5": {
+          "mean": 45.92407519466822,
+          "sd": 1.3639119524780496
+        },
+        "10": {
+          "mean": 56.2652330765772,
+          "sd": 0.9313728787430532
+        }
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 13.848206068857708,
+          "sd": 2.0369929800605235
+        },
+        "5": {
+          "mean": 32.70205362883401,
+          "sd": 2.76710911726446
+        },
+        "10": {
+          "mean": 43.5262050939408,
+          "sd": 3.1965989358314655
+        }
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 14.317647466686838,
+          "sd": 2.1567354431624772
+        },
+        "5": {
+          "mean": 32.138140892301095,
+          "sd": 3.099079525559262
+        },
+        "10": {
+          "mean": 43.0348858464758,
+          "sd": 3.609480302413328
+        }
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "name": "CLIP",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 4.7216139832720145,
+          "sd": 0.2881707107840713
+        },
+        "5": {
+          "mean": 18.461957305869223,
+          "sd": 0.5463981952252734
+        },
+        "10": {
+          "mean": 29.198718560765194,
+          "sd": 1.1114534961563456
+        }
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "Hybrid GATv2 + kNN",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.643189350443237,
+          "sd": 0.6264101763308327
+        },
+        "5": {
+          "mean": 20.77582027387727,
+          "sd": 0.4474893518853107
+        },
+        "10": {
+          "mean": 31.82347296660768,
+          "sd": 0.8087861134102947
+        }
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Heterogeneous Graph + Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.298362953155699,
+          "sd": 0.42054163964228
+        },
+        "5": {
+          "mean": 20.850426792784305,
+          "sd": 0.7874377419083092
+        },
+        "10": {
+          "mean": 31.14624575116803,
+          "sd": 1.3516550964714062
+        }
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Dual-Branch + top-k Attention",
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "n": 3,
+      "percent": {
+        "1": {
+          "mean": 6.131565798016575,
+          "sd": 0.41980508045237236
+        },
+        "5": {
+          "mean": 20.277126219483733,
+          "sd": 0.5824340093360293
+        },
+        "10": {
+          "mean": 30.895148268852935,
+          "sd": 0.3937497296125072
+        }
+      }
+    }
+  ],
+  "records": [
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed42\\val",
+      "verified": true,
+      "epochs": 15,
+      "best_epoch": 11,
+      "num_test_samples": 5188,
+      "weight_sha256": "39f001f8f4f8e6b34dc064ae9c76f81b8ae53c31529653b1407d9d48961770de",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed42\\test\\metrics.json",
+      "recall": {
+        "1": 0.05235521995352373,
+        "5": 0.1517290214283275,
+        "10": 0.21355906793454982
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed43\\val",
+      "verified": true,
+      "epochs": 14,
+      "best_epoch": 10,
+      "num_test_samples": 5188,
+      "weight_sha256": "286b05239a2a1b5fad8e0d2c14b12d459553f00b4f91ac464d217056ffa8fac8",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed43\\test\\metrics.json",
+      "recall": {
+        "1": 0.047813554559892266,
+        "5": 0.1370079419424061,
+        "10": 0.19951561759580264
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed44\\val",
+      "verified": true,
+      "epochs": 13,
+      "best_epoch": 9,
+      "num_test_samples": 5188,
+      "weight_sha256": "86c7673fa91f4103ee41286a8479dfe345127822d0492b435b567d0a0bf60a33",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\docvqa\\clip\\seed44\\test\\metrics.json",
+      "recall": {
+        "1": 0.05265033946606807,
+        "5": 0.1559061494489405,
+        "10": 0.21628456140792301
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed42_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 36,
+      "num_test_samples": 5188,
+      "weight_sha256": "d53e113a37f532632a4ff83abc45a84f49d62aee87b4232ebef2549c852d2579",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed42_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.17757178570594145,
+        "5": 0.36773291601741875,
+        "10": 0.454698668075692
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed43_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 40,
+      "num_test_samples": 5188,
+      "weight_sha256": "ddde630dcbebcf0660b674dfe370495a2ea05830e53fb63a3d1774072730d175",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed43_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.19100702475798853,
+        "5": 0.37072357523398386,
+        "10": 0.4581047860731746
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed44_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 37,
+      "num_test_samples": 5188,
+      "weight_sha256": "0dd85a893c1279e3dffa23eae2424ecea4001c0f74e2f879c51f781816f2a310",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\hybrid_v4_multipos_training\\seed44_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.18686284588366314,
+        "5": 0.36337801237569933,
+        "10": 0.4611253990590922
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 19,
+      "best_epoch": 14,
+      "num_test_samples": 5188,
+      "weight_sha256": "fffb7d6aed1adaa2e6523c184b594db9b508cb6b79240e0ec0bdd8ee8e008b7a",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.08082762564258324,
+        "5": 0.20273796921830844,
+        "10": 0.29652793877928807
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 16,
+      "best_epoch": 11,
+      "num_test_samples": 5188,
+      "weight_sha256": "fd6cba31651836254d02415db0a20459517f270644c2f8ab8c7a90726e6d3381",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.07208486921285687,
+        "5": 0.19741630767074098,
+        "10": 0.29954855176520556
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 13,
+      "best_epoch": 8,
+      "num_test_samples": 5188,
+      "weight_sha256": "5f476e7713a29cffdf73fb49a76182de5bd2d336e6b9f85c32285f7c18e38db4",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.07578011596901343,
+        "5": 0.20595732546387907,
+        "10": 0.2895618901786982
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 17,
+      "num_test_samples": 5188,
+      "weight_sha256": "4fbb1fe12e266fccfc3a971df556f6480ef4fd33eca7aef6c94f2f0a3e3111e4",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.08139689702912525,
+        "5": 0.21369737946453443,
+        "10": 0.30048236052476607
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 16,
+      "num_test_samples": 5188,
+      "weight_sha256": "a7efbfbbffc102e960bdc3e7beaeb55f2b3ac8609cfda582d5a20a6f9a15186e",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.07326834263996948,
+        "5": 0.2019759453259839,
+        "10": 0.28809827412371747
+      }
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 15,
+      "num_test_samples": 5188,
+      "weight_sha256": "c3009c2465ecb4c767745e584a9909cea44e5da952a4fc442dddc8882c997877",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\docvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.07142221695035882,
+        "5": 0.20798721752846655,
+        "10": 0.29634117702737595
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed42\\val",
+      "verified": true,
+      "epochs": 6,
+      "best_epoch": 2,
+      "num_test_samples": 3288,
+      "weight_sha256": "1bfffa4e57b4a89d3a6ea172499a98c8b38093f8fe28eea312258a766f6e88d1",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed42\\test\\metrics.json",
+      "recall": {
+        "1": 0.11338530438838673,
+        "5": 0.26571108001462374,
+        "10": 0.35557388777529847
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed43\\val",
+      "verified": true,
+      "epochs": 10,
+      "best_epoch": 6,
+      "num_test_samples": 3288,
+      "weight_sha256": "9c9ec0eaf62008b458ce942b7df421d425475caff7f339fe6d83977769ea5bed",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed43\\test\\metrics.json",
+      "recall": {
+        "1": 0.11454748307552665,
+        "5": 0.2477394639637936,
+        "10": 0.33618480768503456
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed44\\val",
+      "verified": true,
+      "epochs": 7,
+      "best_epoch": 3,
+      "num_test_samples": 3288,
+      "weight_sha256": "71c49996a0d565e5d4c347e5abb7c268d6079e2eea265e62fcf3277a97b4ffe3",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\infographicvqa\\clip\\seed44\\test\\metrics.json",
+      "recall": {
+        "1": 0.11266278380797498,
+        "5": 0.259459740554442,
+        "10": 0.3536891885077468
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed42_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 17,
+      "num_test_samples": 3288,
+      "weight_sha256": "e3d7c624763938440c3e6587529ba53efc87fc94a12a246a50dee7ef42f6c5fa",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed42_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.26937726132395395,
+        "5": 0.47746949182456544,
+        "10": 0.5751965066878459
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed43_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 20,
+      "num_test_samples": 3288,
+      "weight_sha256": "541f6ce4ce1ba725198f9eae5a638c989726974d0fc9d75ae9a9fbccdd0d862c",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed43_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.22839923477427732,
+        "5": 0.44466532405481385,
+        "10": 0.5529015859208553
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed44_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 20,
+      "num_test_samples": 3288,
+      "weight_sha256": "0796f253fab23a8389cfa595b118d971a39618e7d477b1ecb019f362382eab5d",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\hybrid_v4_multipos_training\\seed44_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.23952226970739887,
+        "5": 0.45558743996066714,
+        "10": 0.5598588996886149
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 8,
+      "best_epoch": 3,
+      "num_test_samples": 3288,
+      "weight_sha256": "1428548c5e032c73b268086bba16ee2f3ef9ffb6d3afc304e9a648e5af59019e",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.11010441486075917,
+        "5": 0.2895692296055369,
+        "10": 0.391255531182633
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 10,
+      "best_epoch": 5,
+      "num_test_samples": 3288,
+      "weight_sha256": "5bf9d8165d5fb465c9c7bbccb079a031a0910a7345ce379e517ea2fdd4379009",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.14837751976097727,
+        "5": 0.3359184914841849,
+        "10": 0.44830392824275433
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 12,
+      "best_epoch": 7,
+      "num_test_samples": 3288,
+      "weight_sha256": "a40402958580cd5fd9b06c2e7bc60f61b09d16961a9e28ca7e7abf78b1e58d5a",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.1569642474439948,
+        "5": 0.35557388777529847,
+        "10": 0.46622669339283684
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 8,
+      "best_epoch": 3,
+      "num_test_samples": 3288,
+      "weight_sha256": "7928d7d70675488edb8894d188271bcd2950367ff1f954900b6b3b6b45479975",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.11367289436859424,
+        "5": 0.27832170366728437,
+        "10": 0.38034996154961365
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 13,
+      "best_epoch": 8,
+      "num_test_samples": 3288,
+      "weight_sha256": "b15ece5fc33d28d0c18d03708e309f93124db6c07f23da6a9f0ac83b4906ad11",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.16462753551933235,
+        "5": 0.34998518714622495,
+        "10": 0.46425532317234597
+      }
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 12,
+      "best_epoch": 7,
+      "num_test_samples": 3288,
+      "weight_sha256": "613da47bebe708c5358a53050e6d396f8ac35d9de94374a70e43a8a160ff2864",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\infographicvqa\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.15122899411267854,
+        "5": 0.3358373359555236,
+        "10": 0.4464412906723145
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed42\\val",
+      "verified": true,
+      "epochs": 18,
+      "best_epoch": 14,
+      "num_test_samples": 3088,
+      "weight_sha256": "c888ae91ccdcddc8aef986205f699962a4279321899cb1e38188bb9bd5bdcca4",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed42\\test\\metrics.json",
+      "recall": {
+        "1": 0.047043083474430626,
+        "5": 0.18008165077465596,
+        "10": 0.2770874972947512
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed43\\val",
+      "verified": true,
+      "epochs": 7,
+      "best_epoch": 3,
+      "num_test_samples": 3088,
+      "weight_sha256": "7123c4519168be797222cfc2c2cce719b31ebd1f9ecff0bc1642707e75e88f41",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed43\\test\\metrics.json",
+      "recall": {
+        "1": 0.04377649552520019,
+        "5": 0.1814720691016028,
+        "10": 0.2951012717852096
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed44\\val",
+      "verified": true,
+      "epochs": 14,
+      "best_epoch": 10,
+      "num_test_samples": 3088,
+      "weight_sha256": "1d258fd5af824518717752bbd14f08bdf533254ada6b19d43db6ad06718c4ec8",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix\\ai2d\\clip\\seed44\\test\\metrics.json",
+      "recall": {
+        "1": 0.05082884049852962,
+        "5": 0.19230499929981795,
+        "10": 0.303772787742995
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed42_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 31,
+      "num_test_samples": 3088,
+      "weight_sha256": "8fd946024b8c9c137106a433e5bed9a4ae395a31e264b9c8b28b87877dcc6fb1",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed42_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.06940037364260163,
+        "5": 0.20461069878168325,
+        "10": 0.32771065931687693
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed43_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 40,
+      "num_test_samples": 3088,
+      "weight_sha256": "f1cca765118caad4a92237d0f18635d8173aefed58f6a3fbd4d1e4b1541579a9",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed43_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.07217603849728202,
+        "5": 0.21408662843248336,
+        "10": 0.3190443151583048
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed44_full",
+      "verified": true,
+      "epochs": 40,
+      "best_epoch": 28,
+      "num_test_samples": 3088,
+      "weight_sha256": "3efb1b1a00cae6b52aa652f1422179f32fab530b0b566039dadb3118c4a44acb",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\hybrid_v4_multipos_training\\seed44_full\\test\\metrics.json",
+      "recall": {
+        "1": 0.05771926837341346,
+        "5": 0.20457728100215145,
+        "10": 0.30794921452304874
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 18,
+      "num_test_samples": 3088,
+      "weight_sha256": "44f3b584cf5fa369c11861056b67856131985cfdd74c03b2bd33dbad1d70d41e",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.06829002813458772,
+        "5": 0.2196327863426309,
+        "10": 0.3305376443329811
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 15,
+      "best_epoch": 10,
+      "num_test_samples": 3088,
+      "weight_sha256": "cbc5b44faebeda8e332f0c93c172141168f344a8c7000d66e03a43ac4559a5ab",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.06265634746852364,
+        "5": 0.2025853426436328,
+        "10": 0.3029966200302988
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 18,
+      "best_epoch": 13,
+      "num_test_samples": 3088,
+      "weight_sha256": "92a2e105cb46474ce4f4e61e3133569851489c002b8359dd24f9f7636fa8ae7b",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_heterogeneous_balanced_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.05800451299155962,
+        "5": 0.20329467479726548,
+        "10": 0.30085310817176103
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 42,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 15,
+      "num_test_samples": 3088,
+      "weight_sha256": "34e4094d2b80a2bca2725fb8a6146f87329f5be371c552ad53cff91f189e32d8",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed42_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.06693302758717266,
+        "5": 0.21005660335323548,
+        "10": 0.31450029280340164
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 43,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full",
+      "verified": true,
+      "epochs": 19,
+      "best_epoch": 14,
+      "num_test_samples": 3088,
+      "weight_sha256": "eb8d890821828920435d57deccf3e9cb07a30c4c5629bfa53a1088016421849e",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed43_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.05684284732212193,
+        "5": 0.20245684332471897,
+        "10": 0.3057722848849792
+      }
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "seed": 44,
+      "run": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full",
+      "verified": true,
+      "epochs": 20,
+      "best_epoch": 17,
+      "num_test_samples": 3088,
+      "weight_sha256": "80ec383513574dfe5a93e77b54299baf22d9ca7e733d929d01c72b15f973376e",
+      "source": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\ai2d\\sam2_dinov2_dual_branch_evidence_graph\\seed44_full\\retrieval_unique_test.json",
+      "recall": {
+        "1": 0.06017109903120266,
+        "5": 0.19580033990655754,
+        "10": 0.3065818703772072
+      }
+    }
+  ]
+}

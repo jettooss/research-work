@@ -1,0 +1,53 @@
+{
+  "dataset": "ai2d",
+  "model": "qwen25_vl_qlora",
+  "split": "test",
+  "seed": 42,
+  "status": "available_smoke",
+  "num_samples": 2,
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0
+      },
+      "mrr": 1.0
+    },
+    "mean_recall_at_k": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0
+    },
+    "dataset": "ai2d",
+    "split": "test",
+    "num_samples": 2,
+    "num_documents": 1
+  },
+  "vqa": {
+    "metric": "accuracy",
+    "score": 0.5,
+    "exact_accuracy": 0.5
+  },
+  "adapter_path": "C:\\Users\\Jet\\Desktop\\data\\diagram_vqa\\runs\\model_matrix_smoke\\ai2d\\qwen25_vl_qlora\\seed42\\training\\adapter",
+  "training": {
+    "eval_loss": 0.1053539514541626,
+    "eval_runtime": 6.2575,
+    "eval_samples_per_second": 0.32,
+    "eval_steps_per_second": 0.32,
+    "epoch": 3.0,
+    "progress_jsonl": "runs\\model_matrix_smoke\\ai2d\\qwen25_vl_qlora\\seed42\\training\\progress.jsonl"
+  },
+  "resources": {
+    "wall_time_seconds": 55.94617260002997,
+    "peak_ram_mb": 435.9375
+  }
+}

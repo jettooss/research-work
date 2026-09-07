@@ -1,0 +1,15 @@
+{
+  "base_models": {
+    "qwen25_vl_3b": "../models/Qwen2.5-VL-3B-Instruct",
+    "sam2": "../models/sam2/sam2.1_b.pt",
+    "clip": "ViT-B/32 frozen",
+    "siglip": "google/siglip2-base-patch16-224 frozen"
+  },
+  "smoke_adapters": {
+    "ai2d": "runs/model_matrix_smoke/ai2d/qwen25_vl_qlora/seed42/training/adapter",
+    "infographicvqa": "runs/model_matrix_smoke/infographicvqa/qwen25_vl_qlora/seed42/training/adapter",
+    "docvqa": "runs/model_matrix_smoke/docvqa/qwen25_vl_qlora/seed42/training/adapter"
+  },
+  "checkpoint_rule": "Only checkpoint_best.pt for local trainable models; one adapter per dataset for QLoRA.",
+  "full_namespace": "runs/model_matrix"
+}
