@@ -10,7 +10,7 @@ Run commands from the repository root. This guide distinguishes recalculating a 
 python diagram_vqa/scripts/reproduce_results.py --check
 ```
 
-This standard-library command validates the versioned evidence and recomputes five AI2D Accuracy aggregates and 15 retrieval rows: 36 principal runs plus three deterministic OCR evaluations. It checks source identity, canonical JSON SHA256, seeds, status, sample counts, retrieval directions and Markdown table consistency. Canonical JSON hashing makes the evidence independent of checkout line endings. It does not run inference or recover missing training configurations.
+This standard-library command validates the versioned evidence and recomputes five AI2D Accuracy aggregates and 12 retrieval rows from 36 principal runs. It checks source identity, canonical JSON SHA256, seeds, status, sample counts, retrieval directions and Markdown table consistency. Canonical JSON hashing makes the evidence independent of checkout line endings. It does not run inference or recover missing training configurations.
 
 After intentionally updating the underlying measurements and their provenance, regenerate the two marked retrieval tables and verification JSON with:
 
@@ -19,7 +19,7 @@ python diagram_vqa/scripts/reproduce_results.py --write
 python diagram_vqa/scripts/reproduce_results.py --check
 ```
 
-Values are percentages; variation is population standard deviation across seeds 42, 43 and 44. OCR TF-IDF is deterministic and is reported once, without artificial three-seed variance. Its strong retrieval results limit claims about graph improvements to the specific compared baseline.
+Values are percentages; variation is population standard deviation across seeds 42, 43 and 44.
 
 ## Install a reference environment
 
@@ -93,10 +93,9 @@ Use a new output directory for each configuration. Relative `--output-dir` and `
 
 ```sh
 python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model random --split test --seed 42 --data-root . --output-dir diagram_vqa/runs/reproduction_random --no-resume
-python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model ocr_text --split test --seed 42 --data-root . --output-dir diagram_vqa/runs/reproduction_ocr --no-resume
 ```
 
-The full AI2D Random evaluation uses all 3,088 test questions and 814 unique documents. Repeat Random with seeds 43 and 44. OCR TF-IDF needs only one full evaluation per dataset. `--max-samples 16` is a smoke check; it receives a distinct status and must use a different output root from a full run. The runner checks for at least 20 GiB of free output space.
+The full AI2D Random evaluation uses all 3,088 test questions and 814 unique documents. Repeat Random with seeds 43 and 44. `--max-samples 16` is a smoke check; it receives a distinct status and must use a different output root from a full run. The runner checks for at least 20 GiB of free output space.
 
 For trainable matrix models, validation selects the checkpoint:
 

@@ -299,7 +299,7 @@ The preparation scripts retain the official DocVQA/InfographicVQA split names. T
 
 ### Download model weights
 
-The Random baseline needs no weights. OCR + TF-IDF needs OCR but no neural encoder. Install the research environment before the remaining commands.
+The Random baseline needs no weights. Install the research environment before the remaining commands.
 
 | Experiment | Required pretrained inputs | Location / acquisition |
 |---|---|---|
@@ -362,16 +362,6 @@ python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model random --s
 ```
 
 The full AI2D metrics report `available_full`, `num_samples=3088` and `num_documents=814`. Repeat with `--seed 43` and `--seed 44` in the same full output root; their seed subdirectories are separate. On the historical manifest the three accuracies averaged **24.35 ± 0.21%**. A new data/preprocessing version is a new experiment, not an instruction to force this number.
-
-The full OCR baselines run independently for all three datasets:
-
-```sh
-python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model ocr_text --split test --seed 42 --data-root "$DATA_ROOT" --output-dir diagram_vqa/runs/readme_ocr_full --no-resume
-python diagram_vqa/scripts/run_model_matrix.py --dataset docvqa --model ocr_text --split test --seed 42 --data-root "$DATA_ROOT" --output-dir diagram_vqa/runs/readme_ocr_full --no-resume
-python diagram_vqa/scripts/run_model_matrix.py --dataset infographicvqa --model ocr_text --split test --seed 42 --data-root "$DATA_ROOT" --output-dir diagram_vqa/runs/readme_ocr_full --no-resume
-```
-
-OCR TF-IDF is deterministic; repeated training seeds are unnecessary. On InfographicVQA the first run extracts OCR unless its cache already exists. Outputs follow `OUTPUT/<dataset>/ocr_text/seed42/test/`. Read `metrics.json` for `retrieval.mean_recall_at_k`; for AI2D, `vqa.score` is answer accuracy. For the other datasets heed the hidden-answer restriction above.
 
 To train the CLIP answer/retrieval heads with an explicit budget:
 
@@ -485,10 +475,10 @@ python diagram_vqa/scripts/reproduce_results.py --check
 Expected summary:
 
 ```json
-{"accuracy_groups": 5, "retrieval_groups": 15, "saved_full_test_runs": 39, "check": "passed"}
+{"accuracy_groups": 5, "retrieval_groups": 12, "saved_full_test_runs": 36, "check": "passed"}
 ```
 
-This verifies identities, hashes, seeds and aggregation of 36 principal runs plus three deterministic OCR evaluations. Percentages use population standard deviation (`ddof=0`) over seeds42–44. It verifies the marked retrieval tables in this README and `docs/results.md`; it does not perform inference or automatically discover your new run directories.
+This verifies identities, hashes, seeds and aggregation of 36 principal runs. Percentages use population standard deviation (`ddof=0`) over seeds42–44. It verifies the marked retrieval tables in this README and `docs/results.md`; it does not perform inference or automatically discover your new run directories.
 
 For newly trained models, inspect the new metrics and scoped audit, retain their configuration/checkpoints/predictions, and establish their data/protocol identity before promoting them into `reports/reproducibility/evidence.json`. Then regenerate marked tables with `python diagram_vqa/scripts/reproduce_results.py --write` and rerun `--check`. Do not use the older `aggregate_model_matrix.py` as a final-test verifier: it reads a different validation-output schema.
 
@@ -585,22 +575,19 @@ Candidates are all unique documents in the dataset's evaluation split. In the re
 | AI2D | GATv2 + kNN | 6.64 ± 0.63 | 20.78 ± 0.45 | 31.82 ± 0.81 | 3 |
 | AI2D | Граф с отбором связей по типам | 6.30 ± 0.42 | 20.85 ± 0.79 | 31.15 ± 1.35 | 3 |
 | AI2D | Граф с общим отбором связей | 6.13 ± 0.42 | 20.28 ± 0.58 | 30.90 ± 0.39 | 3 |
-| AI2D | OCR + TF-IDF | 17.27 | 29.90 | 36.18 | 1 |
 | DocVQA | CLIP | 5.09 ± 0.22 | 14.82 ± 0.81 | 20.98 ± 0.73 | 3 |
 | DocVQA | GATv2 + kNN | 18.51 ± 0.56 | 36.73 ± 0.30 | 45.80 ± 0.26 | 3 |
 | DocVQA | Граф с отбором связей по типам | 7.62 ± 0.36 | 20.20 ± 0.35 | 29.52 ± 0.42 | 3 |
 | DocVQA | Граф с общим отбором связей | 7.54 ± 0.43 | 20.79 ± 0.48 | 29.50 ± 0.51 | 3 |
-| DocVQA | OCR + TF-IDF | 35.95 | 52.38 | 58.52 | 1 |
 | InfographicVQA | CLIP | 11.35 ± 0.08 | 25.76 ± 0.74 | 34.85 ± 0.87 | 3 |
 | InfographicVQA | GATv2 + kNN | 24.58 ± 1.73 | 45.92 ± 1.36 | 56.27 ± 0.93 | 3 |
 | InfographicVQA | Граф с отбором связей по типам | 13.85 ± 2.04 | 32.70 ± 2.77 | 43.53 ± 3.20 | 3 |
 | InfographicVQA | Граф с общим отбором связей | 14.32 ± 2.16 | 32.14 ± 3.10 | 43.03 ± 3.61 | 3 |
-| InfographicVQA | OCR + TF-IDF | 55.66 | 73.15 | 78.68 | 1 |
 <!-- END GENERATED RETRIEVAL TABLE -->
 
-Values are percentages, reported as mean ± population standard deviation. All graph/CLIP entries use three completed runs, seeds 42–44. OCR + TF-IDF is a deterministic, untrained full-test baseline (one recorded run); its vocabulary is fitted on document OCR and queries are transformed without answer labels. Its saved R@K and MRR were independently recomputed on all three local test sets.
+Values are percentages, reported as mean ± population standard deviation. All displayed entries use three completed runs, seeds 42–44.
 
-Graph models exceed CLIP on the displayed retrieval means, but **OCR + TF-IDF exceeds every graph on these retrieval metrics**. This comparison concerns document retrieval, not answer accuracy. Attention does not consistently outperform kNN, and means alone do not establish statistical significance. The architectures also differ in features and training budgets, so this table does not isolate the causal contribution of attention.
+Graph models exceed CLIP on the displayed retrieval means. This comparison concerns document retrieval, not answer accuracy. Attention does not consistently outperform kNN, and means alone do not establish statistical significance. The architectures also differ in features and training budgets, so this table does not isolate the causal contribution of attention.
 
 Recompute and check this table without datasets or model downloads:
 

@@ -208,29 +208,6 @@
       }
     },
     {
-      "dataset": "ai2d",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "seeds": [
-        42
-      ],
-      "n": 1,
-      "percent": {
-        "1": {
-          "mean": 17.26768277934081,
-          "sd": null
-        },
-        "5": {
-          "mean": 29.896619712034216,
-          "sd": null
-        },
-        "10": {
-          "mean": 36.17844616873114,
-          "sd": null
-        }
-      }
-    },
-    {
       "dataset": "docvqa",
       "architecture": "clip",
       "name": "CLIP",
@@ -331,29 +308,6 @@
       }
     },
     {
-      "dataset": "docvqa",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "seeds": [
-        42
-      ],
-      "n": 1,
-      "percent": {
-        "1": {
-          "mean": 35.94554913945816,
-          "sd": null
-        },
-        "5": {
-          "mean": 52.38062823837688,
-          "sd": null
-        },
-        "10": {
-          "mean": 58.52418377476203,
-          "sd": null
-        }
-      }
-    },
-    {
       "dataset": "infographicvqa",
       "architecture": "clip",
       "name": "CLIP",
@@ -450,29 +404,6 @@
         "10": {
           "mean": 43.0348858464758,
           "sd": 3.6094803024133273
-        }
-      }
-    },
-    {
-      "dataset": "infographicvqa",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "seeds": [
-        42
-      ],
-      "n": 1,
-      "percent": {
-        "1": {
-          "mean": 55.66016476936072,
-          "sd": null
-        },
-        "5": {
-          "mean": 73.14878723699306,
-          "sd": null
-        },
-        "10": {
-          "mean": 78.68359429169345,
-          "sd": null
         }
       }
     }

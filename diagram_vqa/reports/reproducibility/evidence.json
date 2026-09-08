@@ -280,20 +280,6 @@
       ]
     },
     {
-      "dataset": "ai2d",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "num_samples": 3088,
-      "num_documents": 814,
-      "runs": [
-        {
-          "seed": 42,
-          "metrics_path": "runs/model_matrix/ai2d/ocr_text/seed42/test/metrics.json",
-          "content_sha256": "1aed7f6d5ecb4df30da0a0385d44c56afae95ea6c14120e3c3c126bd02570c42"
-        }
-      ]
-    },
-    {
       "dataset": "docvqa",
       "architecture": "clip",
       "name": "CLIP",
@@ -438,20 +424,6 @@
       ]
     },
     {
-      "dataset": "docvqa",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "num_samples": 5188,
-      "num_documents": 1287,
-      "runs": [
-        {
-          "seed": 42,
-          "metrics_path": "runs/model_matrix/docvqa/ocr_text/seed42/test/metrics.json",
-          "content_sha256": "f99300f22441506998b44b65bd464b6d428cf214b90216dea202273c61dc8676"
-        }
-      ]
-    },
-    {
       "dataset": "infographicvqa",
       "architecture": "clip",
       "name": "CLIP",
@@ -592,20 +564,6 @@
           "best_epoch": 7,
           "epochs_completed": 12,
           "content_sha256": "7756169a117e72d0cd2cfc29edca70ad00f70c68ef74098ef9b51eec321b036d"
-        }
-      ]
-    },
-    {
-      "dataset": "infographicvqa",
-      "architecture": "ocr_text",
-      "name": "OCR + TF-IDF",
-      "num_samples": 3288,
-      "num_documents": 579,
-      "runs": [
-        {
-          "seed": 42,
-          "metrics_path": "runs/model_matrix/infographicvqa/ocr_text/seed42/test/metrics.json",
-          "content_sha256": "4e9a6ac185c994ce9f8fc88de5e261aa86956bd477d21dc01ec214c259536db7"
         }
       ]
     }

@@ -17,8 +17,8 @@
   },
   "table_check": {
     "accuracy_groups": 5,
-    "retrieval_groups": 15,
-    "full_evaluations": 39,
+    "retrieval_groups": 12,
+    "full_evaluations": 36,
     "passed": true
   },
   "full_random": [

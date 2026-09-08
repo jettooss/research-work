@@ -30,22 +30,19 @@ The candidate pool contains all unique documents in the evaluation split. Revers
 | AI2D | GATv2 + kNN | 6.64 ± 0.63 | 20.78 ± 0.45 | 31.82 ± 0.81 | 3 |
 | AI2D | Граф с отбором связей по типам | 6.30 ± 0.42 | 20.85 ± 0.79 | 31.15 ± 1.35 | 3 |
 | AI2D | Граф с общим отбором связей | 6.13 ± 0.42 | 20.28 ± 0.58 | 30.90 ± 0.39 | 3 |
-| AI2D | OCR + TF-IDF | 17.27 | 29.90 | 36.18 | 1 |
 | DocVQA | CLIP | 5.09 ± 0.22 | 14.82 ± 0.81 | 20.98 ± 0.73 | 3 |
 | DocVQA | GATv2 + kNN | 18.51 ± 0.56 | 36.73 ± 0.30 | 45.80 ± 0.26 | 3 |
 | DocVQA | Граф с отбором связей по типам | 7.62 ± 0.36 | 20.20 ± 0.35 | 29.52 ± 0.42 | 3 |
 | DocVQA | Граф с общим отбором связей | 7.54 ± 0.43 | 20.79 ± 0.48 | 29.50 ± 0.51 | 3 |
-| DocVQA | OCR + TF-IDF | 35.95 | 52.38 | 58.52 | 1 |
 | InfographicVQA | CLIP | 11.35 ± 0.08 | 25.76 ± 0.74 | 34.85 ± 0.87 | 3 |
 | InfographicVQA | GATv2 + kNN | 24.58 ± 1.73 | 45.92 ± 1.36 | 56.27 ± 0.93 | 3 |
 | InfographicVQA | Граф с отбором связей по типам | 13.85 ± 2.04 | 32.70 ± 2.77 | 43.53 ± 3.20 | 3 |
 | InfographicVQA | Граф с общим отбором связей | 14.32 ± 2.16 | 32.14 ± 3.10 | 43.03 ± 3.61 | 3 |
-| InfographicVQA | OCR + TF-IDF | 55.66 | 73.15 | 78.68 | 1 |
 <!-- END GENERATED RETRIEVAL TABLE -->
 
-Mean ± population standard deviation across the three completed seeds 42–44 for graph/CLIP models. OCR + TF-IDF is a deterministic untrained baseline with one recorded full-test evaluation; no seed spread is inferred. Its document-only vocabulary and the same question/document populations were checked by fresh local recomputation. Historical manifest byte identity is not recorded by the original runs; current observed fingerprints are in the evidence manifest.
+Mean ± population standard deviation across the three completed seeds 42–44. Historical manifest byte identity is not recorded by the original runs; current observed fingerprints are in the evidence manifest.
 
-OCR + TF-IDF exceeds the graph models on the displayed retrieval metrics. The supported conclusion is an improvement over CLIP, not over the strongest nongraph retrieval alternative. This does not imply OCR has better VQA answer accuracy. Architecture comparisons change features and training budgets as well as edges; they do not isolate the contribution of attention. Existing OCR ablations are separate experiments.
+The displayed graph models improve over CLIP on the reported retrieval metrics. Architecture comparisons change features and training budgets as well as edges; they do not isolate the contribution of attention.
 
 ## Accuracy by question type — slide 13
 

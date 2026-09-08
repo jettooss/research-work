@@ -105,7 +105,7 @@ The [.dockerignore](../../.dockerignore) allows only the image's source inputs. 
 | Argument | Type / accepted values | Default |
 |---|---|---|
 | `--dataset` | `ai2d`, `docvqa`, `infographicvqa` | Required |
-| `--model` | `random`, `clip`, `siglip`, `ocr_text`, `gatv2_knn`, `graph_transformer`, `sam2_graph_transformer`, `hybrid_gatv2_knn`, `graphcolbert`, `graphcolbert_film`, `qwen25_vl_qlora` | Required |
+| `--model` | `random`, `clip`, `siglip`, `gatv2_knn`, `graph_transformer`, `sam2_graph_transformer`, `hybrid_gatv2_knn`, `graphcolbert`, `graphcolbert_film`, `qwen25_vl_qlora` | Required |
 | `--split` | `val` or `test` | `val` |
 | `--seed` | Integer | `42` |
 | `--max-samples` | Positive integer for a small run | Unlimited |

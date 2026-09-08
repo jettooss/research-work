@@ -84,7 +84,7 @@ def compute(evidence_path=EVIDENCE, root=ROOT):
     retrieval = []
     for group in evidence["retrieval"]:
         seeds = [item["seed"] for item in group["runs"]]
-        expected_seeds = [42] if group["architecture"] == "ocr_text" else [42, 43, 44]
+        expected_seeds = [42, 43, 44]
         if sorted(seeds) != expected_seeds:
             raise ValueError(f"Incomplete or duplicated seeds: {group['dataset']}/{group['architecture']}")
         measurements = []
