@@ -18,6 +18,18 @@ import torch.nn.functional as F
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
+if __package__:
+    from .model_matrix_integrity import (
+        capture_rng_state, checkpoint_config, completed_metrics, digest, file_digest,
+        restore_rng_state, test_config, training_config, training_paths,
+        validate_directory, validate_partial_checkpoint, write_config,
+    )
+else:
+    from model_matrix_integrity import (
+        capture_rng_state, checkpoint_config, completed_metrics, digest, file_digest,
+        restore_rng_state, test_config, training_config, training_paths,
+        validate_directory, validate_partial_checkpoint, write_config,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -246,40 +258,53 @@ def evaluate(heads: VisionHeads, rows: list[dict[str, Any]], store: FrozenVision
 
 
 def main() -> None:
+    global EXTERNAL_ROOT
     parser = argparse.ArgumentParser(description="Train frozen CLIP/SigLIP heads for the 11x3 matrix.")
     parser.add_argument("--dataset", choices=DATASETS, required=True)
     parser.add_argument("--model", choices=["clip", "siglip"], required=True)
-    parser.add_argument("--split", choices=["val", "test"], default="val")
+    parser.add_argument("--split", choices=["val", "test"], default="val",
+                        help="val: train/select on validation, then evaluate test; test: evaluate a saved validation checkpoint only")
     parser.add_argument("--seed", type=int, choices=SEEDS, default=42)
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "runs/model_matrix")
+    parser.add_argument("--data-root", type=Path, default=ROOT.parent,
+                        help="Root containing dataset manifests, models and model_matrix_cache")
     parser.add_argument("--resume", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--epochs", type=int, default=20)
     parser.add_argument("--early-stopping-patience", type=int, default=4)
     parser.add_argument("--batch-size", type=int, default=64)
     args = parser.parse_args()
-    run_vision_experiment_config(args)
+    args.output_dir = args.output_dir.resolve()
+    EXTERNAL_ROOT = args.data_root.resolve()
+    result = run_vision_experiment_config(args)
+    if args.split == "test":
+        print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
-
-    run_dir = Path(args.run_dir_override) if getattr(args, "run_dir_override", None) else args.output_dir / args.dataset / args.model / f"seed{args.seed}" / args.split
-    ensure_free_space(run_dir)
-    run_dir.mkdir(parents=True, exist_ok=True)
-    (run_dir / "config.json").write_text(json.dumps({
-        "dataset": args.dataset, "model": args.model, "split": args.split, "seed": args.seed,
-        "max_samples": args.max_samples, "epochs": args.epochs, "early_stopping_patience": args.early_stopping_patience,
-        "batch_size": args.batch_size, "frozen_backbone": True,
-        "checkpoint_selection": "0.5*vqa+0.5*mean_r1", "resume": args.resume,
-    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    rows = load_rows(args.dataset, EXTERNAL_ROOT)
+    run_dir, test_dir = training_paths(args)
+    if args.split == "test":
+        return evaluate_vision_test(args, rows)
+    config = training_config(args, rows, input_root=EXTERNAL_ROOT, backend="frozen_vision", epochs=args.epochs,
+                             early_stopping_patience=args.early_stopping_patience,
+                             batch_size=args.batch_size, frozen_backbone=True)
+    validate_directory(run_dir, config, resume=args.resume)
+    train_rows = split_rows(rows, "train", args.max_samples)
+    eval_rows = split_rows(rows, "val", args.max_samples)
+    if not train_rows or not eval_rows or not split_rows(rows, "test", args.max_samples):
+        raise ValueError("Training requires nonempty train, val and final test splits")
+    last, history = validate_partial_checkpoint(run_dir, config, load_torch)
     metrics_path = run_dir / "metrics.json"
-    if args.resume and metrics_path.exists():
-        existing = json.loads(metrics_path.read_text(encoding="utf-8"))
-        test_path = run_dir / "test/metrics.json" if getattr(args, "run_dir_override", None) else run_dir.parent / "test/metrics.json"
-        test_ready = args.split == "test" or test_path.exists()
-        if existing.get("status") == "completed_full" and existing.get("epochs_completed") == args.epochs and test_ready:
-            print(json.dumps(existing, ensure_ascii=False, indent=2))
-            return existing
+    existing = completed_metrics(run_dir, config, eval_rows, trained=True)
+    if existing is not None:
+        existing["test"] = evaluate_vision_test(args, rows)
+        print(json.dumps(existing, ensure_ascii=False, indent=2))
+        return existing
+    if test_dir.exists() and any(test_dir.iterdir()):
+        raise ValueError(f"Test artifacts exist without a completed matching training run: {test_dir}")
+    ensure_free_space(run_dir)
+    write_config(run_dir, config)
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -288,9 +313,6 @@ def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)
         torch.cuda.reset_peak_memory_stats()
-    rows = load_rows(args.dataset, EXTERNAL_ROOT)
-    train_rows = split_rows(rows, "train", args.max_samples)
-    eval_rows = split_rows(rows, args.split, args.max_samples)
     store = FrozenVisionStore(args.dataset, args.model, EXTERNAL_ROOT / "model_matrix_cache/vision", device)
     heads = VisionHeads(store.feature_dim).to(device)
     optimizer = torch.optim.AdamW(heads.parameters(), lr=1e-3, weight_decay=0.01)
@@ -298,22 +320,23 @@ def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
     epochs = min(args.epochs, 2) if args.max_samples is not None else args.epochs
     history_path = run_dir / "history.json"
     last_checkpoint_path = run_dir / "checkpoint_last.pt"
-    history = []
     best_composite = -math.inf
     started = time.perf_counter()
     run_dir.mkdir(parents=True, exist_ok=True)
 
     start_epoch = 1
-    if args.resume and history_path.exists() and last_checkpoint_path.exists():
-        history = json.loads(history_path.read_text(encoding="utf-8"))
-        last = load_torch(last_checkpoint_path)
+    if last is not None:
         heads.load_state_dict(last["heads"])
         optimizer.load_state_dict(last["optimizer"])
         start_epoch = int(last["epoch"]) + 1
+        restore_rng_state(last["rng_state"])
         if history:
             best_composite = max(float(row["composite"]) for row in history)
 
-    for epoch in range(start_epoch, epochs + 1):
+    best_index = max(range(len(history)), key=lambda i: history[i]["composite"]) if history else -1
+    patience = len(history) - best_index - 1
+    early_stopped = args.early_stopping_patience > 0 and patience >= args.early_stopping_patience
+    for epoch in range(start_epoch, start_epoch if early_stopped else epochs + 1):
         heads.train()
         losses = []
         for batch in tqdm(loader, desc=f"{args.dataset}/{args.model}/seed{args.seed} epoch {epoch}/{epochs}"):
@@ -337,11 +360,19 @@ def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
         history_path.write_text(json.dumps(history, ensure_ascii=False, indent=2), encoding="utf-8")
         if composite > best_composite:
             best_composite = composite
-            torch.save({"heads": heads.state_dict(), "epoch": epoch, "composite": composite}, run_dir / "checkpoint_best.pt")
+            patience = 0
+            torch.save({"heads": heads.state_dict(), "epoch": epoch, "composite": composite,
+                        "config_sha256": digest(config)}, run_dir / "checkpoint_best.pt")
+        else:
+            patience += 1
         torch.save(
-            {"heads": heads.state_dict(), "optimizer": optimizer.state_dict(), "epoch": epoch},
+            {"heads": heads.state_dict(), "optimizer": optimizer.state_dict(), "epoch": epoch,
+             "config_sha256": digest(config), "history_sha256": digest(history), "rng_state": capture_rng_state()},
             last_checkpoint_path,
         )
+        if args.early_stopping_patience > 0 and patience >= args.early_stopping_patience:
+            early_stopped = True
+            break
 
     best = load_torch(run_dir / "checkpoint_best.pt")
     heads.load_state_dict(best["heads"])
@@ -349,10 +380,12 @@ def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
     elapsed = time.perf_counter() - started
     metrics = {
         "dataset": args.dataset, "model": args.model, "split": args.split, "seed": args.seed,
-        "status": "completed_full" if args.max_samples is None and len(history) == args.epochs else "completed_smoke",
+        "status": "completed_full" if args.max_samples is None else "completed_smoke",
         "num_samples": len(eval_rows), "epochs_completed": len(history), "best_epoch": int(best["epoch"]),
         "best_composite": float(best["composite"]), "history": history,
-        "training_execution": {"mode": "full", "full_training_was_run": True}, **evaluation,
+        "config_sha256": digest(config), "checkpoint_sha256": file_digest(run_dir / "checkpoint_best.pt"),
+        "training_execution": {"mode": "full" if args.max_samples is None else "smoke",
+                               "full_training_was_run": args.max_samples is None, "early_stopped": early_stopped}, **evaluation,
         "resources": {
             "wall_time_seconds": elapsed, "latency_ms_per_question": elapsed * 1000 / max(1, len(eval_rows)),
             "throughput_questions_per_second": len(eval_rows) / elapsed if elapsed else None,
@@ -363,26 +396,51 @@ def run_vision_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
         },
     }
     write_jsonl(predictions, run_dir / "predictions.jsonl")
+    metrics["predictions_sha256"] = file_digest(run_dir / "predictions.jsonl")
     metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
-    if args.split == "val":
-        test_rows = split_rows(rows, "test", args.max_samples)
-        test_evaluation, test_predictions = evaluate(heads, test_rows, store, device)
-        test_dir = run_dir / "test" if getattr(args, "run_dir_override", None) else run_dir.parent / "test"
-        test_dir.mkdir(parents=True, exist_ok=True)
-        test_metrics = {
-            "dataset": args.dataset, "model": args.model, "split": "test", "seed": args.seed,
-            "status": "completed_full" if args.max_samples is None else "completed_smoke",
-            "num_samples": len(test_rows), **test_evaluation,
-        }
-        metrics["test"] = test_metrics
-        write_jsonl(test_predictions, test_dir / "predictions.jsonl")
-        (test_dir / "metrics.json").write_text(json.dumps(test_metrics, ensure_ascii=False, indent=2), encoding="utf-8")
-        if args.dataset != "ai2d":
-            submission = [{"questionId": row["question_id"], "answer": row["pred_answer"]} for row in test_predictions]
-            (test_dir / "submission.json").write_text(json.dumps(submission, ensure_ascii=False, indent=2), encoding="utf-8")
-        metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
+    metrics["test"] = evaluate_vision_test(args, rows, heads=heads, store=store, device=device)
+    metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(metrics, ensure_ascii=False, indent=2))
     return metrics
+
+
+def evaluate_vision_test(args, rows, *, heads=None, store=None, device=None):
+    run_dir, test_dir = training_paths(args)
+    saved_config = checkpoint_config(args, rows, run_dir, input_root=EXTERNAL_ROOT)
+    validation = completed_metrics(run_dir, saved_config, split_rows(rows, "val", args.max_samples), trained=True)
+    if validation is None:
+        raise ValueError("--split test needs a completed validation-selected checkpoint; train with --split val first")
+    checkpoint = run_dir / "checkpoint_best.pt"
+    config = test_config(args, rows, saved_config, checkpoint, input_root=EXTERNAL_ROOT)
+    validate_directory(test_dir, config, resume=args.resume)
+    test_rows = split_rows(rows, "test", args.max_samples)
+    if not test_rows:
+        raise ValueError("The test split is empty")
+    existing = completed_metrics(test_dir, config, test_rows)
+    if existing is not None:
+        return existing
+    best = load_torch(checkpoint)
+    if best.get("config_sha256") != digest(saved_config) or best.get("epoch") != validation["best_epoch"]:
+        raise ValueError("Checkpoint does not match the completed validation run")
+    if heads is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        store = FrozenVisionStore(args.dataset, args.model, EXTERNAL_ROOT / "model_matrix_cache/vision", device)
+        heads = VisionHeads(store.feature_dim).to(device)
+        heads.load_state_dict(best["heads"])
+    evaluation, predictions = evaluate(heads, test_rows, store, device)
+    result = {"dataset": args.dataset, "model": args.model, "split": "test", "seed": args.seed,
+              "status": "available_full" if args.max_samples is None else "available_smoke",
+              "num_samples": len(test_rows), "config_sha256": digest(config),
+              "checkpoint_sha256": config["checkpoint_sha256"], "checkpoint_selection_split": "val",
+              "best_epoch": validation["best_epoch"], **evaluation}
+    write_config(test_dir, config)
+    write_jsonl(predictions, test_dir / "predictions.jsonl")
+    result["predictions_sha256"] = file_digest(test_dir / "predictions.jsonl")
+    if args.dataset != "ai2d":
+        submission = [{"questionId": row["question_id"], "answer": row["pred_answer"]} for row in predictions]
+        (test_dir / "submission.json").write_text(json.dumps(submission, ensure_ascii=False, indent=2), encoding="utf-8")
+    (test_dir / "metrics.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    return result
 
 
 def train_vision_experiment(

@@ -1,0 +1,135 @@
+{
+  "checked_date": "2026-09-08",
+  "scope": "Local working-tree repair; historical data/checkpoints/results retained; no GitHub publication performed.",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows",
+    "device": "CPU",
+    "reference": "environment_reference.json",
+    "pip_check": "passed"
+  },
+  "tests": {
+    "command": "python -m unittest discover -s diagram_vqa/tests -v",
+    "count": 71,
+    "passed": 71,
+    "failed": 0,
+    "location": "isolated copy of reproduction-bundle inputs"
+  },
+  "table_check": {
+    "accuracy_groups": 5,
+    "retrieval_groups": 15,
+    "full_evaluations": 39,
+    "passed": true
+  },
+  "full_random": [
+    {
+      "seed": 42,
+      "questions": 3088,
+      "documents": 814,
+      "accuracy": 0.2425518134715026,
+      "retrieval": {
+        "1": 0.0006476683937823834,
+        "5": 0.006923845654415603,
+        "10": 0.013071523596134995
+      },
+      "accuracy_and_recall_exact": true,
+      "mrr_max_absolute_difference": 1.3877787807814457e-17,
+      "mrr_absolute_tolerance": 1e-12
+    },
+    {
+      "seed": 43,
+      "questions": 3088,
+      "documents": 814,
+      "accuracy": 0.241580310880829,
+      "retrieval": {
+        "1": 0.0015857532049241892,
+        "5": 0.007700013367111813,
+        "10": 0.014880857659355068
+      },
+      "accuracy_and_recall_exact": true,
+      "mrr_max_absolute_difference": 2.42861286636753e-17,
+      "mrr_absolute_tolerance": 1e-12
+    },
+    {
+      "seed": 44,
+      "questions": 3088,
+      "documents": 814,
+      "accuracy": 0.24643782383419688,
+      "retrieval": {
+        "1": 0.0006476683937823834,
+        "5": 0.004757259614772568,
+        "10": 0.014752358340441241
+      },
+      "accuracy_and_recall_exact": true,
+      "mrr_max_absolute_difference": 2.949029909160572e-17,
+      "mrr_absolute_tolerance": 1e-12
+    }
+  ],
+  "clean_copy_cli": {
+    "dataset": "ai2d",
+    "model": "random",
+    "seed": 42,
+    "questions": 3088,
+    "documents": 814,
+    "fresh_evaluation": "passed",
+    "matching_resume": "passed",
+    "separate_data_root": true,
+    "caller_relative_output": true
+  },
+  "clip_training_smoke": {
+    "seed": 42,
+    "questions_per_split": 16,
+    "epochs_completed": 2,
+    "best_epoch": 1,
+    "checkpoint_selection_split": "val",
+    "test_accuracy": 0.3125,
+    "evaluation_only_resume": "passed",
+    "full_training": false
+  },
+  "saved_graph_inference": {
+    "dataset": "ai2d",
+    "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+    "seed": 42,
+    "questions": 3088,
+    "documents": 814,
+    "mean_recall_at_k": {
+      "1": 0.06693302758717266,
+      "5": 0.21005660335323548,
+      "10": 0.31450029280340164
+    },
+    "checkpoint_sha256": "aa19e38352abf4aae763be4d0ab6e7b2c4d8e9794a8f6666b1587d2aebc2441a",
+    "all_recall_fields_match_saved_exactly": true,
+    "mrr_max_absolute_difference": 7.710338021216234e-06,
+    "mrr_matches_bitwise": false,
+    "mrr_note": "MRR differs from historical evaluation; exact cross-environment ranking reproduction is not established. Published R@1/R@5/R@10 all match.",
+    "independent_audit": "passed",
+    "new_training": false
+  },
+  "ai2d_preparation": {
+    "raw_questions_checked": 15501,
+    "raw_images_ocr_smoke": 2,
+    "question_rows_ocr_smoke": 6,
+    "missing_document_only_image": "4325",
+    "corrected_training_gold_sample": "2618.png:2618.png-3",
+    "historical_training_data_overwritten": false
+  },
+  "archive_checks": {
+    "fixture_tests": "passed",
+    "metadata_snapshot_verified": true,
+    "clean_copy_input_files": 328,
+    "include_data_dry_run": {
+      "files": 22647,
+      "bytes_uncompressed": 612415519,
+      "transformed_manifests": 3,
+      "missing_inputs": 0
+    },
+    "note": "Counts describe the validation snapshot; the final archive inventory records its exact contents."
+  },
+  "limits": [
+    "No complete 36-run retraining matrix.",
+    "No CUDA/QLoRA generation validation or Docker build/runtime on this host.",
+    "Historical incomplete hyperparameter configs cannot be reconstructed with certainty.",
+    "New corrected AI2D labels require new training before scientific scores can be updated.",
+    "Images, pretrained models and feature caches require separately preserved input artifacts."
+  ]
+}

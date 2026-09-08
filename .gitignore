@@ -7,8 +7,11 @@
 
 # Окружение Python (data-level)
 /.venv/
+/.venv-*/
 
 # Датасеты и модели (большие, внешние — держим рядом, но не в git)
+/downloads/
+/__MACOSX/
 /ai2d/
 /docvqa/
 /infographicvqa/

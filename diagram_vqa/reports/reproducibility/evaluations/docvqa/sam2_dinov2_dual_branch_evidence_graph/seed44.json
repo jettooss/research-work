@@ -1,0 +1,38 @@
+{
+  "dataset": "docvqa",
+  "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+  "seed": 44,
+  "status": "evaluated_full_test",
+  "num_samples": 5188,
+  "num_documents": 1287,
+  "best_epoch": 15,
+  "protocol": "bidirectional_mean_unique_documents_v1",
+  "tie_break": "stable original candidate order",
+  "retrieval": {
+    "question_to_document": {
+      "recall_at_k": {
+        "1": 0.0659213569776407,
+        "5": 0.18909020817270625,
+        "10": 0.271781033153431
+      },
+      "mrr": 0.13469311506461332
+    },
+    "document_to_question": {
+      "recall_at_k": {
+        "1": 0.07692307692307693,
+        "5": 0.22688422688422688,
+        "10": 0.3209013209013209
+      },
+      "mrr": 0.15662827855887365
+    },
+    "mean_recall_at_k": {
+      "1": 0.07142221695035882,
+      "5": 0.20798721752846655,
+      "10": 0.29634117702737595
+    }
+  },
+  "checkpoint": "runs/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed44_full/checkpoint_best.pt",
+  "checkpoint_sha256": "2e6b494b2adcbffb43558ec6da007f5daa7bf6a08698d8e903e1887f58a01b28",
+  "original_source_sha256": "a7f6ce51df23c794a0100bfcf025e3ba977a389c60d6b30f510c8359126cb4d3",
+  "original_source": "runs/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed44_full/retrieval_unique_test.json"
+}

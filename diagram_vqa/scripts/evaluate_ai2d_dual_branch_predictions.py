@@ -110,7 +110,7 @@ def main() -> None:
     )
     accuracy = sum(float(row["score"]) for row in predictions) / max(1, len(predictions))
     metrics = {
-        "model": "Dual-Branch Evidence Graph",
+        "model": "Граф с общим отбором связей",
         "samples": len(predictions),
         "accuracy": accuracy,
         "checkpoint": str(args.checkpoint.resolve()),

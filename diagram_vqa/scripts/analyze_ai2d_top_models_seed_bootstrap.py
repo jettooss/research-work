@@ -12,7 +12,7 @@ import pandas as pd
 DEFAULT_MODELS = {
     "CLIP baseline": Path("runs/ai2d/clip_vqa_baseline/seed42_full/test/predictions.jsonl"),
     "GraphColBERT+FiLM": Path("runs/ai2d/graphcolbert_film/seed42_full/test/predictions.jsonl"),
-    "Dual-Branch Evidence Graph": Path(
+    "Граф с общим отбором связей": Path(
         "runs/ai2d_top_models_100_seed_analysis/dual_branch/predictions.jsonl"
     ),
     "Qwen2.5-VL QLoRA": Path(

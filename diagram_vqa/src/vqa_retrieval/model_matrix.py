@@ -43,16 +43,24 @@ def manifest_for(dataset: str, external_root: Path) -> Path:
     return paths[dataset]
 
 
+def _resolve_data_path(value: str | Path, external_root: Path) -> Path:
+    """Manifest paths are relative to the selected data root, never the cwd."""
+    path = Path(value)
+    return (path if path.is_absolute() else external_root / path).resolve()
+
+
 def load_rows(dataset: str, external_root: Path) -> list[dict[str, Any]]:
+    external_root = Path(external_root).resolve()
     path = manifest_for(dataset, external_root)
     rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
     normalized = []
     for row in rows:
         item = dict(row)
-        image_path = Path(str(item["image_path"]))
-        if not image_path.is_absolute():
-            image_path = external_root / image_path
-        item["image_path"] = str(image_path.resolve())
+        image_path = _resolve_data_path(item["image_path"], external_root)
+        item["image_path"] = str(image_path)
+        for field in ("ocr_path", "ocr_v2_path"):
+            if item.get(field):
+                item[field] = str(_resolve_data_path(item[field], external_root))
         item["sample_id"] = str(item.get("sample_id", item.get("question_id", len(normalized))))
         item["image_id"] = str(item.get("image_id", item.get("doc_id", image_path.stem)))
         if dataset == "ai2d":
@@ -83,17 +91,17 @@ def _bbox_from_polygon(values: Sequence[float]) -> list[float]:
 
 
 def _read_ai2d_ocr(row: dict[str, Any], external_root: Path) -> list[dict[str, Any]]:
-    path = Path(str(row.get("ocr_v2_path") or ""))
-    if not path.is_absolute():
-        path = external_root / path
-    if not path.exists():
+    if not row.get("ocr_v2_path"):
+        return []
+    path = _resolve_data_path(row["ocr_v2_path"], external_root)
+    if not path.is_file():
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
     return [{"text": str(word.get("text", "")), "bbox": word.get("bbox", [0, 0, 0, 0])} for word in payload.get("words", [])]
 
 
 def _read_azure_ocr(path: Path) -> list[dict[str, Any]]:
-    if not path.exists():
+    if not path.is_file():
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))
     results = payload.get("recognitionResults") or payload.get("analyzeResult", {}).get("readResults") or []
@@ -135,9 +143,11 @@ def ocr_spans(dataset: str, row: dict[str, Any], external_root: Path, cache_root
     if dataset == "ai2d":
         spans = _read_ai2d_ocr(row, external_root)
     elif dataset == "docvqa":
-        spans = _read_azure_ocr(Path(str(row.get("ocr_path", ""))))
+        path = row.get("ocr_path")
+        spans = _read_azure_ocr(_resolve_data_path(path, external_root)) if path else []
     else:
-        spans = _tesseract_ocr(row, cache_root / dataset)
+        image_row = dict(row, image_path=str(_resolve_data_path(row["image_path"], external_root)))
+        spans = _tesseract_ocr(image_row, cache_root / dataset)
     return [span for span in spans if str(span.get("text", "")).strip()]
 
 

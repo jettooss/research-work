@@ -1,10 +1,10 @@
 # Installation, datasets, and interfaces
 
-Commands run from the repository root unless stated otherwise. The [README](../../README.md) provides the shortest example. The Docker image covers metric evaluation and the Random CPU baseline; GPU training and VLM inference require the full research environment.
+Commands run from the repository root unless stated otherwise. The [main README](../../README.md#reproducibility) provides the complete clean-clone walkthrough, including official downloads, folder layouts and copyable commands. This page is the compact CLI/API reference. The Docker image covers metric evaluation and the Random CPU baseline; GPU training and VLM inference require the full research environment.
 
 ## Environment
 
-The package requires Python 3.10+. The Docker image uses Python 3.11 and CPU PyTorch 2.6.0. PyTorch is currently imported by the package initializer, including when importing metric helpers.
+The package requires Python 3.11+. The checked reference environment uses Python 3.11.9; the Docker image uses Python 3.11 and CPU PyTorch 2.6.0. PyTorch is imported by the package initializer, including when importing metric helpers.
 
 ```sh
 python -m venv .venv
@@ -18,9 +18,9 @@ python -m pip install -r diagram_vqa/requirements-cpu.txt
 python -m pip install -e ./diagram_vqa
 ```
 
-The [CPU requirements](../requirements-cpu.txt) use version ranges; they are not a lock file. The package metadata does not declare runtime dependencies. For GPU work, install a suitable [PyTorch build](https://pytorch.org/get-started/locally/) for your CUDA and Python versions instead of the CPU wheel.
+The [CPU requirements](../requirements-cpu.txt) pin direct dependencies; package metadata also declares runtime requirements. A [complete Windows/Python 3.11 CPU reference lock](../requirements-lock-win-py311-cpu.txt), [graph requirements](../requirements-research.txt) and [optional QLoRA requirements](../requirements-vlm.txt) are provided. The [reproduction guide](reproducibility.md) gives the checked installation order, CUDA 12.4 wheel pair, and external Tesseract/model requirements.
 
-The existing research environment contained:
+The pinned research dependencies include:
 
 | Component | Observed version | Purpose |
 |---|---|---|
@@ -31,7 +31,7 @@ The existing research environment contained:
 | ultralytics | 8.4.115 | SAM2 |
 | peft / accelerate / bitsandbytes | 0.19.1 / 1.14.0 / 0.49.2 | QLoRA |
 
-This records installed versions, not a cross-platform compatibility guarantee. Graph notebooks also import `numpy`, `pandas`, `matplotlib`, `Pillow`, `scikit-learn`, and `tqdm`. Interactive notebooks need a Jupyter frontend and `ipykernel`. OCR through `pytesseract` requires the separate [Tesseract executable](https://github.com/tesseract-ocr/tesseract).
+The complete set was installed in a fresh Windows/Python 3.11 CPU environment and passed dependency/import checks and a GATv2 forward pass; see [environment reference](environment_reference.json). CUDA training and QLoRA generation are separate validation tasks. Interactive notebooks can use the included ipykernel/nbclient; OCR requires the separate [Tesseract executable](https://github.com/tesseract-ocr/tesseract).
 
 ## Dataset preparation
 
@@ -53,21 +53,21 @@ python diagram_vqa/scripts/prepare_docvqa_manifest.py --help
 python diagram_vqa/scripts/prepare_infographicvqa_manifest.py --help
 ```
 
-AI2D preparation defaults to `ai2d/prepared_v2/manifest_hybrid.jsonl` and `ai2d/ai2d_test_ids (1).csv`, producing a manifest, split file, and image-overlap audit. DocVQA/InfographicVQA preparation accepts `--data-root`, `--output-dir`, and `--splits`. Run preparation in the research environment; those scripts are not included in the CPU example image.
+For an unprepared official AI2D archive, first run `prepare_ai2d_raw.py`: it performs OCR, preserves official answer-option indices, writes the hybrid manifest, then runs audited image-level splitting. For an existing hybrid manifest use `prepare_ai2d_model_matrix.py`. The [complete commands and data-version caveats](reproducibility.md#prepare-ai2d-from-the-official-archive) include handling missing files and resuming verified preparation. DocVQA/InfographicVQA preparation accepts `--data-root`, `--output-dir`, and `--splits`. These preparation scripts are not included in the CPU example image.
 
-The AI2D Dual-Branch notebook expects `models/sam2/sam2.1_b.pt`, OCR under `ai2d/prepared_v2/ocr_v2`, and SAM boxes under `model_matrix_cache/sam2_boxes`. DINOv2 uses `facebook/dinov2-base`; the text encoder is configured in the notebook. Local Qwen weights are expected under `models/Qwen2.5-VL-3B-Instruct`. Initial feature extraction can download models and takes longer than evaluation from a prepared cache.
+The AI2D «Граф с общим отбором связей» notebook expects `models/sam2/sam2.1_b.pt`, OCR under `ai2d/prepared_v2/ocr_v2`, and SAM boxes under `model_matrix_cache/sam2_boxes`. DINOv2 uses `facebook/dinov2-base`; the text encoder is configured in the notebook. Local Qwen weights are expected under `models/Qwen2.5-VL-3B-Instruct`. Initial feature extraction can download models and takes longer than evaluation from a prepared cache.
 
 ## Run on prepared data
 
 A small Random baseline on 16 AI2D test questions:
 
 ```sh
-python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model random --split test --seed 42 --max-samples 16 --output-dir runs/readme_smoke --no-resume
+python diagram_vqa/scripts/run_model_matrix.py --dataset ai2d --model random --split test --seed 42 --max-samples 16 --output-dir diagram_vqa/runs/readme_smoke --no-resume
 ```
 
-The dispatcher starts its child process in `diagram_vqa/`. This command writes `config.json`, `metrics.json`, and `predictions.jsonl` under `diagram_vqa/runs/readme_smoke/ai2d/random/seed42/test/`. A limited run has status `available_smoke` and is not comparable with full-test presentation scores. The runner requires at least 20 GiB of free output-disk space even for a small run.
+The dispatcher resolves data/output paths from the caller's working directory before starting its child process in `diagram_vqa/`. This command writes `config.json`, `metrics.json`, and `predictions.jsonl` under `diagram_vqa/runs/readme_smoke/ai2d/random/seed42/test/`. A limited run has status `available_smoke` and is not comparable with full-test presentation scores. The runner requires at least 20 GiB of free output-disk space even for a small run.
 
-Omit `--max-samples` and use a separate output directory for full evaluation. For trainable models, the dispatcher selects a training script; this may prepare caches, download weights, and run substantial computation.
+Omit `--max-samples` and use a new output directory for full evaluation. Resume validates input/configuration/software identity before writing; it rejects legacy runs or a full request against smoke artifacts. `--no-resume` also requires a new or empty run directory. For trainable models use `--split val` to train and select the checkpoint on validation, then evaluate test. `--split test` is evaluation-only and requires a completed validation-selected checkpoint; it cannot start training.
 
 ## Docker with a dataset
 
@@ -94,7 +94,7 @@ mkdir -p diagram_vqa/runs/docker_cpu
 docker run --rm --mount "type=bind,source=$(pwd)/ai2d,target=/workspace/ai2d,readonly" --mount "type=bind,source=$(pwd)/diagram_vqa/runs/docker_cpu,target=/workspace/diagram_vqa/runs" diagram-vqa:cpu python scripts/run_model_matrix.py --dataset ai2d --model random --split test --seed 42 --max-samples 16 --no-resume
 ```
 
-Results appear at `diagram_vqa/runs/docker_cpu/model_matrix/ai2d/random/seed42/test/`. This baseline reads question/answer metadata without opening images. Image-based approaches additionally need container-valid image/OCR paths and their dependencies. The CPU image contains only the two baseline/dispatcher scripts; graph training, OCR extraction, and VLM runners belong to the full environment.
+Results appear at `diagram_vqa/runs/docker_cpu/model_matrix/ai2d/random/seed42/test/`. This baseline reads question/answer metadata without opening images. Image-based approaches additionally need container-valid image/OCR paths and their dependencies. The CPU image contains the baseline/dispatcher scripts and run-identity helper; graph training, OCR extraction, and VLM runners belong to the full environment.
 
 The [.dockerignore](../../.dockerignore) allows only the image's source inputs. Datasets, model weights, `.env` files, run artifacts, and the local virtual environment are excluded from the build context. See Docker's [build-context documentation](https://docs.docker.com/build/concepts/context/#dockerignore-files).
 
@@ -109,16 +109,23 @@ The [.dockerignore](../../.dockerignore) allows only the image's source inputs. 
 | `--split` | `val` or `test` | `val` |
 | `--seed` | Integer | `42` |
 | `--max-samples` | Positive integer for a small run | Unlimited |
-| `--output-dir` | Path; relative paths are interpreted by the child from `diagram_vqa/` | Absolute `diagram_vqa/runs/model_matrix` |
-| `--resume` / `--no-resume` | Resume / run again in the selected directory | `--resume` |
+| `--data-root` | Root containing dataset/model/cache directories | Repository root |
+| `--output-dir` | Path; relative paths resolve from the caller's working directory | Absolute `diagram_vqa/runs/model_matrix` |
+| `--resume` / `--no-resume` | Reuse only a verified matching run / require a new run directory | `--resume` |
 
 Use separate directories for different sample sizes and configurations. Validate existing outputs before resuming. The CLI lists the full research model set even when run inside the limited CPU image.
 
 ## Presentation graph models
 
-The presentation's Dual-Branch and Heterogeneous Evidence Graph models live in the [experiment notebooks](../notebooks/experiments). They are not separate choices in the matrix CLI; the generic `graph_transformer` does not reproduce those architectures.
+The presentation's «Граф с общим отбором связей» and «Граф с отбором связей по типам» models live in the [experiment notebooks](../notebooks/experiments). They are not separate choices in the matrix CLI; the generic `graph_transformer` does not reproduce those architectures.
 
-Select the notebook kernel, inspect the first configuration cell, and run cells in order. AI2D Dual-Branch defaults to `SEED=42`, `EPOCHS=20`, `BATCH_SIZE=32`, `EVAL_BATCH_SIZE=64`, and `FORCE_RETRAIN=False`. Change the output directory together with the seed to preserve previous weights. Reuse feature caches only when their input data and schema match. Checkpoint selection must use validation data, not test data.
+Use the notebook executor to create separate configured copies and preserve the source notebooks:
+
+```sh
+python diagram_vqa/scripts/execute_experiment_matrix_notebooks.py --dataset ai2d --architecture sam2_dinov2_dual_branch_evidence_graph --seeds 42 43 44 --output-root diagram_vqa/runs/reproduction_graphs --external-root . --kernel-name python3 --dry-run
+```
+
+Remove `--dry-run` after checking the printed configuration and installing the research kernel. Each run records the source notebook hash, applied parameters, execution status and executed notebook. All six current architectures on all three datasets are supported. Use the [full recipe](reproducibility.md#run-the-presentation-graph-models) for kernel setup, cache constraints and validation. Historical notebook defaults alone do not reconstruct undocumented historical hyperparameters.
 
 ## Python metrics API
 
@@ -150,4 +157,4 @@ Check dataset, split, seed, sample count, and selected checkpoint before compari
 
 ## Verification notes
 
-The local metric example and README tables were checked after the English rewrite. A Docker build was attempted, but Docker Desktop failed during service initialization before its Linux engine became available. Container build and execution remain unverified on this host.
+The metric example, generated tables, fresh CPU/research environment and focused regression suite were checked after the reproducibility fixes. Baseline and saved-checkpoint checks are detailed in [reproducibility.md](reproducibility.md). Docker's Linux engine remains unavailable on this host, so container build/execution is still unverified; the CPU build context now includes the run-identity helper.

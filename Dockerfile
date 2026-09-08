@@ -13,7 +13,7 @@ RUN python -m pip install --index-url https://download.pytorch.org/whl/cpu torch
 COPY diagram_vqa/pyproject.toml ./pyproject.toml
 COPY diagram_vqa/src ./src
 COPY diagram_vqa/examples ./examples
-COPY diagram_vqa/scripts/run_model_matrix.py diagram_vqa/scripts/run_model_matrix_baseline.py ./scripts/
+COPY diagram_vqa/scripts/run_model_matrix.py diagram_vqa/scripts/run_model_matrix_baseline.py diagram_vqa/scripts/model_matrix_integrity.py ./scripts/
 RUN python -m pip install --no-deps .
 
 CMD ["python", "examples/retrieval_metrics.py"]

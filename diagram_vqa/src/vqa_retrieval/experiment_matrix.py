@@ -17,15 +17,12 @@ from .model_matrix import load_rows, ocr_spans, split_rows
 
 DATASETS = ("ai2d", "docvqa", "infographicvqa")
 ARCHITECTURES = (
-    "clip_vqa_baseline",
-    "gnn_ocr_knn_graph_encoder",
     "hybrid_v4_multipos_training",
-    "llm_reasoner",
     "graphcolbert_film",
-    "hybrid_epoch_view_training",
-    "qwen_vlm_qlora_training",
-    "sam_sam2_graph_nodes",
-    "train_sam_graph_transformer_models",
+    "sam2_dinov2_regularized_sparse_learned_graph",
+    "sam2_dinov2_option_conditioned_sparse_graph",
+    "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+    "sam2_dinov2_dual_branch_evidence_graph",
 )
 
 
@@ -33,7 +30,7 @@ ARCHITECTURES = (
 class ArchitectureSpec:
     slug: str
     title: str
-    backend_model: str
+    backend_model: str | None
     processing_kind: str
     trainable: bool = True
 
@@ -53,7 +50,7 @@ ARCHITECTURE_SPECS: dict[str, ArchitectureSpec] = {
     ),
     "hybrid_v4_multipos_training": ArchitectureSpec(
         slug="hybrid_v4_multipos_training",
-        title="Hybrid v4 multi-positive training",
+        title="GATv2 + kNN",
         backend_model="hybrid_gatv2_knn",
         processing_kind="multi_positive_graph",
     ),
@@ -95,6 +92,16 @@ ARCHITECTURE_SPECS: dict[str, ArchitectureSpec] = {
     ),
 }
 
+# These architectures are implemented in the committed notebooks themselves.
+# They must never be dispatched to a generic graph-transformer backend.
+for _slug, _title in (
+    ("sam2_dinov2_regularized_sparse_learned_graph", "Regularized sparse learned graph"),
+    ("sam2_dinov2_option_conditioned_sparse_graph", "Option-conditioned sparse graph"),
+    ("sam2_dinov2_heterogeneous_balanced_evidence_graph", "Граф с отбором связей по типам"),
+    ("sam2_dinov2_dual_branch_evidence_graph", "Граф с общим отбором связей"),
+):
+    ARCHITECTURE_SPECS[_slug] = ArchitectureSpec(_slug, _title, None, "standalone_notebook")
+
 
 @dataclass(frozen=True)
 class ExperimentConfig:
@@ -115,16 +122,10 @@ class ExperimentConfig:
     def __post_init__(self) -> None:
         if self.dataset not in DATASETS:
             raise ValueError(f"Unknown dataset: {self.dataset}. Expected one of {DATASETS}.")
-        if self.architecture not in ARCHITECTURES:
-            raise ValueError(f"Unknown architecture: {self.architecture}. Expected one of {ARCHITECTURES}.")
-        if self.seed != 42:
-            raise ValueError("The clean matrix is fixed to seed=42.")
-        expected_epochs = 2 if self.architecture == "qwen_vlm_qlora_training" else 40
-        if self.epochs != expected_epochs and self.max_samples is None:
-            raise ValueError(
-                f"Full clean matrix runs must request epochs={expected_epochs} "
-                f"for {self.architecture}."
-            )
+        if self.architecture not in ARCHITECTURE_SPECS:
+            raise ValueError(f"Unknown architecture: {self.architecture}.")
+        if self.epochs < 1:
+            raise ValueError("epochs must be positive")
         if self.batch_size == 32 and self.architecture not in {
             "clip_vqa_baseline",
             "graphcolbert_film",
@@ -692,6 +693,11 @@ def _train_qwen_experiment(config: ExperimentConfig) -> dict[str, Any]:
 
 
 def train_experiment(config: ExperimentConfig, show_progress: bool = True) -> dict[str, Any]:
+    if config.spec.backend_model is None:
+        raise ValueError(
+            f"{config.architecture} is a standalone notebook architecture; use "
+            "scripts/execute_experiment_matrix_notebooks.py to preserve its implementation."
+        )
     completed = _load_completed_metric(config)
     if completed is not None:
         metrics = completed

@@ -1,5 +1,6 @@
-# CPU baseline dependencies; install CPU PyTorch separately (see Dockerfile).
-numpy>=1.26,<3
-Pillow>=10,<13
-psutil>=5.9,<8
-scikit-learn>=1.5,<2
+# Direct dependencies for the Python 3.11 reference environment.
+# Install torch==2.6.0 from the CPU index first; see docs/reproducibility.md.
+numpy==2.4.6
+Pillow==12.2.0
+psutil==7.2.2
+scikit-learn==1.6.1

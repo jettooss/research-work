@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -12,20 +13,22 @@ import torch.nn.functional as F
 
 ROOT = Path(__file__).resolve().parents[1]
 EXTERNAL_ROOT = ROOT.parent
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
 from qwen_vl_utils import process_vision_info  # noqa: E402
 from vqa_retrieval.model_matrix import DATASETS, load_rows, retrieval_metrics, split_rows  # noqa: E402
 from vqa_retrieval.vlm_service import QwenVlmRunner  # noqa: E402
 
 
 class HiddenStateEncoder:
-    def __init__(self, adapter_path: Path, cache_dir: Path, max_pixels: int) -> None:
+    def __init__(self, adapter_path: Path, cache_dir: Path, max_pixels: int, data_root: Path = EXTERNAL_ROOT) -> None:
         self.runner = QwenVlmRunner(
-            model_path=EXTERNAL_ROOT / "models/Qwen2.5-VL-3B-Instruct",
+            model_path=data_root / "models/Qwen2.5-VL-3B-Instruct",
             adapter_path=adapter_path,
             use_4bit=True,
             device_mode="balanced_low_0",
             max_memory={0: "5GiB", "cpu": "24GiB"},
-            offload_folder=ROOT / "runs/model_matrix_qwen_retrieval_offload",
+            offload_folder=cache_dir.parent / "offload",
             low_cpu_mem_usage=True,
             max_pixels=max_pixels,
         )
@@ -68,6 +71,7 @@ def main() -> None:
     parser.add_argument("--split", choices=["val", "test"], default="val")
     parser.add_argument("--adapter-path", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--data-root", type=Path, default=EXTERNAL_ROOT)
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--max-pixels", type=int, default=786432)
     args = parser.parse_args()
@@ -78,6 +82,7 @@ def main() -> None:
         output_dir=args.output_dir,
         max_samples=args.max_samples,
         max_pixels=args.max_pixels,
+        data_root=args.data_root.resolve(),
     )
 
 
@@ -89,13 +94,15 @@ def evaluate_qwen_retrieval(
     output_dir: Path,
     max_samples: int | None = None,
     max_pixels: int = 786432,
+    data_root: Path = EXTERNAL_ROOT,
 ) -> dict[str, Any]:
-    rows = split_rows(load_rows(dataset, EXTERNAL_ROOT), split, max_samples)
+    data_root = data_root.resolve()
+    rows = split_rows(load_rows(dataset, data_root), split, max_samples)
     unique_docs: dict[str, dict[str, Any]] = {}
     for row in rows:
         unique_docs.setdefault(row["image_id"], row)
     docs = list(unique_docs.values())
-    encoder = HiddenStateEncoder(adapter_path, output_dir / "features", max_pixels)
+    encoder = HiddenStateEncoder(adapter_path, output_dir / "features", max_pixels, data_root)
     document_embeddings = torch.stack([
         encoder.encode(f"doc:{row['image_id']}", "Represent this document image for question retrieval.", row["image_path"])
         for row in docs

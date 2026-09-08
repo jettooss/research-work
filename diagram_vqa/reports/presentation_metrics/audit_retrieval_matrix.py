@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import argparse
 import json
 import math
 import statistics
@@ -19,8 +20,8 @@ ARCHITECTURES = (
     "sam2_dinov2_heterogeneous_balanced_evidence_graph",
     "sam2_dinov2_dual_branch_evidence_graph",
 )
-NAMES = ("CLIP", "Hybrid GATv2 + kNN", "Heterogeneous Graph + Attention",
-         "Dual-Branch + top-k Attention")
+NAMES = ("CLIP", "GATv2 + kNN", "Граф с отбором связей по типам",
+         "Граф с общим отбором связей")
 SEEDS = (42, 43, 44)
 PROTOCOL = "bidirectional_mean_unique_documents_v1"
 
@@ -51,12 +52,14 @@ def validate_retrieval(retrieval):
         assert math.isclose(retrieval["mean_recall_at_k"][k], expected, abs_tol=1e-12)
 
 
-def audit_run(dataset, architecture, seed, test_rows):
+def audit_run(dataset, architecture, seed, test_rows, *, project_root=None, runs_root=None, retrieval_root=None):
+    project_root = Path(project_root) if project_root is not None else ROOT
+    runs_root = Path(runs_root) if runs_root is not None else project_root / "runs"
     if architecture == "clip":
-        run = ROOT / "runs/model_matrix" / dataset / architecture / f"seed{seed}" / "val"
+        run = runs_root / "model_matrix" / dataset / architecture / f"seed{seed}" / "val"
         test_path = run.parent / "test/metrics.json"
     else:
-        run = ROOT / "runs" / dataset / architecture / f"seed{seed}_full"
+        run = runs_root / dataset / architecture / f"seed{seed}_full"
         test_path = run / "test/metrics.json"
     record = {"dataset": dataset, "architecture": architecture, "seed": seed,
               "run": str(run), "verified": False}
@@ -105,7 +108,8 @@ def audit_run(dataset, architecture, seed, test_rows):
         # AI2D notebooks store aggregate VQA only; retrieval has its own full-test evidence.
         if dataset != "ai2d":
             assert len(metrics["test"]["predictions"]) == expected_count
-        source = run / "retrieval_unique_test.json"
+        source = (Path(retrieval_root) / dataset / architecture / f"seed{seed}_full/retrieval_unique_test.json"
+                  if retrieval_root is not None else run / "retrieval_unique_test.json")
         if not source.exists():
             record.update(reason="retrieval_evaluation_missing", epochs=len(history))
             return record
@@ -124,21 +128,28 @@ def audit_run(dataset, architecture, seed, test_rows):
     return record
 
 
-def main():
+def build_audit(*, project_root=ROOT, data_root=None, runs_root=None, retrieval_root=None,
+                datasets=DATASETS, architectures=ARCHITECTURES, seeds=SEEDS, manifest=None):
     torch.set_num_threads(2)
+    project_root = Path(project_root)
+    data_root = Path(data_root) if data_root is not None else project_root.parent
     records = []
     groups = []
-    for dataset in DATASETS:
-        manifest = ROOT.parent / dataset / ("model_matrix_v1" if dataset == "ai2d" else "prepared_v1") / "manifest.jsonl"
-        with manifest.open(encoding="utf-8") as stream:
+    for dataset in datasets:
+        manifest_path = Path(manifest) if manifest is not None else data_root / dataset / ("model_matrix_v1" if dataset == "ai2d" else "prepared_v1") / "manifest.jsonl"
+        with manifest_path.open(encoding="utf-8") as stream:
             test_rows = [row for line in stream if line.strip()
                          if (row := json.loads(line))["split"] == "test"]
-        for architecture, name in zip(ARCHITECTURES, NAMES):
+        if not test_rows:
+            raise ValueError(f"No test questions in {manifest_path}")
+        for architecture in architectures:
+            name = NAMES[ARCHITECTURES.index(architecture)]
             current = []
-            for seed in SEEDS:
+            for seed in seeds:
                 try:
-                    record = audit_run(dataset, architecture, seed, test_rows)
-                except (AssertionError, KeyError, ValueError, FileNotFoundError) as error:
+                    record = audit_run(dataset, architecture, seed, test_rows,
+                                       project_root=project_root, runs_root=runs_root, retrieval_root=retrieval_root)
+                except (AssertionError, KeyError, ValueError, OSError, RuntimeError) as error:
                     record = {"dataset": dataset, "architecture": architecture, "seed": seed,
                               "verified": False, "reason": f"{type(error).__name__}: {error}"}
                 records.append(record)
@@ -152,16 +163,46 @@ def main():
                             "sd": statistics.pstdev(values) if len(values) > 1 else None}
             groups.append({"dataset": dataset, "architecture": architecture, "name": name,
                            "seeds": [r["seed"] for r in current], "n": len(current), "percent": stats})
-    report = {"timestamp": datetime.now(timezone.utc).isoformat(), "protocol": PROTOCOL,
-              "sd_ddof": 0, "required_runs": 36, "verified_runs": sum(r["verified"] for r in records),
-              "completed": all(g["n"] == 3 for g in groups), "groups": groups, "records": records}
-    destination = ROOT / "reports/presentation_metrics/retrieval_matrix_audit.json"
-    temporary = destination.with_suffix(".tmp")
-    temporary.write_text(json.dumps(report, indent=2), encoding="utf-8")
-    temporary.replace(destination)
-    print(json.dumps({"verified_runs": report["verified_runs"], "required_runs": 36,
+    return {"timestamp": datetime.now(timezone.utc).isoformat(), "protocol": PROTOCOL,
+            "sd_ddof": 0, "required_runs": len(datasets) * len(architectures) * len(seeds),
+            "verified_runs": sum(r["verified"] for r in records),
+            "completed": all(g["n"] == len(seeds) for g in groups), "groups": groups, "records": records}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--project-root", type=Path, default=ROOT, help="diagram_vqa project directory")
+    parser.add_argument("--data-root", type=Path, help="Parent of dataset directories; default: project root's parent")
+    parser.add_argument("--runs-root", type=Path, help="Checkpoint/history/config tree; default: PROJECT_ROOT/runs")
+    parser.add_argument("--retrieval-root", type=Path, help="Read graph retrieval reports from a separate evaluator output tree")
+    parser.add_argument("--output", type=Path, required=True, help="New audit JSON path; existing files are never replaced")
+    parser.add_argument("--datasets", "--dataset", nargs="+", choices=DATASETS, default=DATASETS)
+    parser.add_argument("--architectures", "--architecture", nargs="+", choices=ARCHITECTURES, default=ARCHITECTURES)
+    parser.add_argument("--seeds", nargs="+", type=int, default=SEEDS)
+    parser.add_argument("--manifest", type=Path, help="Override test manifest; requires a single dataset")
+    args = parser.parse_args()
+    if args.manifest is not None and len(args.datasets) != 1:
+        parser.error("--manifest requires exactly one dataset")
+    if len(set(args.seeds)) != len(args.seeds) or len(set(args.datasets)) != len(args.datasets) or len(set(args.architectures)) != len(args.architectures):
+        parser.error("dataset, architecture and seed selections must not contain duplicates")
+    if args.output.exists():
+        parser.error(f"Refusing to replace existing audit: {args.output}; choose a new --output")
+    try:
+        report = build_audit(project_root=args.project_root, data_root=args.data_root,
+                             runs_root=args.runs_root, retrieval_root=args.retrieval_root,
+                             datasets=args.datasets, architectures=args.architectures,
+                             seeds=args.seeds, manifest=args.manifest)
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        with args.output.open("x", encoding="utf-8", newline="\n") as handle:
+            json.dump(report, handle, indent=2)
+            handle.write("\n")
+    except (AssertionError, OSError, ValueError) as error:
+        parser.exit(2, f"Retrieval audit failed: {error}\n")
+    print(json.dumps({"verified_runs": report["verified_runs"], "required_runs": report["required_runs"],
                       "completed": report["completed"],
-                      "pending": [r for r in records if not r["verified"]]}, indent=2))
+                      "pending": [r for r in report["records"] if not r["verified"]]}, indent=2))
+    if not report["completed"]:
+        parser.exit(1)
 
 
 if __name__ == "__main__":

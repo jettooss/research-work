@@ -1,8 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ai2d-vqa-clean"
 version = "0.1.0"
 description = "Clean AI2D/VQA experiments with graph retrieval and VLM reranking."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.6,<2.7",
+    "numpy>=1.26,<3",
+    "Pillow>=10,<13",
+    "psutil>=5.9,<8",
+    "scikit-learn>=1.5,<2",
+]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

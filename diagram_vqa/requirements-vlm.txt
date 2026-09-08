@@ -1,0 +1,5 @@
+# Optional QLoRA environment, in addition to the graph environment.
+-r requirements-research.txt
+peft==0.19.1
+accelerate==1.14.0
+bitsandbytes==0.49.2

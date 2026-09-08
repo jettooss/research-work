@@ -1,0 +1,659 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-09-08",
+  "source_commit": "e7178241ab6de7b84a5c1ebd85cba8c8e0c8d617",
+  "limits": [
+    "Saved evidence verifies measurements and aggregation, not a fresh training run.",
+    "Datasets and checkpoints must be provided separately for inference.",
+    "Historical attention runs did not save complete per-run hyperparameter configs; notebook defaults are not asserted to recover every historical setting."
+  ],
+  "accuracy": [
+    {
+      "name": "Граф с общим отбором связей",
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed42_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "f5f83600e0f8924ef2598f1c321472856be3546c8cc2452b395745b242bba0f4"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed43_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "faeb77c0a4dcbf7f1fe4348cfcb688927411b269ed81de4fa4e714a388bf1cdd"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed44_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "55d96252c7e3f2c21d2a8c9e1b61c740b74bc502f04d4e3ec8668c3470f3acf0"
+        }
+      ],
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph"
+    },
+    {
+      "name": "Граф с отбором связей по типам",
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "86ce34f5926c9c65b6d17b53972d0b8081ab8967f43b61389db8938b6c89857d"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "1195ad8bcebe3d2950feb2b644b6f5bd6b522e20a7062ddf7c7d69ff75d2152c"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44_full/metrics.json",
+          "score_field": "test.accuracy",
+          "content_sha256": "b6339e6d0bf2c58443824d54b9f3949a32d175316258f6ad77f21f85c04ea850"
+        }
+      ],
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph"
+    },
+    {
+      "name": "GATv2 + kNN",
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed42_full/metrics.json",
+          "score_field": "test.vqa.score",
+          "content_sha256": "8b331f0c5b4f2d935d872ddf17a5753f7bd3fdf9495acb5086171c82bdab5fb8"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed43_full/metrics.json",
+          "score_field": "test.vqa.score",
+          "content_sha256": "d24ffa2c154fea4cccdfbe67013553e24a465e61765f3f7621a351cd7f8166af"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed44_full/metrics.json",
+          "score_field": "test.vqa.score",
+          "content_sha256": "774a22ad3a63f172713f3d3be3af1e341dab769ff0d700d1c0ba1639608f869e"
+        }
+      ],
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training"
+    },
+    {
+      "name": "CLIP",
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed42/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "24af324a342280e2b037efa289b3b8d5f424661ebd8ce29f4fb4f42b53c3cc30"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed43/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "44c3904b931e03a518dc4816198adcefda0b535824466b17dd485d3cec3b61bd"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed44/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "32d02cb7456a73d0730da7616d61712f6a73209508cc442eb2228616a82e8e1f"
+        }
+      ],
+      "dataset": "ai2d",
+      "architecture": "clip"
+    },
+    {
+      "name": "Random",
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/ai2d/random/seed42/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "04f59d27cf75f4c9a983c072e844cf64ca913b01ed6b35fb91641f40eb184bfa"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/model_matrix/ai2d/random/seed43/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "be054555fa3e0acb705bc424b2b757e9f129d2ce8719e9c3e3c48ad4c2701a59"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/model_matrix/ai2d/random/seed44/test/metrics.json",
+          "score_field": "vqa.score",
+          "content_sha256": "5f4b5f34c8eeaddb1832f5b26a2cca3d51eea5c8e389c8de0d4fa38df2625866"
+        }
+      ],
+      "dataset": "ai2d",
+      "architecture": "random"
+    }
+  ],
+  "retrieval": [
+    {
+      "dataset": "ai2d",
+      "architecture": "clip",
+      "name": "CLIP",
+      "num_samples": 3088,
+      "num_documents": 814,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed42/test/metrics.json",
+          "training_run": "runs/model_matrix/ai2d/clip/seed42/val",
+          "weight_sha256": "c888ae91ccdcddc8aef986205f699962a4279321899cb1e38188bb9bd5bdcca4",
+          "best_epoch": 14,
+          "epochs_completed": 18,
+          "content_sha256": "24af324a342280e2b037efa289b3b8d5f424661ebd8ce29f4fb4f42b53c3cc30"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed43/test/metrics.json",
+          "training_run": "runs/model_matrix/ai2d/clip/seed43/val",
+          "weight_sha256": "7123c4519168be797222cfc2c2cce719b31ebd1f9ecff0bc1642707e75e88f41",
+          "best_epoch": 3,
+          "epochs_completed": 7,
+          "content_sha256": "44c3904b931e03a518dc4816198adcefda0b535824466b17dd485d3cec3b61bd"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/model_matrix/ai2d/clip/seed44/test/metrics.json",
+          "training_run": "runs/model_matrix/ai2d/clip/seed44/val",
+          "weight_sha256": "1d258fd5af824518717752bbd14f08bdf533254ada6b19d43db6ad06718c4ec8",
+          "best_epoch": 10,
+          "epochs_completed": 14,
+          "content_sha256": "32d02cb7456a73d0730da7616d61712f6a73209508cc442eb2228616a82e8e1f"
+        }
+      ]
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "GATv2 + kNN",
+      "num_samples": 3088,
+      "num_documents": 814,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed42_full/test/metrics.json",
+          "training_run": "runs/ai2d/hybrid_v4_multipos_training/seed42_full",
+          "weight_sha256": "8fd946024b8c9c137106a433e5bed9a4ae395a31e264b9c8b28b87877dcc6fb1",
+          "best_epoch": 31,
+          "epochs_completed": 40,
+          "content_sha256": "92bac39fd21f83d1aedc856e35367a1f61b8cba89f27c078e35b1dfcc34c0b61"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed43_full/test/metrics.json",
+          "training_run": "runs/ai2d/hybrid_v4_multipos_training/seed43_full",
+          "weight_sha256": "f1cca765118caad4a92237d0f18635d8173aefed58f6a3fbd4d1e4b1541579a9",
+          "best_epoch": 40,
+          "epochs_completed": 40,
+          "content_sha256": "6e7130def7e6dcb9bd0edd571675e090b7f6ff97a2f384ad6656dfeaac4086a4"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/ai2d/hybrid_v4_multipos_training/seed44_full/test/metrics.json",
+          "training_run": "runs/ai2d/hybrid_v4_multipos_training/seed44_full",
+          "weight_sha256": "3efb1b1a00cae6b52aa652f1422179f32fab530b0b566039dadb3118c4a44acb",
+          "best_epoch": 28,
+          "epochs_completed": 40,
+          "content_sha256": "8cf9623dc4474a68ec352b9b7c0cadd39678eec58b4f8ab8396c00b016dfbc45"
+        }
+      ]
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Граф с отбором связей по типам",
+      "num_samples": 3088,
+      "num_documents": 814,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42.json",
+          "training_run": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42_full",
+          "weight_sha256": "44f3b584cf5fa369c11861056b67856131985cfdd74c03b2bd33dbad1d70d41e",
+          "best_epoch": 18,
+          "epochs_completed": 20,
+          "content_sha256": "c73a08ede22ba267972d0fbdb57ccfebe95c67181c9ec2edc037723f691afd00"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43.json",
+          "training_run": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43_full",
+          "weight_sha256": "cbc5b44faebeda8e332f0c93c172141168f344a8c7000d66e03a43ac4559a5ab",
+          "best_epoch": 10,
+          "epochs_completed": 15,
+          "content_sha256": "0ebd4fe7b2526158d8ec1fe203f08c39560eee24535a46575e8bf22ea849ea70"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44.json",
+          "training_run": "runs/ai2d/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44_full",
+          "weight_sha256": "92a2e105cb46474ce4f4e61e3133569851489c002b8359dd24f9f7636fa8ae7b",
+          "best_epoch": 13,
+          "epochs_completed": 18,
+          "content_sha256": "a60030152c42ff20dee5758a164ea7a2a8d645002bb1ac1717e9d39fa6cb40ae"
+        }
+      ]
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Граф с общим отбором связей",
+      "num_samples": 3088,
+      "num_documents": 814,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed42.json",
+          "training_run": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed42_full",
+          "weight_sha256": "34e4094d2b80a2bca2725fb8a6146f87329f5be371c552ad53cff91f189e32d8",
+          "best_epoch": 15,
+          "epochs_completed": 20,
+          "content_sha256": "85f706af514896028d5204ca51d452b79747af4568066647f5e0995f1f1d537d"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed43.json",
+          "training_run": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed43_full",
+          "weight_sha256": "eb8d890821828920435d57deccf3e9cb07a30c4c5629bfa53a1088016421849e",
+          "best_epoch": 14,
+          "epochs_completed": 19,
+          "content_sha256": "dca2998e5bce317696a03215e4c7e1326bb4f9fdaeb484ed5454039717202f9e"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed44.json",
+          "training_run": "runs/ai2d/sam2_dinov2_dual_branch_evidence_graph/seed44_full",
+          "weight_sha256": "80ec383513574dfe5a93e77b54299baf22d9ca7e733d929d01c72b15f973376e",
+          "best_epoch": 17,
+          "epochs_completed": 20,
+          "content_sha256": "eb5f16668b92b388923a63bfd8f11affcb12f86e1d2744e586976e9e2195e7c2"
+        }
+      ]
+    },
+    {
+      "dataset": "ai2d",
+      "architecture": "ocr_text",
+      "name": "OCR + TF-IDF",
+      "num_samples": 3088,
+      "num_documents": 814,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/ai2d/ocr_text/seed42/test/metrics.json",
+          "content_sha256": "1aed7f6d5ecb4df30da0a0385d44c56afae95ea6c14120e3c3c126bd02570c42"
+        }
+      ]
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "num_samples": 5188,
+      "num_documents": 1287,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/docvqa/clip/seed42/test/metrics.json",
+          "training_run": "runs/model_matrix/docvqa/clip/seed42/val",
+          "weight_sha256": "39f001f8f4f8e6b34dc064ae9c76f81b8ae53c31529653b1407d9d48961770de",
+          "best_epoch": 11,
+          "epochs_completed": 15,
+          "content_sha256": "f5a619e11a21b2c82fbba1884f1a61a5d031c728d40373733ce216c327ee1a4c"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/model_matrix/docvqa/clip/seed43/test/metrics.json",
+          "training_run": "runs/model_matrix/docvqa/clip/seed43/val",
+          "weight_sha256": "286b05239a2a1b5fad8e0d2c14b12d459553f00b4f91ac464d217056ffa8fac8",
+          "best_epoch": 10,
+          "epochs_completed": 14,
+          "content_sha256": "86c2cd79557e290c3db11164024d9311278f8187d40047def7e70869b0bf67b2"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/model_matrix/docvqa/clip/seed44/test/metrics.json",
+          "training_run": "runs/model_matrix/docvqa/clip/seed44/val",
+          "weight_sha256": "86c7673fa91f4103ee41286a8479dfe345127822d0492b435b567d0a0bf60a33",
+          "best_epoch": 9,
+          "epochs_completed": 13,
+          "content_sha256": "04dd177cbf0646379865d3b55fdc96c0e0fa32d4a898e677b62e5c1b63610357"
+        }
+      ]
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "GATv2 + kNN",
+      "num_samples": 5188,
+      "num_documents": 1287,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/docvqa/hybrid_v4_multipos_training/seed42_full/test/metrics.json",
+          "training_run": "runs/docvqa/hybrid_v4_multipos_training/seed42_full",
+          "weight_sha256": "d53e113a37f532632a4ff83abc45a84f49d62aee87b4232ebef2549c852d2579",
+          "best_epoch": 36,
+          "epochs_completed": 40,
+          "content_sha256": "487adeb73fe6742738ec7e4c83606b14481f02fac1c87eab095a7b94ab268dae"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/docvqa/hybrid_v4_multipos_training/seed43_full/test/metrics.json",
+          "training_run": "runs/docvqa/hybrid_v4_multipos_training/seed43_full",
+          "weight_sha256": "ddde630dcbebcf0660b674dfe370495a2ea05830e53fb63a3d1774072730d175",
+          "best_epoch": 40,
+          "epochs_completed": 40,
+          "content_sha256": "f2965071f2eec9254e873ab7a3937434e9b11731f1e0b48a54e53158a36c4a57"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/docvqa/hybrid_v4_multipos_training/seed44_full/test/metrics.json",
+          "training_run": "runs/docvqa/hybrid_v4_multipos_training/seed44_full",
+          "weight_sha256": "0dd85a893c1279e3dffa23eae2424ecea4001c0f74e2f879c51f781816f2a310",
+          "best_epoch": 37,
+          "epochs_completed": 40,
+          "content_sha256": "b85bb7bb2b9b87dc671e2f9e368da7d751be26c3e70bbb9f5847154c5ac21c3a"
+        }
+      ]
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Граф с отбором связей по типам",
+      "num_samples": 5188,
+      "num_documents": 1287,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42.json",
+          "training_run": "runs/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42_full",
+          "weight_sha256": "fffb7d6aed1adaa2e6523c184b594db9b508cb6b79240e0ec0bdd8ee8e008b7a",
+          "best_epoch": 14,
+          "epochs_completed": 19,
+          "content_sha256": "65c4a0d2fc19c91a423c3db3fada6885282b1a51de2cc408d3aa62549f6c4440"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43.json",
+          "training_run": "runs/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43_full",
+          "weight_sha256": "fd6cba31651836254d02415db0a20459517f270644c2f8ab8c7a90726e6d3381",
+          "best_epoch": 11,
+          "epochs_completed": 16,
+          "content_sha256": "c4ab5b1eb53c6d2c886d536aaf76c766dbd0dbdadc2df32c63098f728fe889d2"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44.json",
+          "training_run": "runs/docvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44_full",
+          "weight_sha256": "5f476e7713a29cffdf73fb49a76182de5bd2d336e6b9f85c32285f7c18e38db4",
+          "best_epoch": 8,
+          "epochs_completed": 13,
+          "content_sha256": "27b6e6f9e63115412c582b9e17912e8f8b5ee17f24fd56201c592558722f0b83"
+        }
+      ]
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Граф с общим отбором связей",
+      "num_samples": 5188,
+      "num_documents": 1287,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed42.json",
+          "training_run": "runs/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed42_full",
+          "weight_sha256": "4fbb1fe12e266fccfc3a971df556f6480ef4fd33eca7aef6c94f2f0a3e3111e4",
+          "best_epoch": 17,
+          "epochs_completed": 20,
+          "content_sha256": "7657ec15a94f9971136b4ecf633453fdd434bb3eae87de6c1b3949005961f022"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed43.json",
+          "training_run": "runs/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed43_full",
+          "weight_sha256": "a7efbfbbffc102e960bdc3e7beaeb55f2b3ac8609cfda582d5a20a6f9a15186e",
+          "best_epoch": 16,
+          "epochs_completed": 20,
+          "content_sha256": "766ca38c17d02b9282f0bc6324d73cced0a990af09e1dbaca63a2fa37f72e83c"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed44.json",
+          "training_run": "runs/docvqa/sam2_dinov2_dual_branch_evidence_graph/seed44_full",
+          "weight_sha256": "c3009c2465ecb4c767745e584a9909cea44e5da952a4fc442dddc8882c997877",
+          "best_epoch": 15,
+          "epochs_completed": 20,
+          "content_sha256": "e60da5538fc2ffdfa1b8fe7b2c08120120ce13fa7373413e08c6b58aab5b46d1"
+        }
+      ]
+    },
+    {
+      "dataset": "docvqa",
+      "architecture": "ocr_text",
+      "name": "OCR + TF-IDF",
+      "num_samples": 5188,
+      "num_documents": 1287,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/docvqa/ocr_text/seed42/test/metrics.json",
+          "content_sha256": "f99300f22441506998b44b65bd464b6d428cf214b90216dea202273c61dc8676"
+        }
+      ]
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "clip",
+      "name": "CLIP",
+      "num_samples": 3288,
+      "num_documents": 579,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/infographicvqa/clip/seed42/test/metrics.json",
+          "training_run": "runs/model_matrix/infographicvqa/clip/seed42/val",
+          "weight_sha256": "1bfffa4e57b4a89d3a6ea172499a98c8b38093f8fe28eea312258a766f6e88d1",
+          "best_epoch": 2,
+          "epochs_completed": 6,
+          "content_sha256": "dca6d580798891d898c2791a5507bd6440281f8692f4b63b1aeec1ecc0454ade"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/model_matrix/infographicvqa/clip/seed43/test/metrics.json",
+          "training_run": "runs/model_matrix/infographicvqa/clip/seed43/val",
+          "weight_sha256": "9c9ec0eaf62008b458ce942b7df421d425475caff7f339fe6d83977769ea5bed",
+          "best_epoch": 6,
+          "epochs_completed": 10,
+          "content_sha256": "e63a34f224bf8a59595528ae7fca4b055b566e8c60400d45e20f9fbef0734f3a"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/model_matrix/infographicvqa/clip/seed44/test/metrics.json",
+          "training_run": "runs/model_matrix/infographicvqa/clip/seed44/val",
+          "weight_sha256": "71c49996a0d565e5d4c347e5abb7c268d6079e2eea265e62fcf3277a97b4ffe3",
+          "best_epoch": 3,
+          "epochs_completed": 7,
+          "content_sha256": "8bab9923d27ebb26a2b8527ca362622f188e57ca3c451b6cf3239686bfeb87cc"
+        }
+      ]
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "hybrid_v4_multipos_training",
+      "name": "GATv2 + kNN",
+      "num_samples": 3288,
+      "num_documents": 579,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/infographicvqa/hybrid_v4_multipos_training/seed42_full/test/metrics.json",
+          "training_run": "runs/infographicvqa/hybrid_v4_multipos_training/seed42_full",
+          "weight_sha256": "e3d7c624763938440c3e6587529ba53efc87fc94a12a246a50dee7ef42f6c5fa",
+          "best_epoch": 17,
+          "epochs_completed": 20,
+          "content_sha256": "2eb3816af0369628e666b3d626e06dcd8cfa75e7372931b60dfad2a1b81e890e"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "runs/infographicvqa/hybrid_v4_multipos_training/seed43_full/test/metrics.json",
+          "training_run": "runs/infographicvqa/hybrid_v4_multipos_training/seed43_full",
+          "weight_sha256": "541f6ce4ce1ba725198f9eae5a638c989726974d0fc9d75ae9a9fbccdd0d862c",
+          "best_epoch": 20,
+          "epochs_completed": 20,
+          "content_sha256": "4130f8e7c7c74fb904ebc4544ec454b742f69144392c4faaa547490ad41b39fd"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "runs/infographicvqa/hybrid_v4_multipos_training/seed44_full/test/metrics.json",
+          "training_run": "runs/infographicvqa/hybrid_v4_multipos_training/seed44_full",
+          "weight_sha256": "0796f253fab23a8389cfa595b118d971a39618e7d477b1ecb019f362382eab5d",
+          "best_epoch": 20,
+          "epochs_completed": 20,
+          "content_sha256": "bd0757d2ccea93f27a583d03cfb3c22e90725a9a2ffd56377ea5e833b260410a"
+        }
+      ]
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_heterogeneous_balanced_evidence_graph",
+      "name": "Граф с отбором связей по типам",
+      "num_samples": 3288,
+      "num_documents": 579,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed42_full",
+          "weight_sha256": "1428548c5e032c73b268086bba16ee2f3ef9ffb6d3afc304e9a648e5af59019e",
+          "best_epoch": 3,
+          "epochs_completed": 8,
+          "content_sha256": "0fb6c1f2963753a3d2c90b1466c3c1a28aad4f38be926bc7315692ca8b9feba0"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed43_full",
+          "weight_sha256": "5bf9d8165d5fb465c9c7bbccb079a031a0910a7345ce379e517ea2fdd4379009",
+          "best_epoch": 5,
+          "epochs_completed": 10,
+          "content_sha256": "d171e41e8e15449612e4cb4978beb338d9d5e39f4a1f6fde03756d217b069e09"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_heterogeneous_balanced_evidence_graph/seed44_full",
+          "weight_sha256": "a40402958580cd5fd9b06c2e7bc60f61b09d16961a9e28ca7e7abf78b1e58d5a",
+          "best_epoch": 7,
+          "epochs_completed": 12,
+          "content_sha256": "30bca55475f005948a84aee468eec5bbd6198e557b6767521bbe55e107f247e6"
+        }
+      ]
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "sam2_dinov2_dual_branch_evidence_graph",
+      "name": "Граф с общим отбором связей",
+      "num_samples": 3288,
+      "num_documents": 579,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed42.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed42_full",
+          "weight_sha256": "7928d7d70675488edb8894d188271bcd2950367ff1f954900b6b3b6b45479975",
+          "best_epoch": 3,
+          "epochs_completed": 8,
+          "content_sha256": "a96f1cbd9631ed5a31c4f18cedd998fe9d217113e1545b520a1de3ce3b98f5b7"
+        },
+        {
+          "seed": 43,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed43.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed43_full",
+          "weight_sha256": "b15ece5fc33d28d0c18d03708e309f93124db6c07f23da6a9f0ac83b4906ad11",
+          "best_epoch": 8,
+          "epochs_completed": 13,
+          "content_sha256": "991716ad415d4ad5c38d0451494427f78eb54a13bd01f9810e74953fabfd2f2c"
+        },
+        {
+          "seed": 44,
+          "metrics_path": "reports/reproducibility/evaluations/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed44.json",
+          "training_run": "runs/infographicvqa/sam2_dinov2_dual_branch_evidence_graph/seed44_full",
+          "weight_sha256": "613da47bebe708c5358a53050e6d396f8ac35d9de94374a70e43a8a160ff2864",
+          "best_epoch": 7,
+          "epochs_completed": 12,
+          "content_sha256": "7756169a117e72d0cd2cfc29edca70ad00f70c68ef74098ef9b51eec321b036d"
+        }
+      ]
+    },
+    {
+      "dataset": "infographicvqa",
+      "architecture": "ocr_text",
+      "name": "OCR + TF-IDF",
+      "num_samples": 3288,
+      "num_documents": 579,
+      "runs": [
+        {
+          "seed": 42,
+          "metrics_path": "runs/model_matrix/infographicvqa/ocr_text/seed42/test/metrics.json",
+          "content_sha256": "4e9a6ac185c994ce9f8fc88de5e261aa86956bd477d21dc01ec214c259536db7"
+        }
+      ]
+    }
+  ],
+  "datasets": {
+    "ai2d": {
+      "manifest_relative_to_data_root": "ai2d/model_matrix_v1/manifest.jsonl",
+      "observed_manifest_sha256": "18683a65a0ddff4901b028a3dbb9200e5ba80404a8436a91840c34148f1178df",
+      "questions": {
+        "train": 11145,
+        "val": 1268,
+        "test": 3088
+      },
+      "test_documents": 814
+    },
+    "docvqa": {
+      "manifest_relative_to_data_root": "docvqa/prepared_v1/manifest.jsonl",
+      "observed_manifest_sha256": "6187d6d5cb5a42f62b5093aa7c4774b17a55f91e66d35e8d6f6417ba902aec9d",
+      "questions": {
+        "train": 39463,
+        "val": 5349,
+        "test": 5188
+      },
+      "test_documents": 1287
+    },
+    "infographicvqa": {
+      "manifest_relative_to_data_root": "infographicvqa/prepared_v1/manifest.jsonl",
+      "observed_manifest_sha256": "a27b0a07c506211d62628511a881b1076fdecf1b218e751aad18e4c457f44bac",
+      "questions": {
+        "train": 23946,
+        "val": 2801,
+        "test": 3288
+      },
+      "test_documents": 579
+    }
+  },
+  "json_checksum": "SHA256 of UTF8 JSON: sorted keys, ensure_ascii=False, compact separators; insensitive to Git line ending conversion.",
+  "display_name_source": {
+    "presentation_url": "https://docs.google.com/presentation/d/1RnsHrDhAxOaTre7VCdBh67QbfDaOExJKicDK9aOw374/edit",
+    "revision_id": "89PTcrzvEx09IQ",
+    "read_date": "2026-09-08",
+    "slide_labels": [
+      "08",
+      "10",
+      "11",
+      "12",
+      "14"
+    ],
+    "note": "Display labels only; architecture identifiers, numerical evidence and source-file hashes are unchanged."
+  }
+}

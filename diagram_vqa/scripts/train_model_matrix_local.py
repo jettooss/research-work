@@ -24,6 +24,18 @@ from torch_geometric.data import Batch, Data
 from torch_geometric.nn import GATv2Conv, GlobalAttention, TransformerConv
 from torch_geometric.utils import to_dense_batch
 from tqdm.auto import tqdm
+if __package__:
+    from .model_matrix_integrity import (
+        capture_rng_state, checkpoint_config, completed_metrics, digest, file_digest,
+        restore_rng_state, test_config, training_config, training_paths,
+        validate_directory, validate_partial_checkpoint, write_config,
+    )
+else:
+    from model_matrix_integrity import (
+        capture_rng_state, checkpoint_config, completed_metrics, digest, file_digest,
+        restore_rng_state, test_config, training_config, training_paths,
+        validate_directory, validate_partial_checkpoint, write_config,
+    )
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -479,51 +491,62 @@ def evaluate(model: GraphMatrixModel, rows: list[dict[str, Any]], store: MatrixF
 
 
 def main() -> None:
+    global EXTERNAL_ROOT
     parser = argparse.ArgumentParser(description="Train local models in the controlled 11x3 matrix.")
     parser.add_argument("--dataset", choices=DATASETS, required=True)
     parser.add_argument("--model", choices=TRAINABLE_LOCAL_MODELS, required=True)
-    parser.add_argument("--split", choices=["val", "test"], default="val")
+    parser.add_argument("--split", choices=["val", "test"], default="val",
+                        help="val: train/select on validation, then evaluate test; test: evaluate a saved validation checkpoint only")
     parser.add_argument("--seed", type=int, choices=SEEDS, default=42)
     parser.add_argument("--max-samples", type=int, default=None)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "runs/model_matrix")
+    parser.add_argument("--data-root", type=Path, default=ROOT.parent,
+                        help="Root containing dataset manifests, models and model_matrix_cache")
     parser.add_argument("--resume", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--early-stopping-patience", type=int, default=5)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--eval-batch-size", type=int, default=32)
     args = parser.parse_args()
-    run_local_experiment_config(args)
+    args.output_dir = args.output_dir.resolve()
+    EXTERNAL_ROOT = args.data_root.resolve()
+    result = run_local_experiment_config(args)
+    if args.split == "test":
+        print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 def run_local_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
     if args.model in {"clip", "siglip"}:
         raise NotImplementedError("Frozen CLIP/SigLIP feature runner is provided by train_model_matrix_vision.py")
 
-    run_dir = Path(args.run_dir_override) if getattr(args, "run_dir_override", None) else args.output_dir / args.dataset / args.model / f"seed{args.seed}" / args.split
-    ensure_free_space(run_dir)
-    run_dir.mkdir(parents=True, exist_ok=True)
-    (run_dir / "config.json").write_text(json.dumps({
-        "dataset": args.dataset, "model": args.model, "split": args.split, "seed": args.seed,
-        "max_samples": args.max_samples, "epochs": args.epochs, "early_stopping_patience": args.early_stopping_patience,
-        "batch_size": args.batch_size, "eval_batch_size": args.eval_batch_size,
-        "checkpoint_selection": "0.5*vqa+0.5*mean_r1", "resume": args.resume,
-    }, ensure_ascii=False, indent=2), encoding="utf-8")
+    rows = load_rows(args.dataset, EXTERNAL_ROOT)
+    run_dir, test_dir = training_paths(args)
+    if args.split == "test":
+        return evaluate_local_test(args, rows)
+    config = training_config(args, rows, input_root=EXTERNAL_ROOT, backend="graph", epochs=args.epochs,
+                             early_stopping_patience=args.early_stopping_patience,
+                             batch_size=args.batch_size, eval_batch_size=args.eval_batch_size)
+    validate_directory(run_dir, config, resume=args.resume)
+    train_rows = split_rows(rows, "train", args.max_samples)
+    eval_rows = split_rows(rows, "val", args.max_samples)
+    if not train_rows or not eval_rows or not split_rows(rows, "test", args.max_samples):
+        raise ValueError("Training requires nonempty train, val and final test splits")
+    last, history = validate_partial_checkpoint(run_dir, config, load_torch)
     metrics_path = run_dir / "metrics.json"
-    if args.resume and metrics_path.exists():
-        existing = json.loads(metrics_path.read_text(encoding="utf-8"))
-        test_path = run_dir / "test/metrics.json" if getattr(args, "run_dir_override", None) else run_dir.parent / "test/metrics.json"
-        test_ready = args.split == "test" or test_path.exists()
-        if existing.get("status") == "completed_full" and test_ready:
-            print(json.dumps(existing, ensure_ascii=False, indent=2))
-            return existing
+    existing = completed_metrics(run_dir, config, eval_rows, trained=True)
+    if existing is not None:
+        existing["test"] = evaluate_local_test(args, rows)
+        print(json.dumps(existing, ensure_ascii=False, indent=2))
+        return existing
+    if test_dir.exists() and any(test_dir.iterdir()):
+        raise ValueError(f"Test artifacts exist without a completed matching training run: {test_dir}")
+    ensure_free_space(run_dir)
+    write_config(run_dir, config)
 
     seed_everything(args.seed)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
-    rows = load_rows(args.dataset, EXTERNAL_ROOT)
-    train_rows = split_rows(rows, "train", args.max_samples)
-    eval_rows = split_rows(rows, args.split, args.max_samples)
     store = MatrixFeatureStore(args.dataset, args.model, EXTERNAL_ROOT / "model_matrix_cache", device)
     store.preload_graphs(train_rows + eval_rows)
     # Encode every question and its token sequence once in large internal
@@ -536,26 +559,25 @@ def run_local_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
     loader = DataLoader(RowDataset(train_rows), batch_size=args.batch_size, shuffle=True, collate_fn=lambda values: collate(values, store))
     history_path = run_dir / "history.json"
     last_checkpoint_path = run_dir / "checkpoint_last.pt"
-    history = []
     best_composite = -math.inf
     started = time.perf_counter()
 
     start_epoch = 1
     epochs_without_improvement = 0
     early_stopped = False
-    if args.resume and history_path.exists() and last_checkpoint_path.exists():
-        history = json.loads(history_path.read_text(encoding="utf-8"))
-        last = load_torch(last_checkpoint_path)
+    if last is not None:
         model.load_state_dict(last["model"])
         optimizer.load_state_dict(last["optimizer"])
         start_epoch = int(last["epoch"]) + 1
+        restore_rng_state(last["rng_state"])
         if history:
             best_composite = max(float(row["composite"]) for row in history)
             best_index = max(range(len(history)), key=lambda index: float(history[index]["composite"]))
             epochs_without_improvement = len(history) - best_index - 1
 
     epochs = min(args.epochs, 2) if args.max_samples is not None else args.epochs
-    for epoch in range(start_epoch, epochs + 1):
+    early_stopped = args.early_stopping_patience > 0 and epochs_without_improvement >= args.early_stopping_patience
+    for epoch in range(start_epoch, start_epoch if early_stopped else epochs + 1):
         model.train()
         total_loss = 0.0
         steps = 0
@@ -589,11 +611,13 @@ def run_local_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
         if composite > best_composite:
             best_composite = composite
             epochs_without_improvement = 0
-            torch.save({"model": model.state_dict(), "epoch": epoch, "composite": composite}, run_dir / "checkpoint_best.pt")
+            torch.save({"model": model.state_dict(), "epoch": epoch, "composite": composite,
+                        "config_sha256": digest(config)}, run_dir / "checkpoint_best.pt")
         else:
             epochs_without_improvement += 1
         torch.save(
-            {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "epoch": epoch},
+            {"model": model.state_dict(), "optimizer": optimizer.state_dict(), "epoch": epoch,
+             "config_sha256": digest(config), "history_sha256": digest(history), "rng_state": capture_rng_state()},
             last_checkpoint_path,
         )
         if args.early_stopping_patience > 0 and epochs_without_improvement >= args.early_stopping_patience:
@@ -619,10 +643,12 @@ def run_local_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
         "epochs_completed": len(history),
         "best_epoch": int(best["epoch"]),
         "best_composite": float(best["composite"]),
+        "config_sha256": digest(config),
+        "checkpoint_sha256": file_digest(run_dir / "checkpoint_best.pt"),
         "history": history,
         "training_execution": {
-            "mode": "full",
-            "full_training_was_run": True,
+            "mode": "full" if args.max_samples is None else "smoke",
+            "full_training_was_run": args.max_samples is None,
             "early_stopped": early_stopped,
             "early_stopping_patience": args.early_stopping_patience,
         },
@@ -638,26 +664,51 @@ def run_local_experiment_config(args: argparse.Namespace) -> dict[str, Any]:
         "config": vars(args) | {"output_dir": str(args.output_dir)},
     }
     write_jsonl(predictions, run_dir / "predictions.jsonl")
+    metrics["predictions_sha256"] = file_digest(run_dir / "predictions.jsonl")
     metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
-    if args.split == "val":
-        test_rows = split_rows(rows, "test", args.max_samples)
-        test_evaluation, test_predictions = evaluate(model, test_rows, store, device, args.eval_batch_size)
-        test_dir = run_dir / "test" if getattr(args, "run_dir_override", None) else run_dir.parent / "test"
-        test_dir.mkdir(parents=True, exist_ok=True)
-        test_metrics = {
-            "dataset": args.dataset, "model": args.model, "split": "test", "seed": args.seed,
-            "status": "completed_full" if args.max_samples is None else "completed_smoke",
-            "num_samples": len(test_rows), **test_evaluation,
-        }
-        metrics["test"] = test_metrics
-        write_jsonl(test_predictions, test_dir / "predictions.jsonl")
-        (test_dir / "metrics.json").write_text(json.dumps(test_metrics, ensure_ascii=False, indent=2), encoding="utf-8")
-        if args.dataset != "ai2d":
-            submission = [{"questionId": row["question_id"], "answer": row["pred_answer"]} for row in test_predictions]
-            (test_dir / "submission.json").write_text(json.dumps(submission, ensure_ascii=False, indent=2), encoding="utf-8")
-        metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    metrics["test"] = evaluate_local_test(args, rows, model=model, store=store, device=device)
+    metrics_path.write_text(json.dumps(metrics, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
     print(json.dumps(metrics, ensure_ascii=False, indent=2, default=str))
     return metrics
+
+
+def evaluate_local_test(args, rows, *, model=None, store=None, device=None):
+    run_dir, test_dir = training_paths(args)
+    saved_config = checkpoint_config(args, rows, run_dir, input_root=EXTERNAL_ROOT)
+    validation = completed_metrics(run_dir, saved_config, split_rows(rows, "val", args.max_samples), trained=True)
+    if validation is None:
+        raise ValueError("--split test needs a completed validation-selected checkpoint; train with --split val first")
+    checkpoint = run_dir / "checkpoint_best.pt"
+    config = test_config(args, rows, saved_config, checkpoint, input_root=EXTERNAL_ROOT)
+    validate_directory(test_dir, config, resume=args.resume)
+    test_rows = split_rows(rows, "test", args.max_samples)
+    if not test_rows:
+        raise ValueError("The test split is empty")
+    existing = completed_metrics(test_dir, config, test_rows)
+    if existing is not None:
+        return existing
+    best = load_torch(checkpoint)
+    if best.get("config_sha256") != digest(saved_config) or best.get("epoch") != validation["best_epoch"]:
+        raise ValueError("Checkpoint does not match the completed validation run")
+    if model is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        store = MatrixFeatureStore(args.dataset, args.model, EXTERNAL_ROOT / "model_matrix_cache", device)
+        model = GraphMatrixModel(args.model).to(device)
+        model.load_state_dict(best["model"])
+    evaluation, predictions = evaluate(model, test_rows, store, device, args.eval_batch_size)
+    result = {"dataset": args.dataset, "model": args.model, "split": "test", "seed": args.seed,
+              "status": "available_full" if args.max_samples is None else "available_smoke",
+              "num_samples": len(test_rows), "config_sha256": digest(config),
+              "checkpoint_sha256": config["checkpoint_sha256"], "checkpoint_selection_split": "val",
+              "best_epoch": validation["best_epoch"], **evaluation}
+    write_config(test_dir, config)
+    write_jsonl(predictions, test_dir / "predictions.jsonl")
+    result["predictions_sha256"] = file_digest(test_dir / "predictions.jsonl")
+    if args.dataset != "ai2d":
+        submission = [{"questionId": row["question_id"], "answer": row["pred_answer"]} for row in predictions]
+        (test_dir / "submission.json").write_text(json.dumps(submission, ensure_ascii=False, indent=2), encoding="utf-8")
+    (test_dir / "metrics.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    return result
 
 
 def train_local_experiment(

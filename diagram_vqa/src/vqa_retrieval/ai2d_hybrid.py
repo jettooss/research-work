@@ -57,7 +57,9 @@ class Ai2dHybridSample:
 
     @staticmethod
     def from_dict(payload: dict[str, Any]) -> "Ai2dHybridSample":
-        options = tuple(str(x) for x in payload.get("options", []) if str(x).strip())
+        # Official AI2D includes blank distractor slots. Removing a slot shifts
+        # correct_option_idx and can silently change the target answer.
+        options = tuple(str(x) for x in payload.get("options", []))
         correct_idx = int(payload.get("correct_option_idx", 0))
         if options:
             correct_idx = max(0, min(correct_idx, len(options) - 1))
@@ -103,6 +105,9 @@ def _load_caption_short_description(caption_path: Path) -> Optional[str]:
 def build_hybrid_samples_from_ai2d(
     ai2d_root: str | Path,
     prepared_root: str | Path,
+    *,
+    strict: bool = False,
+    include_captions: bool = True,
 ) -> list[Ai2dHybridSample]:
     ai2d_root = Path(ai2d_root)
     prepared_root = Path(prepared_root)
@@ -111,36 +116,63 @@ def build_hybrid_samples_from_ai2d(
     ocr_dir = prepared_root / "ocr_v2"
     caption_dir = prepared_root / "caption_v1"
 
+    if strict and (not images_dir.is_dir() or not questions_dir.is_dir()):
+        raise ValueError("AI2D data root must contain images/ and questions/ directories")
+
     out: list[Ai2dHybridSample] = []
     for q_path in sorted(questions_dir.glob("*.json")):
         payload = json.loads(q_path.read_text(encoding="utf-8"))
         image_name = str(payload.get("imageName", "")).strip()
         if not image_name:
+            if strict:
+                raise ValueError(f"Missing imageName in {q_path}")
             continue
+
+        if strict and (Path(image_name).name != image_name or "\\" in image_name):
+            raise ValueError(f"imageName must be a filename in {q_path}: {image_name!r}")
 
         image_path = images_dir / image_name
         if not image_path.exists():
+            if strict:
+                raise ValueError(f"Missing image referenced by {q_path}: {image_path}")
             continue
 
         image_id = Path(image_name).stem
         ocr_path = ocr_dir / f"{image_id}.ocr.json"
         caption_path = caption_dir / f"{image_id}.caption.json"
-        short_description = _load_caption_short_description(caption_path)
+        short_description = _load_caption_short_description(caption_path) if include_captions else None
 
         questions = payload.get("questions", {})
+        if strict and not isinstance(questions, dict):
+            raise ValueError(f"questions must be an object in {q_path}")
         for question_text, q_data in questions.items():
             question = str(question_text).strip()
+            if strict and not isinstance(q_data, dict):
+                raise ValueError(f"Question annotation must be an object in {q_path}: {question!r}")
             answers_raw = q_data.get("answerTexts", []) or []
-            options = tuple(str(answer).strip() for answer in answers_raw if str(answer).strip())
+            if strict and (not question or not isinstance(answers_raw, list)
+                           or not answers_raw or not any(str(x).strip() for x in answers_raw)):
+                raise ValueError(f"Empty question or answer list in {q_path}: {question!r}")
+            options = tuple(str(answer).strip() for answer in answers_raw)
             if not options:
                 continue
 
             try:
-                correct_idx = int(q_data.get("correctAnswer", 0))
+                raw_correct = q_data.get("correctAnswer", None if strict else 0)
+                correct_idx = int(raw_correct)
+                if strict and str(raw_correct).strip() != str(correct_idx):
+                    raise ValueError("correctAnswer is not an integer")
             except (TypeError, ValueError):
+                if strict:
+                    raise ValueError(f"Invalid correctAnswer in {q_path}: {question!r}") from None
                 correct_idx = 0
+
             if correct_idx < 0 or correct_idx >= len(options):
+                if strict:
+                    raise ValueError(f"Out-of-range correctAnswer in {q_path}: {question!r}")
                 correct_idx = 0
+            if strict and not options[correct_idx]:
+                raise ValueError(f"Correct answer is empty in {q_path}: {question!r}")
 
             question_id = str(q_data.get("questionId", "")).strip()
             suffix = question_id or _stable_question_suffix(question)
@@ -165,6 +197,12 @@ def build_hybrid_samples_from_ai2d(
                     text_q_plus_correct=q_plus_correct,
                 )
             )
+    if strict:
+        if not out:
+            raise ValueError(f"No AI2D questions found in {questions_dir}")
+        sample_ids = [sample.sample_id for sample in out]
+        if len(set(sample_ids)) != len(sample_ids):
+            raise ValueError("AI2D question IDs must be unique across the source archive")
     return out
 
 
@@ -173,7 +211,10 @@ def create_image_level_splits(
     test_ids: Iterable[str],
     val_ratio: float = 0.1,
     seed: int = 42,
+    available_image_ids: Optional[Iterable[str]] = None,
 ) -> dict[str, Any]:
+    if not 0 <= val_ratio < 1:
+        raise ValueError("val_ratio must be in [0, 1)")
     unique_image_ids = sorted({str(x).strip() for x in image_ids if str(x).strip()})
     requested_test = {str(x).strip() for x in test_ids if str(x).strip()}
     image_id_set = set(unique_image_ids)
@@ -182,8 +223,13 @@ def create_image_level_splits(
     # IDs for those images still belong to the document split and must not be
     # reported as missing data merely because the question manifest has no row
     # for them.
-    document_only_test_ids = sorted(requested_test - image_id_set)
-    test_image_ids = sorted(requested_test)
+    available = None if available_image_ids is None else {str(x).strip() for x in available_image_ids}
+    if available is not None and not image_id_set <= available:
+        raise ValueError("Question manifest references images missing from the image inventory")
+    missing_test_ids = sorted(requested_test - available) if available is not None else []
+    valid_test_ids = requested_test if available is None else requested_test & available
+    document_only_test_ids = sorted(valid_test_ids - image_id_set)
+    test_image_ids = sorted(valid_test_ids)
 
     remainder = [x for x in unique_image_ids if x not in requested_test]
     rng = random.Random(seed)
@@ -209,8 +255,9 @@ def create_image_level_splits(
         "train_image_ids": train_image_ids,
         "val_image_ids": val_image_ids,
         "test_image_ids": test_image_ids,
+        "requested_test_image_ids": sorted(requested_test),
         "document_only_test_ids": document_only_test_ids,
-        "missing_test_ids": [],
+        "missing_test_ids": missing_test_ids,
     }
 
 
@@ -251,7 +298,7 @@ def load_manifest_hybrid(path: str | Path) -> list[Ai2dHybridSample]:
 def write_manifest_hybrid(samples: Sequence[Ai2dHybridSample], output_path: str | Path) -> Path:
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as handle:
+    with output_path.open("w", encoding="utf-8", newline="\n") as handle:
         for sample in samples:
             handle.write(json.dumps(sample.to_dict(), ensure_ascii=False) + "\n")
     return output_path
@@ -293,12 +340,14 @@ def resolve_sample_file_paths(
         path = Path(value)
         if path.is_absolute() and path.exists():
             return str(path)
-        if path.exists():
-            return str(path)
         for root in root_paths:
             candidate = root / path
             if candidate.exists():
-                return str(candidate)
+                return str(candidate.resolve())
+        # Explicit data roots take precedence over unrelated files in the cwd.
+        # Retain the legacy cwd fallback only when none of the supplied roots match.
+        if path.exists():
+            return str(path)
         return str(path)
 
     return [
