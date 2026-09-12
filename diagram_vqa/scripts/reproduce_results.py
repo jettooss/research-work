@@ -116,7 +116,7 @@ def compute(evidence_path=EVIDENCE, root=ROOT):
 
 
 def table(result):
-    rows = ["| Dataset | Model | R@1, % | R@5, % | R@10, % | n |",
+    rows = ["| Набор данных | Модель | R@1, % | R@5, % | R@10, % | n |",
             "|---|---|---:|---:|---:|---:|"]
     for group in result["retrieval"]:
         values = []
